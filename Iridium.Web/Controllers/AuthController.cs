@@ -17,12 +17,17 @@ public class AuthController : ApiBaseController
 
     [AllowAnonymous]
     [HttpPost("Login")]
-    public async Task<ServiceResult<UserLoginResponse>> Login([FromBody] UserLoginRequest loginRequest) 
+    public async Task<ServiceResult<UserLoginResponse>> Login([FromBody] UserLoginRequest loginRequest)
         => await _authService.LoginAndGetUserToken(loginRequest);
 
     [AllowAnonymous]
     [HttpPost("Register")]
-    public async Task<ServiceResult<bool>> Register([FromBody] UserRegisterRequest userRegisterDto) 
+    public async Task<ServiceResult<bool>> Register([FromBody] UserRegisterRequest userRegisterDto)
         => await _authService.RegisterUser(userRegisterDto);
+
+    [AllowAnonymous]
+    [HttpGet("ValidateKey")]
+    public async Task<ServiceResult<bool>> ValidateKey([FromQuery] string key, [FromQuery] string guidId)
+        => await _authService.ValidateKey(key, guidId);
 
 }

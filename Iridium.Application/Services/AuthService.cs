@@ -6,7 +6,10 @@ using Iridium.Domain.Models.ResponseModels;
 using Iridium.Infrastructure.Constants;
 using Iridium.Infrastructure.Contexts;
 using Iridium.Infrastructure.Extensions;
+using Iridium.Infrastructure.Models;
+using Iridium.Infrastructure.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,11 +19,14 @@ namespace Iridium.Application.Services;
 
 public class AuthService
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly ApplicationDbContext dbContext;
+    private readonly AppSettings appSettings;
 
-    public AuthService(ApplicationDbContext dbContext)
+
+    public AuthService(ApplicationDbContext dbContext, IOptions<AppSettings> appSettings)
     {
-        _dbContext = dbContext;
+        this.dbContext = dbContext;
+        this.appSettings = appSettings.Value;
     }
 
     public async Task<ServiceResult<bool>> RegisterUser(UserRegisterRequest registerRequest)
@@ -54,21 +60,33 @@ public class AuthService
         var hashedPassword = registerRequest.Password.ToSHA256Hash();
         var validationKey = Guid.NewGuid().ToString(); // for mail validation
 
+        var registeredUser = await dbContext.User.Where(w => w.Deleted != true && w.MailAddress == registerRequest.MailAddress)
+                                                 .FirstOrDefaultAsync();
+
+        if (registeredUser != null)
+        {
+            if (registeredUser.UserState == (short)UserState.Registered)
+                return new ServiceResult<bool>("User already registered : waiting for e-mail validation.");
+            else
+                return new ServiceResult<bool>("User already exists.");
+        }
+
         var user = new User
         {
             MailAddress = registerRequest.MailAddress,
             Password = hashedPassword,
             PhoneNumber = registerRequest.PhoneNumber,
             ValidationKey = validationKey,
+            ValidationExpire = DateTime.UtcNow,
             UserState = (short)UserState.Registered,
             IsPremium = false,
             CreatedBy = 1,
             CreatedDate = DateTime.UtcNow,
         };
 
-        await _dbContext.User.AddAsync(user);
+        await dbContext.User.AddAsync(user);
 
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
 
         return new ServiceResult<bool>(true);
     }
@@ -78,9 +96,9 @@ public class AuthService
         var result = new ServiceResult<User>();
         var hashedPassword = loginRequest.Password.ToSHA256Hash();
 
-        var user = await _dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
-                                        .Where(w => w.Password == hashedPassword)
-                                        .FirstOrDefaultAsync();
+        var user = await dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
+                                       .Where(w => w.Password == hashedPassword)
+                                       .FirstOrDefaultAsync();
 
         if (user == null)
             return new ServiceResult<User>("The mail address or password is wrong.");
@@ -92,14 +110,62 @@ public class AuthService
     {
         var hashedPassword = loginRequest.Password.ToSHA256Hash();
 
-        var user = await _dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
-                                        .Where(w => w.Password == hashedPassword)
-                                        .FirstOrDefaultAsync();
+        var user = await dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
+                                       .Where(w => w.Password == hashedPassword)
+                                       .FirstOrDefaultAsync();
 
         if (user == null)
             return new ServiceResult<UserLoginResponse>("The mail address or password is wrong.");
 
+        if (user.UserState == (short)UserState.Registered)
+        {
+            if (user.ValidationExpire < DateTime.UtcNow)
+            {
+                return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the link sent to your e-mail.");
+            }
+            else
+            {
+                user.ValidationKey = Guid.NewGuid().ToString();
+                user.ValidationExpire = DateTime.UtcNow;
+
+                dbContext.User.Update(user);
+
+                await dbContext.SaveChangesAsync();
+
+                SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
+
+                return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
+            }
+        }
+
         return LoginUserAndGenerateJWTToken(user);
+    }
+
+    public async Task<ServiceResult<bool>> ValidateKey(string key, string guidId)
+    {
+        var user = await dbContext.User.Where(w => w.Deleted != true &&
+                                                   w.UserState == (short)UserState.Completed &&
+                                                   w.ValidationKey == key &&
+                                                   w.GuidId.ToString() == guidId)
+                                       .FirstOrDefaultAsync();
+
+        if (user == null)
+            return new ServiceResult<bool>("Validation link expired or not found.");
+
+        if (user.ValidationExpire < DateTime.UtcNow)
+        {
+            user.UserState = (short)UserState.Completed;
+            dbContext.User.Update(user);
+            await dbContext.SaveChangesAsync();
+
+            return new ServiceResult<bool>(true);
+        }
+        else
+        {
+            SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
+
+            return new ServiceResult<bool>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
+        }
     }
 
     #region Private Methods 
@@ -109,10 +175,10 @@ public class AuthService
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(SymmetricKey.Value);
 
-        var userRoles = _dbContext.UserRole.Include(ur => ur.Role)
-                                           .Where(ur => ur.UserId == user.Id)
-                                           .Select(ur => ur.Role.ParamCode)
-                                           .ToList();
+        var userRoles = dbContext.UserRole.Include(ur => ur.Role)
+                                          .Where(ur => ur.UserId == user.Id)
+                                          .Select(ur => ur.Role.ParamCode)
+                                          .ToList();
 
         var claims = new List<Claim>{
             new Claim(ClaimTypes.NameIdentifier, user.MailAddress),
@@ -157,6 +223,20 @@ public class AuthService
         }, out SecurityToken validatedToken);
 
         return validatedToken != null;
+    }
+    private void SendValidationMailToUser(string userGuidId, string validationKey, string mailAddress)
+    {
+        var baseUrl = appSettings.Base.Url;
+        var mailClientSettings = appSettings.MailClientSettings;
+
+        var subject = MailConstants.RegistrationMailSubject;
+
+        var validationLink = $"{baseUrl}/Auth/ValidateKey?key={validationKey}&guidId={userGuidId}";
+        var message = $@"{MailConstants.RegistrationMailMessage} : {validationLink} ";
+
+        MailClient mailClient = new MailClient(mailClientSettings.Mail, mailClientSettings.Username, mailClientSettings.Password, mailClientSettings.Address);
+
+        mailClient.SendEmail(mailAddress, subject, message);
     }
 
     #endregion

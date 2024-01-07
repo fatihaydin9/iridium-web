@@ -17,6 +17,8 @@ public class User : BaseEntity
 
     public string ValidationKey { get; set; }
 
+    public DateTime ValidationExpire { get; set; }
+
     public bool IsPremium { get; set; }
 
     public short UserState { get; set; }

@@ -1,7 +1,9 @@
+using Iridium.Application.Services;
 using Iridium.Infrastructure;
 using Iridium.Infrastructure.Constants;
 using Iridium.Infrastructure.Contexts;
 using Iridium.Infrastructure.Initializers;
+using Iridium.Infrastructure.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -52,6 +54,12 @@ public class Program
         });
 
         services.AddApplicationServices();
+
+        services.Configure<AppSettings>(builder.Configuration);
+        services.AddSingleton<IConfiguration>(builder.Configuration);
+        services.AddSingleton<ConfigurationManager>();
+
+        services.AddScoped<AuthService>();
 
         #endregion
 
