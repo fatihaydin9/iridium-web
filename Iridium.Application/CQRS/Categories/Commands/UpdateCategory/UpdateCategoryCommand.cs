@@ -7,11 +7,11 @@ namespace Iridium.Application.CQRS.Categories.Commands.UpdateCategory;
 
 public record UpdateCategoryCommand : IRequest
 {
-    public long Id { get; init; }
+    public long Id { get; }
 
-    public string Name { get; init; }
+    public string Name { get; }
 
-    public string Note { get; init; }
+    public string? Note { get; }
 }
 
 public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>

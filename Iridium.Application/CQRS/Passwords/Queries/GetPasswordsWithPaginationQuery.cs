@@ -14,7 +14,8 @@ public record GetPasswordsWithPaginationQuery : IRequest<ServiceResult<Paginated
     public int PageSize { get; init; } = 10;
 }
 
-public class GetCategoriesWithPaginationQueryHandler : IRequestHandler<GetPasswordsWithPaginationQuery, ServiceResult<PaginatedList<PasswordBriefDto>>>
+public class GetCategoriesWithPaginationQueryHandler : IRequestHandler<GetPasswordsWithPaginationQuery,
+    ServiceResult<PaginatedList<PasswordBriefDto>>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -25,12 +26,13 @@ public class GetCategoriesWithPaginationQueryHandler : IRequestHandler<GetPasswo
         _mapper = mapper;
     }
 
-    public async Task<ServiceResult<PaginatedList<PasswordBriefDto>>> Handle(GetPasswordsWithPaginationQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<PaginatedList<PasswordBriefDto>>> Handle(GetPasswordsWithPaginationQuery request,
+        CancellationToken cancellationToken)
     {
         var dbResult = await _context.Password.Where(x => x.CategoryId == request.CategoryId)
-                                              .OrderByDescending(x => x.Id)
-                                              .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
-                                              .PaginatedListAsync(request.PageNumber, request.PageSize);
+            .OrderByDescending(x => x.Id)
+            .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
+            .PaginatedListAsync(request.PageNumber, request.PageSize);
 
         return new ServiceResult<PaginatedList<PasswordBriefDto>>(dbResult);
     }

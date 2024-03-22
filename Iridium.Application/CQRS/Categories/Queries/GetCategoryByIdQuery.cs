@@ -27,6 +27,6 @@ public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery,
     {
         return await _context.Password.Where(x => x.Id == request.Id)
             .ProjectTo<CategoryBriefDto>(_mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(cancellationToken: cancellationToken) ?? new CategoryBriefDto();
     }
 }

@@ -12,7 +12,9 @@ public record GetPasswordsByCategoryIdQuery : IRequest<ServiceResult<List<Passwo
     public long CategoryId { get; set; }
 }
 
-public class GetPasswordsByCategoryIdQueryHandler : IRequestHandler<GetPasswordsByCategoryIdQuery, ServiceResult<List<PasswordBriefDto>>>
+public class
+    GetPasswordsByCategoryIdQueryHandler : IRequestHandler<GetPasswordsByCategoryIdQuery,
+    ServiceResult<List<PasswordBriefDto>>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -23,14 +25,14 @@ public class GetPasswordsByCategoryIdQueryHandler : IRequestHandler<GetPasswords
         _mapper = mapper;
     }
 
-    public async Task<ServiceResult<List<PasswordBriefDto>>> Handle(GetPasswordsByCategoryIdQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<List<PasswordBriefDto>>> Handle(GetPasswordsByCategoryIdQuery request,
+        CancellationToken cancellationToken)
     {
         var dbResult = await _context.Password.Where(x => x.Deleted != true && x.CategoryId == request.CategoryId)
-                                              .OrderByDescending(x => x.Id)
-                                              .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
-                                              .ToListAsync();
+            .OrderByDescending(x => x.Id)
+            .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken: cancellationToken);
 
         return new ServiceResult<List<PasswordBriefDto>>(dbResult);
     }
 }
-

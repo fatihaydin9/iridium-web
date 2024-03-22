@@ -9,7 +9,6 @@ namespace Iridium.Application.CQRS.Passwords.Queries;
 
 public record GetPasswordsQuery : IRequest<ServiceResult<List<PasswordBriefDto>>>
 {
-    
 }
 
 public class GetPasswordsQueryHandler : IRequestHandler<GetPasswordsQuery, ServiceResult<List<PasswordBriefDto>>>
@@ -23,12 +22,13 @@ public class GetPasswordsQueryHandler : IRequestHandler<GetPasswordsQuery, Servi
         _mapper = mapper;
     }
 
-    public async Task<ServiceResult<List<PasswordBriefDto>>> Handle(GetPasswordsQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<List<PasswordBriefDto>>> Handle(GetPasswordsQuery request,
+        CancellationToken cancellationToken)
     {
         var result = await _context.Password.Where(x => x.Deleted != true)
-                                            .OrderByDescending(x => x.Id)
-                                            .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
-                                            .ToListAsync();
+            .OrderByDescending(x => x.Id)
+            .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken: cancellationToken);
 
         return new ServiceResult<List<PasswordBriefDto>>(result);
     }

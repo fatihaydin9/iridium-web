@@ -2,8 +2,8 @@
 using Iridium.Application.CQRS.Passwords.Commands.InsertPassword;
 using Iridium.Application.CQRS.Passwords.Commands.UpdatePassword;
 using Iridium.Application.CQRS.Passwords.Queries;
+using Iridium.Application.Roles;
 using Iridium.Domain.Common;
-using Iridium.Domain.Roles;
 using Iridium.Infrastructure.Models;
 using Iridium.Infrastructure.Utilities;
 using Iridium.Web.Controllers.Base;

@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Iridium.Infrastructure\Iridium.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="CQRS\Passwords\Queries\GetPasswordsWithPaginationQuery.cs">
+      <DependentUpon>PasswordBriefDto.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

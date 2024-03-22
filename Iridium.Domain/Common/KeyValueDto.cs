@@ -8,7 +8,8 @@ public class KeyValueDto<TKey, TValue>
 
 public static class DtoMapper
 {
-    public static KeyValueDto<TKey, TValue> MapToKeyValueDto<TDto, TKey, TValue>(TDto dto, Func<TDto, TKey> keySelector, Func<TDto, TValue> valueSelector)
+    private static KeyValueDto<TKey, TValue> MapToKeyValueDto<TDto, TKey, TValue>(TDto dto,
+        Func<TDto, TKey> keySelector, Func<TDto, TValue> valueSelector)
     {
         return new KeyValueDto<TKey, TValue>
         {
@@ -17,14 +18,9 @@ public static class DtoMapper
         };
     }
 
-    public static List<KeyValueDto<TKey, TValue>> MapToKeyValueDtoList<TDto, TKey, TValue>(List<TDto> dtoList, Func<TDto, TKey> keySelector, Func<TDto, TValue> valueSelector)
+    public static List<KeyValueDto<TKey, TValue>> MapToKeyValueDtoList<TDto, TKey, TValue>(List<TDto> dtoList,
+        Func<TDto, TKey> keySelector, Func<TDto, TValue> valueSelector)
     {
-        var keyValueDtoList = new List<KeyValueDto<TKey, TValue>>();
-        foreach (var dto in dtoList)
-        {
-            var keyValueDto = MapToKeyValueDto(dto, keySelector, valueSelector);
-            keyValueDtoList.Add(keyValueDto);
-        }
-        return keyValueDtoList;
+        return dtoList.Select(dto => MapToKeyValueDto(dto, keySelector, valueSelector)).ToList();
     }
 }

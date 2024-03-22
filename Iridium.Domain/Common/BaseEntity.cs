@@ -4,7 +4,7 @@ public class BaseEntity
 {
     public long Id { get; set; }
 
-    public Guid GuidId { get; set; }
+    public Guid GuidId { get; init; }
 
     public DateTime CreatedDate { get; set; }
 

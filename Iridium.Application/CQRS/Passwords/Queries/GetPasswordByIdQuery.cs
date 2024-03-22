@@ -23,11 +23,12 @@ public class GetPasswordByIdQueryHandler : IRequestHandler<GetPasswordByIdQuery,
         _mapper = mapper;
     }
 
-    public async Task<ServiceResult<PasswordBriefDto>> Handle(GetPasswordByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<PasswordBriefDto>> Handle(GetPasswordByIdQuery request,
+        CancellationToken cancellationToken)
     {
-        var dbResult =  await _context.Password.Where(x => x.Id == request.Id)
-                                               .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
-                                               .FirstOrDefaultAsync();
+        var dbResult = await _context.Password.Where(x => x.Id == request.Id)
+            .ProjectTo<PasswordBriefDto>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
         return new ServiceResult<PasswordBriefDto>(dbResult);
     }

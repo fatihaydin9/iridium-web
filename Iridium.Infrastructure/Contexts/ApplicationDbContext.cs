@@ -10,15 +10,13 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options) { }
-
-
+    
     private readonly string _connectionString;
     private readonly DbConnection _existingConnection;
 
     public ApplicationDbContext(string connectionString) => _connectionString = connectionString;
     public ApplicationDbContext(DbConnection existingConnection) => _existingConnection = existingConnection;
-
-
+    
     public DbSet<Log> Log { get; set; }
     public DbSet<User> User { get; set; }
     public DbSet<Role> Role { get; set; }
@@ -35,13 +33,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (_existingConnection != null)
-        {
             optionsBuilder.UseSqlServer(_existingConnection);
-        }
+        
         else if (!string.IsNullOrEmpty(_connectionString))
-        {
             optionsBuilder.UseSqlServer(_connectionString);
-        }
 
         optionsBuilder.LogTo(Console.WriteLine);
     }

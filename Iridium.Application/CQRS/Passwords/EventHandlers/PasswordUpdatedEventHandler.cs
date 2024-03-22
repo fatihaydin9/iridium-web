@@ -13,6 +13,7 @@ public class PasswordUpdatedEventHandler : INotificationHandler<PasswordUpdatedE
         _logger = logger;
     }
 
+
     public Task Handle(PasswordUpdatedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Iridium Domain Event: {DomainEvent}", notification.GetType().Name);

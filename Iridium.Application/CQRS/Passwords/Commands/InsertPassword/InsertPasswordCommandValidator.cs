@@ -9,6 +9,5 @@ public class InsertPasswordCommandValidator : AbstractValidator<InsertPasswordCo
     {
         RuleFor(v => v.CategoryId)
             .NotEqual(0);
-
     }
 }

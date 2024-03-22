@@ -8,7 +8,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using System.Globalization;
 
 namespace Iridium.Web.Controllers.Base;
 
@@ -33,11 +32,7 @@ public abstract class ApiBaseController : ControllerBase
     {
         var activeUserId = _userService.UserId;
         var user = await _dbContext.User.FindAsync(activeUserId);
-
-        if (user == null)
-            return new ServiceResult<User>(new User());
-        else
-            return new ServiceResult<User>(user);
+        return user == null ? new ServiceResult<User>(new User()) : new ServiceResult<User>(user);
     }
 
     protected async Task<ServiceResult<List<Role>>> GetRolesFromCacheAsync(bool reloadData = false)
@@ -47,28 +42,29 @@ public abstract class ApiBaseController : ControllerBase
         if (reloadData)
             _memoryCache.Remove(cacheKey);
 
-        if (!_memoryCache.TryGetValue(cacheKey, out List<Role> cachedData))
+        if (_memoryCache.TryGetValue(cacheKey, out List<Role> cachedData))
+            return new ServiceResult<List<Role>>(cachedData);
+
+        cachedData = await FetchRolesFromDbAsync();
+
+        var cacheEntryOptions = new MemoryCacheEntryOptions
         {
-            cachedData = await FetchRolesFromDbAsync();
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1),
+            SlidingExpiration = TimeSpan.FromSeconds(1)
+        };
 
-            var cacheEntryOptions = new MemoryCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1),
-                SlidingExpiration = TimeSpan.FromSeconds(1)
-            };
-
-            _memoryCache.Set(cacheKey, cachedData, cacheEntryOptions);
-        }
+        _memoryCache.Set(cacheKey, cachedData, cacheEntryOptions);
 
         return new ServiceResult<List<Role>>(cachedData);
     }
 
-    #region Private Methods 
+    #region Private Methods
 
-    private async Task<List<Role>> FetchRolesFromDbAsync() => await _dbContext.Role.Where(w => w.Deleted != true).ToListAsync();
+    private async Task<List<Role>> FetchRolesFromDbAsync() =>
+        await _dbContext.Role.Where(w => w.Deleted != true).ToListAsync();
 
-    private async Task<List<string>> FetchRoleParamCodesFromDbAsync() => await _dbContext.Role.Where(w => w.Deleted != true).Select(s => s.ParamCode).ToListAsync();
+    private async Task<List<string>> FetchRoleParamCodesFromDbAsync() =>
+        await _dbContext.Role.Where(w => w.Deleted != true).Select(s => s.ParamCode).ToListAsync();
 
     #endregion
-
 }

@@ -1,10 +1,10 @@
 ﻿using Iridium.Domain.Common;
 using Iridium.Infrastructure.Attributes;
 
-namespace Iridium.Domain.Roles;
+namespace Iridium.Application.Roles;
 
 [RoleArea("Category")]
-public class CategoryRole : IRole
+public abstract class CategoryRole : IRole
 {
     [RoleName("Read Category Role")]
     public const string Read   = "Category.Read";

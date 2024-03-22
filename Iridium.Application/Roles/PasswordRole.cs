@@ -1,10 +1,10 @@
 ﻿using Iridium.Domain.Common;
 using Iridium.Infrastructure.Attributes;
 
-namespace Iridium.Domain.Roles;
+namespace Iridium.Application.Roles;
 
 [RoleArea("Password")]
-public partial class PasswordRole : IRole
+public abstract class PasswordRole : IRole
 {
     [RoleName("Read Password Role")]
     public const string Read   = "Password.Read";

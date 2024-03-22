@@ -11,7 +11,7 @@ public class Category : BaseDomainEntity
 
     public string Name { get; set; } 
 
-    public string Note { get; set; } 
+    public string? Note { get; set; } 
 
     public virtual ICollection<Password> Passwords { get; set; }
 

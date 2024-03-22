@@ -7,9 +7,15 @@ namespace Iridium.Application.CQRS.Categories.Commands.InsertCategory;
 
 public class InsertCategoryCommand : IRequest<long>
 {
-    public string Name { get; init; }
+    public InsertCategoryCommand(string? note, string name)
+    {
+        Note = note;
+        Name = name;
+    }
 
-    public string Note { get; init; }
+    public string Name { get; }
+
+    public string? Note { get; }
 }
 
 public class InsertCategoryCommandHandler : IRequestHandler<InsertCategoryCommand, long>
