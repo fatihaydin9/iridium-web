@@ -34,6 +34,7 @@ public class AuthService
         // TODO: Phone Validation
         //if (!registerRequest.PhoneNumber.IsValidPhoneNumber())
         //    return new ServiceResult<bool>("The phone number is invalid.");
+        // TODO: Mail Client and Commercial Mail System
 
         var isUserExists = await _dbContext.User.AnyAsync(
             w => w.Deleted != true && w.MailAddress == registerRequest.MailAddress);
