@@ -17,6 +17,8 @@ public record UpdateNoteCommand : IRequest<ServiceResult<bool>>
     public string Content { get; set; }
 
     public string Summary { get; set; }
+
+    public bool IsPrivate { get; set; }      
     
     public List<Tag> Tags { get; set; }
 }
@@ -32,17 +34,20 @@ public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand, Servi
 
     public async Task<ServiceResult<bool>> Handle(UpdateNoteCommand request, CancellationToken cancellationToken)
     {
-        var entity = await _context.Note
+        var noteEntity = await _context.Note
             .FindAsync(new object[] { request.Id }, cancellationToken);
 
-        if (entity == null)
+        if (noteEntity == null)
             throw new NotFoundException(nameof(Category), request.Id);
 
-        entity.CategoryId = request.CategoryId;
-        entity.Title = request.Title;
-        entity.Content = request.Content;
-        entity.Summary = request.Summary;
-        entity.Tags = request.Tags;
+        noteEntity = new Note()
+        {
+            CategoryId = request.CategoryId,
+            Title = request.Title,
+            Summary = request.Summary,
+            IsPrivate = request.IsPrivate,
+            Tags = request.Tags
+        };
 
         await _context.SaveChangesAsync(cancellationToken);
 

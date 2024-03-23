@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Iridium.Application.Areas;
 
 namespace Iridium.Application.Services;
 
@@ -21,7 +22,7 @@ public class AuthService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly AppSettings _appSettings;
-    
+
     public AuthService(ApplicationDbContext dbContext, IOptions<AppSettings> appSettings)
     {
         _dbContext = dbContext;
@@ -30,6 +31,19 @@ public class AuthService
 
     public async Task<ServiceResult<bool>> RegisterUser(UserRegisterRequest registerRequest)
     {
+        // TODO: Phone Validation
+        //if (!registerRequest.PhoneNumber.IsValidPhoneNumber())
+        //    return new ServiceResult<bool>("The phone number is invalid.");
+
+        var isUserExists = await _dbContext.User.AnyAsync(
+            w => w.Deleted != true && w.MailAddress == registerRequest.MailAddress);
+
+        if (isUserExists)
+            return new ServiceResult<bool>("User already exists.");
+
+        if (!registerRequest.MailAddress.IsValidMailAddress())
+            return new ServiceResult<bool>("The email address is invalid.");
+
         if (registerRequest.Password.Length < 8)
             return new ServiceResult<bool>("Password should be at least 8 characters long.");
 
@@ -48,12 +62,6 @@ public class AuthService
         if (registerRequest.Password.All(char.IsLetterOrDigit))
             return new ServiceResult<bool>("Password should contain at least one special character.");
 
-        if (!registerRequest.PhoneNumber.IsValidPhoneNumber())
-            return new ServiceResult<bool>("The phone number is invalid.");
-
-        if (!registerRequest.MailAddress.IsValidMailAddress())
-            return new ServiceResult<bool>("The email address is invalid.");
-
         var hashedPassword = registerRequest.Password.ToSHA256Hash();
         var validationKey = Guid.NewGuid().ToString(); // for mail validation
 
@@ -68,6 +76,7 @@ public class AuthService
                 : new ServiceResult<bool>("User already exists.");
         }
 
+        // for adding user
         var user = new User
         {
             MailAddress = registerRequest.MailAddress,
@@ -78,11 +87,30 @@ public class AuthService
             UserState = (short)UserState.Registered,
             IsPremium = false,
             CreatedBy = 1,
-            CreatedDate = DateTime.UtcNow,
+            CreatedDate = DateTime.UtcNow
         };
 
         await _dbContext.User.AddAsync(user);
+        await _dbContext.SaveChangesAsync();
 
+        // for adding standard user roles
+        var roleIds = await _dbContext.Role.Where(w =>
+                w.Deleted != true &&
+                (w.Area == AreaNames.Category || w.Area == AreaNames.Note))
+            .Select(s => s.Id)
+            .ToListAsync();
+
+        var userId = user.Id;
+        var userRoles = new List<UserRole>();
+
+        foreach (var roleId in roleIds)
+            userRoles.Add(new UserRole()
+            {
+                UserId = userId,
+                RoleId = roleId
+            });
+
+        await _dbContext.UserRole.AddRangeAsync(userRoles);
         await _dbContext.SaveChangesAsync();
 
         return new ServiceResult<bool>(true);
@@ -153,6 +181,10 @@ public class AuthService
 
             return new ServiceResult<bool>(true);
         }
+
+        user.ValidationKey = Guid.NewGuid().ToString();
+        _dbContext.User.Update(user);
+        await _dbContext.SaveChangesAsync();
 
         SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
 

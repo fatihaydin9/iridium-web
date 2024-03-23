@@ -24,4 +24,9 @@ public abstract class NoteBriefDto : BaseDto, IMapFrom<Note>
     [FormComponent("Summary", true, FormInputType.TextArea, true, true, true, 12, AttributeConstants.NO_MASK,
         AttributeConstants.NO_CASCADE)]   
     public string Summary { get; set; }
+    
+    [FormComponent("Private", true, FormInputType.BoolSwitch, true, true, true, 12, AttributeConstants.NO_MASK,
+        AttributeConstants.NO_CASCADE)]   
+    public bool IsPrivate { get; set; }
+    
 }

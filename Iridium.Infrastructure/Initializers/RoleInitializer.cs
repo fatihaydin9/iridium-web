@@ -32,9 +32,6 @@ namespace Iridium.Infrastructure.Initializers
             {
                 RoleAreaAttribute roleAreaAttribute = roleType.GetCustomAttribute<RoleAreaAttribute>();
 
-                if (roleAreaAttribute == null)
-                    continue;
-
                 string roleArea = roleAreaAttribute.Area;
 
                 FieldInfo[] fieldInfos = roleType.GetFields(BindingFlags.Public | BindingFlags.Static);
@@ -63,7 +60,6 @@ namespace Iridium.Infrastructure.Initializers
                     allRolesDomain.Add(role);
                 }
             }
-
 
             var rolesWillBeAdd = allRolesDomain.Except(allRolesDb);
             var rolesWillBeRemoved = allRolesDb.Except(allRolesDomain);

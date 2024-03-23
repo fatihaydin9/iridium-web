@@ -13,5 +13,6 @@ public enum FormInputType
     Date = 8,
     DateTime = 10,
     Password = 11,
-    HtmlContent = 12
+    HtmlContent = 12,
+    BoolSwitch
 }

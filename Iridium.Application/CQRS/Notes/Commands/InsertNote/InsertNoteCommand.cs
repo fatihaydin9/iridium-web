@@ -15,6 +15,8 @@ public class InsertNoteCommand : IRequest<ServiceResult<bool>>
     public string Content { get; init; }
 
     public string Summary { get; init; }
+
+    public bool IsPrivate { get; set; }
     
     public List<Tag> Tags { get; init; }
 }
@@ -30,16 +32,19 @@ public class InsertNoteCommandHandler : IRequestHandler<InsertNoteCommand, Servi
 
     public async Task<ServiceResult<bool>> Handle(InsertNoteCommand request, CancellationToken cancellationToken)
     {
-        var entity = new Note
+        var noteEntity = new Note
         {
             CategoryId = request.CategoryId,
+            Title = request.Title,
             Content = request.Content,
-            
+            Summary = request.Summary,
+            IsPrivate = request.IsPrivate,
+            Tags = request.Tags
         };
 
-        entity.AddDomainEvent(new NoteInsertedEvent(entity));
+        noteEntity.AddDomainEvent(new NoteInsertedEvent(noteEntity));
 
-        _context.Note.Add(entity);
+        _context.Note.Add(noteEntity);
 
         await _context.SaveChangesAsync(cancellationToken);
 

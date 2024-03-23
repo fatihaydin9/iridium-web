@@ -17,10 +17,13 @@ public class Note : BaseDomainEntity
     public string Content { get; set; }
 
     public string Summary { get; set; }
+
+    public bool IsPrivate { get; set; } = true;
+    
+    // Navigation Properties
+    public virtual ICollection<Tag> Tags { get; set; }
     
     [ForeignKey("CategoryId")]
     public virtual Category Category { get; set; }
-    
-    public virtual ICollection<Tag> Tags { get; set; }
 
 }
