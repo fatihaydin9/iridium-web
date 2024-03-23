@@ -6,13 +6,13 @@ public class Category : BaseDomainEntity
 {
     public Category()
     {
-        Passwords = new HashSet<Password>();
+        Notes = new HashSet<Note>();
     }
 
     public string Name { get; set; } 
 
     public string? Note { get; set; } 
 
-    public virtual ICollection<Password> Passwords { get; set; }
+    public virtual ICollection<Note> Notes { get; set; }
 
 }

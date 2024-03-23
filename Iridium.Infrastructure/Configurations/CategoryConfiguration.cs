@@ -10,7 +10,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.Property(t => t.Name)
-               .HasMaxLength(ConfigurationConstants.MAX_CATEGORY_LENGTH)
+               .HasMaxLength(ConfigurationConstants.MaxCategoryLength)
                .IsRequired();
     }
 }

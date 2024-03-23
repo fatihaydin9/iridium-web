@@ -3,9 +3,9 @@ using Iridium.Domain.Entities;
 
 namespace Iridium.Domain.Events;
 
-public class NoteUpdatedEvent : BaseEvent
+public class NoteInsertedEvent : BaseEvent
 {
-    public NoteUpdatedEvent(Note note)
+    public NoteInsertedEvent(Note note)
     {
         Note = note;
     }

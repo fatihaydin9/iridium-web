@@ -3,16 +3,16 @@ using Iridium.Infrastructure.Constants;
 
 namespace Iridium.Application.CQRS.Categories.Commands.UpdateCategory;
 
-public class UpdatePasswordCommandValidator : AbstractValidator<UpdateCategoryCommand>
+public class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
 {
-    public UpdatePasswordCommandValidator()
+    public UpdateCategoryCommandValidator()
     {
         RuleFor(v => v.Id)
             .NotNull()
             .NotEqual(0);
 
         RuleFor(v => v.Name)
-            .MaximumLength(ConfigurationConstants.MAX_CATEGORY_LENGTH)
+            .MaximumLength(ConfigurationConstants.MaxCategoryLength)
             .NotEmpty();
     }
 }

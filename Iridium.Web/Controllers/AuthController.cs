@@ -10,24 +10,24 @@ namespace Iridium.Web.Controllers;
 
 public class AuthController : ApiBaseController
 {
-    public readonly AuthService _authService;
+    public readonly AuthService AuthService;
 
     public AuthController(AuthService authService)
-        => _authService = authService;
+        => AuthService = authService;
 
     [AllowAnonymous]
     [HttpPost("Login")]
     public async Task<ServiceResult<UserLoginResponse>> Login([FromBody] UserLoginRequest loginRequest)
-        => await _authService.LoginAndGetUserToken(loginRequest);
+        => await AuthService.LoginAndGetUserToken(loginRequest);
 
     [AllowAnonymous]
     [HttpPost("Register")]
     public async Task<ServiceResult<bool>> Register([FromBody] UserRegisterRequest userRegisterDto)
-        => await _authService.RegisterUser(userRegisterDto);
+        => await AuthService.RegisterUser(userRegisterDto);
 
     [AllowAnonymous]
     [HttpGet("ValidateKey")]
     public async Task<ServiceResult<bool>> ValidateKey([FromQuery] string key, [FromQuery] string guidId)
-        => await _authService.ValidateKey(key, guidId);
+        => await AuthService.ValidateKey(key, guidId);
 
 }

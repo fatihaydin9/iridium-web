@@ -7,7 +7,7 @@ public interface IApplicationDbContext
 {
     DbSet<Category> Category { get; }
 
-    DbSet<Password> Password { get; }
+    DbSet<Note> Note { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

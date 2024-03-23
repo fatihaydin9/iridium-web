@@ -21,8 +21,7 @@ public class AuthService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly AppSettings _appSettings;
-
-
+    
     public AuthService(ApplicationDbContext dbContext, IOptions<AppSettings> appSettings)
     {
         _dbContext = dbContext;
@@ -114,7 +113,7 @@ public class AuthService
             return new ServiceResult<UserLoginResponse>("The mail address or password is wrong.");
 
         if (user.UserState != (short)UserState.Registered)
-            return LoginUserAndGenerateJWTToken(user);
+            return LoginUserAndGenerateJwtToken(user);
 
         if (user.ValidationExpire < DateTime.UtcNow)
         {
@@ -138,10 +137,10 @@ public class AuthService
     public async Task<ServiceResult<bool>> ValidateKey(string key, string guidId)
     {
         var user = await _dbContext.User.Where(w => w.Deleted != true &&
-                                                   w.UserState == (short)UserState.Completed &&
-                                                   w.ValidationKey == key &&
-                                                   w.GuidId.ToString() == guidId)
-                                       .FirstOrDefaultAsync();
+                                                    w.UserState == (short)UserState.Completed &&
+                                                    w.ValidationKey == key &&
+                                                    w.GuidId.ToString() == guidId)
+            .FirstOrDefaultAsync();
 
         if (user == null)
             return new ServiceResult<bool>("Validation link expired or not found.");
@@ -162,7 +161,8 @@ public class AuthService
     }
 
     #region Private Methods
-    private ServiceResult<UserLoginResponse> LoginUserAndGenerateJWTToken(User user)
+
+    private ServiceResult<UserLoginResponse> LoginUserAndGenerateJwtToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(SymmetricKey.Value);
@@ -174,13 +174,13 @@ public class AuthService
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, user.MailAddress),
+            new(ClaimTypes.NameIdentifier, user.MailAddress),
         };
 
         foreach (var role in userRoles)
             claims.Add(new Claim(ClaimTypes.Role, role));
 
-        var tokenExpireDate = DateTime.UtcNow.AddDays(ConfigurationConstants.TOKEN_EXPIRE_AS_DAY);
+        var tokenExpireDate = DateTime.UtcNow.AddDays(ConfigurationConstants.TokenExpireAsDay);
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -214,7 +214,7 @@ public class AuthService
             ValidateIssuer = false,
             ValidateAudience = false,
             ClockSkew = TimeSpan.Zero
-        }, out SecurityToken validatedToken);
+        }, out var validatedToken);
 
         return validatedToken != null;
     }
@@ -229,7 +229,7 @@ public class AuthService
         var validationLink = $"{baseUrl}/Auth/ValidateKey?key={validationKey}&guidId={userGuidId}";
         var message = $@"{MailConstants.RegistrationMailMessage} : {validationLink} ";
 
-        MailClient mailClient = new MailClient(mailClientSettings.Mail, mailClientSettings.Username,
+        var mailClient = new MailClient(mailClientSettings.Mail, mailClientSettings.Username,
             mailClientSettings.Password, mailClientSettings.Address);
 
         mailClient.SendEmail(mailAddress, subject, message);

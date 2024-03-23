@@ -3,18 +3,18 @@ using Iridium.Infrastructure.Attributes;
 
 namespace Iridium.Application.Roles;
 
-[RoleArea("Password")]
-public abstract class PasswordRole : IRole
+[RoleArea("Note")]
+public abstract class NoteRole : IRole
 {
-    [RoleName("Read Password Role")]
-    public const string Read   = "Password.Read";
+    [RoleName("Read Note Role")]
+    public const string Read   = "Note.Read";
 
-    [RoleName("Insert Password Role")]
-    public const string Insert = "Password.Insert";
+    [RoleName("Insert Note Role")]
+    public const string Insert = "Note.Insert";
 
-    [RoleName("Update Password Role")]
-    public const string Update = "Password.Update";
+    [RoleName("Update Note Role")]
+    public const string Update = "Note.Update";
 
-    [RoleName("Delete Password Role")]
-    public const string Delete = "Password.Delete";
+    [RoleName("Delete Note Role")]
+    public const string Delete = "Note.Delete";
 }

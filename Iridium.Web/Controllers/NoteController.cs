@@ -1,7 +1,9 @@
-﻿using Iridium.Application.CQRS.Passwords.Commands.DeleteCategory;
-using Iridium.Application.CQRS.Passwords.Commands.InsertPassword;
-using Iridium.Application.CQRS.Passwords.Commands.UpdatePassword;
-using Iridium.Application.CQRS.Passwords.Queries;
+﻿using Iridium.Application.CQRS.Categories.Commands.DeleteCategory;
+using Iridium.Application.CQRS.Notes.Commands.DeleteNote;
+using Iridium.Application.CQRS.Notes.Commands.InsertNote;
+using Iridium.Application.CQRS.Notes.Commands.UpdateNote;
+using Iridium.Application.CQRS.Notes.Queries;
+using Iridium.Application.CQRS.Nots.Queries;
 using Iridium.Application.Roles;
 using Iridium.Domain.Common;
 using Iridium.Infrastructure.Models;
@@ -12,55 +14,55 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Iridium.Web.Controllers;
 
-public class PasswordController : ApiBaseController
+public class NoteController : ApiBaseController
 {
     [HttpGet("Get")]
     [Authorize]
-    [IridiumRole(PasswordRole.Read)]
-    public async Task<ServiceResult<PasswordBriefDto>> Get([FromQuery] GetPasswordByIdQuery query)
+    [IridiumRole(NoteRole.Read)]
+    public async Task<ServiceResult<NoteBriefDto>> Get([FromQuery] GetNoteByIdQuery query)
         => await Mediator.Send(query);
 
 
     [Authorize]
     [HttpGet("List")]
-    [IridiumRole(PasswordRole.Read)]
-    public async Task<ServiceResult<List<PasswordBriefDto>>> List([FromQuery] GetPasswordsQuery query)
+    [IridiumRole(NoteRole.Read)]
+    public async Task<ServiceResult<List<NoteBriefDto>>> List([FromQuery] GetNotesQuery query)
         => await Mediator.Send(query);
 
 
     [Authorize]
     [HttpGet("ListByCategoryId")]
-    [IridiumRole(PasswordRole.Read)]
-    public async Task<ServiceResult<List<PasswordBriefDto>>> ListByCategoryId([FromQuery] GetPasswordsByCategoryIdQuery query)
+    [IridiumRole(NoteRole.Read)]
+    public async Task<ServiceResult<List<NoteBriefDto>>> ListByCategoryId([FromQuery] GetNotesByCategoryIdQuery query)
         => await Mediator.Send(query);
 
 
     [Authorize]
     [HttpGet("PaginatedList")]
-    [IridiumRole(PasswordRole.Read)]
-    public async Task<ServiceResult<PaginatedList<PasswordBriefDto>>> PaginatedList([FromQuery] GetPasswordsWithPaginationQuery query)
+    [IridiumRole(NoteRole.Read)]
+    public async Task<ServiceResult<PaginatedList<NoteBriefDto>>> PaginatedList([FromQuery] GetNotesWithPaginationQuery query)
         => await Mediator.Send(query);
 
 
     [Authorize]
     [HttpPost("Insert")]
-    [IridiumRole(PasswordRole.Insert)]
-    public async Task<ServiceResult<bool>> Insert([FromBody] InsertPasswordCommand command)
+    [IridiumRole(NoteRole.Insert)]
+    public async Task<ServiceResult<bool>> Insert([FromBody] InsertNoteCommand command)
         => await Mediator.Send(command);
 
 
     [Authorize]
     [HttpPost("Update")]
-    [IridiumRole(PasswordRole.Update)]
-    public async Task<ServiceResult<bool>> Update([FromBody] UpdatePasswordCommand command)
+    [IridiumRole(NoteRole.Update)]
+    public async Task<ServiceResult<bool>> Update([FromBody] UpdateNoteCommand command)
         => await Mediator.Send(command);
 
 
     [Authorize]
     [HttpPost("Delete")]
-    [IridiumRole(PasswordRole.Delete)]
+    [IridiumRole(NoteRole.Delete)]
     public async Task<ServiceResult<bool>> Delete(int id)
-        => await Mediator.Send(new DeletePasswordCommand(id));
+        => await Mediator.Send(new DeleteNoteCommand(id));
 
 
     #region Template & Dropdown
@@ -71,8 +73,8 @@ public class PasswordController : ApiBaseController
     {
         var templateModel = new TemplateModel()
         {
-            FormComponents = AttributeHelper.GetDtoFormComponents<PasswordBriefDto>(),
-            EndpointSettings = AttributeHelper.GetDtoEndPointSettings<PasswordBriefDto>()
+            FormComponents = AttributeHelper.GetDtoFormComponents<NoteBriefDto>(),
+            EndpointSettings = AttributeHelper.GetDtoEndPointSettings<NoteBriefDto>()
         };
 
         return templateModel;
@@ -82,12 +84,12 @@ public class PasswordController : ApiBaseController
     [HttpGet("Dropdown")]
     public async Task<ServiceResult<List<KeyValueDto<long, string>>>> Dropdown()
     {
-        var serviceResult = await List(new GetPasswordsQuery());
+        var serviceResult = await List(new GetNotesQuery());
 
         if (serviceResult == null || serviceResult.Data == null)
             return new ServiceResult<List<KeyValueDto<long, string>>>(new List<KeyValueDto<long, string>>());
 
-        var dropDownList = DtoMapper.MapToKeyValueDtoList(serviceResult.Data, d => d.Id, d => d.UserName);
+        var dropDownList = DtoMapper.MapToKeyValueDtoList(serviceResult.Data, d => d.Id, d => d.Title);
 
         return new ServiceResult<List<KeyValueDto<long, string>>>(dropDownList);
     }
@@ -96,12 +98,12 @@ public class PasswordController : ApiBaseController
     [HttpGet("Cascade")]
     public async Task<ServiceResult<List<KeyValueDto<long, string>>>> Cascade([FromQuery] long categoryId)
     {
-        var serviceResult = await ListByCategoryId(new GetPasswordsByCategoryIdQuery { CategoryId = categoryId });
+        var serviceResult = await ListByCategoryId(new GetNotesByCategoryIdQuery() { CategoryId = categoryId });
 
         if (serviceResult == null || serviceResult.Data == null)
             return new ServiceResult<List<KeyValueDto<long, string>>>(new List<KeyValueDto<long, string>>());
 
-        var dropDownList = DtoMapper.MapToKeyValueDtoList(serviceResult.Data, d => d.Id, d => d.UserName);
+        var dropDownList = DtoMapper.MapToKeyValueDtoList(serviceResult.Data, d => d.Id, d => d.Title);
 
         return new ServiceResult<List<KeyValueDto<long, string>>>(dropDownList);
     }

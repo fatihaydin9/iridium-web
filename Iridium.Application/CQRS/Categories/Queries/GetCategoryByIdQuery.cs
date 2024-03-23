@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Iridium.Application.CQRS.Passwords.Queries;
+using Iridium.Application.CQRS.Notes.Queries;
 using Iridium.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +25,7 @@ public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery,
 
     public async Task<CategoryBriefDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Password.Where(x => x.Id == request.Id)
+        return await _context.Note.Where(x => x.Id == request.Id)
             .ProjectTo<CategoryBriefDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken: cancellationToken) ?? new CategoryBriefDto();
     }

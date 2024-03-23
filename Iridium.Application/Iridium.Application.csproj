@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CQRS\Passwords\Queries\GetPasswordsWithPaginationQuery.cs">
-      <DependentUpon>PasswordBriefDto.cs</DependentUpon>
+    <Compile Update="CQRS\Notes\Queries\GetNotesWithPaginationQuery.cs">
+      <DependentUpon>NoteBriefDto.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

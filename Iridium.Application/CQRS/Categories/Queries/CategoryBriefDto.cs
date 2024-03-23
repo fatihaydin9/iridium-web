@@ -11,7 +11,7 @@ namespace Iridium.Application.CQRS.Categories.Queries;
     "Category/Update", "Category/Delete", "Category/Delete", "Category/GetDropdown")]
 public class CategoryBriefDto : BaseDto, IMapFrom<Category>
 {
-    [FormComponent("Name", true, FormInputType.InputBox, true, true, true, 6, AttributeConstants.NO_MASK,
+    [FormComponent("Name", true, FormInputType.InputText, true, true, true, 6, AttributeConstants.NO_MASK,
         AttributeConstants.NO_CASCADE)]
     public string Name { get; set; } = string.Empty;
 

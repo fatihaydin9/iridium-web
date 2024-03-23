@@ -6,7 +6,7 @@ public class FormComponentAttribute : Attribute
 {
     public string displayName = "";
     public bool isRequired = true;
-    public FormInputType inputType = FormInputType.InputBox;
+    public FormInputType inputType = FormInputType.InputText;
     public bool isVisible = true;
     public bool isEditable = false;
     public bool isFilterable = true;

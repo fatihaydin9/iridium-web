@@ -8,7 +8,7 @@ public class InsertCategoryCommandValidator : AbstractValidator<InsertCategoryCo
     public InsertCategoryCommandValidator()
     {
         RuleFor(v => v.Name)
-            .MaximumLength(ConfigurationConstants.MAX_CATEGORY_LENGTH)
+            .MaximumLength(ConfigurationConstants.MaxCategoryLength)
             .NotEmpty();
     }
 }
