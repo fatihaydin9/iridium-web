@@ -3,6 +3,7 @@ using Iridium.Infrastructure.Contexts;
 using Iridium.Infrastructure.Initializers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Iridium.Infrastructure.Services;
 
 namespace Iridium.Infrastructure;
 

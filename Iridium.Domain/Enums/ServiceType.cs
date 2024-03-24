@@ -2,7 +2,8 @@
 {
     public enum ServiceType : short
     {
+        None,
         Web,
-        Mobile,
+        Mobile
     }
 }

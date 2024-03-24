@@ -13,7 +13,7 @@ public class CategoryRole : IRole
     [RoleName($"Add {AreaNames.Category} Role")]
     public const string Insert = $"{AreaNames.Category}.Insert";
 
-    [RoleName($"$Update {AreaNames.Category} Role")]
+    [RoleName($"Update {AreaNames.Category} Role")]
     public const string Update = $"{AreaNames.Category}.Update";
 
     [RoleName($"Delete {AreaNames.Category} Role")]

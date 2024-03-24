@@ -14,7 +14,7 @@ public class Log : BaseEntity
 
     public ServiceType ServiceType { get; set; }
 
-    public long? Key { get; set; }
+    public string? Key { get; set; }
 
     [StringLength(30)]
     public string? KeyName { get; set; }

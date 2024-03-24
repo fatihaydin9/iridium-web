@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Iridium.Domain.Enums;
+using Iridium.Web.Middlewares;
+
 namespace Iridium.Web;
 
 public class Program
@@ -60,7 +63,7 @@ public class Program
         services.AddSingleton<ConfigurationManager>();
 
         services.AddScoped<AuthService>();
-
+        
         #endregion
 
         #region Application
@@ -69,7 +72,10 @@ public class Program
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext"))
+            .EnableSensitiveDataLogging(true)
             .Options;
+
+        app.UseMiddleware<ErrorHandlerMiddleware>();
 
         var dbContext = new ApplicationDbContext(options);
         var roleInitializer = new RoleInitializer(dbContext);
@@ -85,7 +91,7 @@ public class Program
 
         app.UseAuthorization();
 
-        LogInitializer.Initialize(Domain.Enums.ServiceType.Web, builder.Configuration.GetConnectionString("ApplicationDbContext"));
+        LogInitializer.Initialize(ServiceType.Web, builder.Configuration.GetConnectionString("ApplicationDbContext"));
 
         app.MapControllers().RequireAuthorization();
 

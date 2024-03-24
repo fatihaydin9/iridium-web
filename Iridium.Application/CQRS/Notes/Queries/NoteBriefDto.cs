@@ -13,20 +13,20 @@ public abstract class NoteBriefDto : BaseDto, IMapFrom<Note>
 {
     public long CategoryId { get; set; }
 
-    [FormComponent("Title", true, FormInputType.TextArea, true, true, true, 12, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]
+    [FormComponent("Title", true, FormInputType.TextArea, true, true, true, 12, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]
     public string Title { get; set; }
 
-    [FormComponent("Content", true, FormInputType.HtmlContent, true, true, true, 12, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]
+    [FormComponent("Content", true, FormInputType.HtmlContent, true, true, true, 12, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]
     public string Content { get; set; }
 
-    [FormComponent("Summary", true, FormInputType.TextArea, true, true, true, 12, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]   
+    [FormComponent("Summary", true, FormInputType.TextArea, true, true, true, 12, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]   
     public string Summary { get; set; }
     
-    [FormComponent("Private", true, FormInputType.BoolSwitch, true, true, true, 12, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]   
+    [FormComponent("Private", true, FormInputType.BoolSwitch, true, true, true, 12, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]   
     public bool IsPrivate { get; set; }
     
 }

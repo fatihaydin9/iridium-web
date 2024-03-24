@@ -37,7 +37,7 @@ public abstract class ApiBaseController : ControllerBase
 
     protected async Task<ServiceResult<List<Role>>> GetRolesFromCacheAsync(bool reloadData = false)
     {
-        var cacheKey = CacheKeys.ROLE_CACHE_KEY;
+        var cacheKey = CacheKeys.RoleCacheKey;
 
         if (reloadData)
             _memoryCache.Remove(cacheKey);

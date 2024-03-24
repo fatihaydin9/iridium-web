@@ -2,5 +2,5 @@
 
 public class CacheKeys
 {
-    public const string ROLE_CACHE_KEY = "IRIDIUM_ROLE_MAIN";
+    public const string RoleCacheKey = "IRIDIUM_ROLE_MAIN";
 }

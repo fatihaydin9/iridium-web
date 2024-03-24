@@ -68,6 +68,7 @@ namespace Iridium.Infrastructure.Initializers
             dbContext.RemoveRange(rolesWillBeRemoved);
 
             await dbContext.SaveChangesAsync();
+            
         }
     }
 }

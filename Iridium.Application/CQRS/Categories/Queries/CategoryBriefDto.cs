@@ -11,12 +11,12 @@ namespace Iridium.Application.CQRS.Categories.Queries;
     "Category/Update", "Category/Delete", "Category/Delete", "Category/GetDropdown")]
 public class CategoryBriefDto : BaseDto, IMapFrom<Category>
 {
-    [FormComponent("Name", true, FormInputType.InputText, true, true, true, 6, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]
+    [FormComponent("Name", true, FormInputType.InputText, true, true, true, 6, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]
     public string Name { get; set; } = string.Empty;
 
 
-    [FormComponent("Note", true, FormInputType.TextArea, true, true, true, 12, AttributeConstants.NO_MASK,
-        AttributeConstants.NO_CASCADE)]
+    [FormComponent("Note", true, FormInputType.TextArea, true, true, true, 12, AttributeConfigurations.NoMask,
+        AttributeConfigurations.NoCascade)]
     public string Note { get; set; } = string.Empty;
 }

@@ -257,10 +257,10 @@ public class AuthService
         var baseUrl = _appSettings.Base.Url;
         var mailClientSettings = _appSettings.MailClientSettings;
 
-        var subject = MailConstants.RegistrationMailSubject;
+        var subject = MailConfigurations.RegistrationMailSubject;
 
         var validationLink = $"{baseUrl}/Auth/ValidateKey?key={validationKey}&guidId={userGuidId}";
-        var message = $@"{MailConstants.RegistrationMailMessage} : {validationLink} ";
+        var message = $@"{MailConfigurations.RegistrationMailMessage} : {validationLink} ";
 
         var mailClient = new MailClient(mailClientSettings.Mail, mailClientSettings.Username,
             mailClientSettings.Password, mailClientSettings.Address);

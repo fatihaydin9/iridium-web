@@ -38,7 +38,7 @@ namespace Iridium.Web.Controllers {
             if (list == null || list.Value == null)
                 return new ActionResult<List<KeyValueDto<long, string>>>(new List<KeyValueDto<long, string>>());
 
-            List<KeyValueDto<long, string>> dropDownList = DtoMapper.MapToKeyValueDtoList(list.Value, d => d.Id, d => d.Name);
+            var dropDownList = DtoMapper.MapToKeyValueDtoList(list.Value, d => d.Id, d => d.Name);
 
             return dropDownList;
         }
