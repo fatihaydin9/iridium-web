@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Iridium.Infrastructure.Configurations;
 
-public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+public class WorkspaceConfiguration : IEntityTypeConfiguration<Workspace>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<Workspace> builder)
     {
         builder.Property(t => t.Name)
-               .HasMaxLength(ConfigurationConstants.MaxCategoryLength)
+               .HasMaxLength(ConfigurationConstants.MaxWorkspaceLength)
                .IsRequired();
     }
 }

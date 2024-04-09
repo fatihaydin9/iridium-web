@@ -5,7 +5,7 @@ namespace Iridium.Infrastructure.Contexts;
 
 public interface IApplicationDbContext
 {
-    DbSet<Category> Category { get; }
+    DbSet<Workspace> Workspace { get; }
 
     DbSet<Note> Note { get; }
 

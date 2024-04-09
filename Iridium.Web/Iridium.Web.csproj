@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Controllers\T4\CategoryController.tt">
+    <None Update="Controllers\T4\WorkspaceController.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CategoryController.cs</LastGenOutput>
+      <LastGenOutput>WorkspaceController.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -31,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controllers\T4\CategoryController.cs">
+    <Compile Update="Controllers\T4\WorkspaceController.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CategoryController.tt</DependentUpon>
+      <DependentUpon>WorkspaceController.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

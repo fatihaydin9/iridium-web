@@ -10,7 +10,7 @@ namespace Iridium.Application.CQRS.Notes.Queries;
 
 public record GetNotesWithPaginationQuery : IRequest<ServiceResult<PaginatedList<NoteBriefDto>>>
 {
-    public long CategoryId { get; init; }
+    public long WorkspaceId { get; init; }
     public int PageNumber { get; init; } = 1;
     public int PageSize { get; init; } = 10;
 }
@@ -30,7 +30,7 @@ public class GetNotesWithPaginationQueryHandler : IRequestHandler<GetNotesWithPa
     public async Task<ServiceResult<PaginatedList<NoteBriefDto>>> Handle(GetNotesWithPaginationQuery request,
         CancellationToken cancellationToken)
     {
-        var dbResult = await _context.Note.Where(x => x.CategoryId == request.CategoryId)
+        var dbResult = await _context.Note.Where(x => x.WorkspaceId == request.WorkspaceId)
             .OrderByDescending(x => x.Id)
             .ProjectTo<NoteBriefDto>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(request.PageNumber, request.PageSize);

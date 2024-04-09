@@ -7,7 +7,7 @@ public class InsertNoteCommandValidator : AbstractValidator<InsertNoteCommand>
 {
     public InsertNoteCommandValidator()
     {
-        RuleFor(v => v.CategoryId)
+        RuleFor(v => v.WorkspaceId)
             .NotEqual(0);
 
         RuleFor(v => v.Title)

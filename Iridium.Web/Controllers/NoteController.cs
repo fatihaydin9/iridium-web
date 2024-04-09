@@ -1,4 +1,4 @@
-﻿using Iridium.Application.CQRS.Categories.Commands.DeleteCategory;
+﻿using Iridium.Application.CQRS.Categories.Commands.DeleteWorkspace;
 using Iridium.Application.CQRS.Notes.Commands.DeleteNote;
 using Iridium.Application.CQRS.Notes.Commands.InsertNote;
 using Iridium.Application.CQRS.Notes.Commands.UpdateNote;
@@ -16,8 +16,8 @@ namespace Iridium.Web.Controllers;
 
 public class NoteController : ApiBaseController
 {
-    [HttpGet("Get")]
     [Authorize]
+    [HttpGet("Get")]
     [IridiumRole(NoteRole.Read)]
     public async Task<ServiceResult<NoteBriefDto>> Get([FromQuery] GetNoteByIdQuery query)
         => await Mediator.Send(query);
@@ -31,9 +31,9 @@ public class NoteController : ApiBaseController
 
 
     [Authorize]
-    [HttpGet("ListByCategoryId")]
+    [HttpGet("ListByWorkspaceId")]
     [IridiumRole(NoteRole.Read)]
-    public async Task<ServiceResult<List<NoteBriefDto>>> ListByCategoryId([FromQuery] GetNotesByCategoryIdQuery query)
+    public async Task<ServiceResult<List<NoteBriefDto>>> ListByWorkspaceId([FromQuery] GetNotesByWorkspaceIdQuery query)
         => await Mediator.Send(query);
 
 
@@ -96,9 +96,9 @@ public class NoteController : ApiBaseController
 
     [AllowAnonymous]
     [HttpGet("Cascade")]
-    public async Task<ServiceResult<List<KeyValueDto<long, string>>>> Cascade([FromQuery] long categoryId)
+    public async Task<ServiceResult<List<KeyValueDto<long, string>>>> Cascade([FromQuery] long workspaceId)
     {
-        var serviceResult = await ListByCategoryId(new GetNotesByCategoryIdQuery() { CategoryId = categoryId });
+        var serviceResult = await ListByWorkspaceId(new GetNotesByWorkspaceIdQuery() { WorkspaceId = workspaceId });
 
         if (serviceResult == null || serviceResult.Data == null)
             return new ServiceResult<List<KeyValueDto<long, string>>>(new List<KeyValueDto<long, string>>());

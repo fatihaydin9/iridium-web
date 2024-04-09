@@ -3,7 +3,7 @@
 public static class ConfigurationConstants
 {
     public static readonly int TokenExpireAsDay = 7;
-    public static readonly int MaxCategoryLength = 100;
+    public static readonly int MaxWorkspaceLength = 100;
     public static readonly int MaxUsernameLength = 100;
     
     public static readonly int MinNoteTitleLength = 5;

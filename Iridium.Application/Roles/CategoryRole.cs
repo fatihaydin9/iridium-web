@@ -4,18 +4,18 @@ using Iridium.Infrastructure.Attributes;
 
 namespace Iridium.Application.Roles;
 
-[RoleArea($"{AreaNames.Category}")]
-public class CategoryRole : IRole
+[RoleArea($"{AreaNames.Workspace}")]
+public class WorkspaceRole : IRole
 {
-    [RoleName($"Read {AreaNames.Category} Role")]
-    public const string Read = $"{AreaNames.Category}.Read";
+    [RoleName($"Read {AreaNames.Workspace} Role")]
+    public const string Read = $"{AreaNames.Workspace}.Read";
 
-    [RoleName($"Add {AreaNames.Category} Role")]
-    public const string Insert = $"{AreaNames.Category}.Insert";
+    [RoleName($"Add {AreaNames.Workspace} Role")]
+    public const string Insert = $"{AreaNames.Workspace}.Insert";
 
-    [RoleName($"Update {AreaNames.Category} Role")]
-    public const string Update = $"{AreaNames.Category}.Update";
+    [RoleName($"Update {AreaNames.Workspace} Role")]
+    public const string Update = $"{AreaNames.Workspace}.Update";
 
-    [RoleName($"Delete {AreaNames.Category} Role")]
-    public const string Delete = $"{AreaNames.Category}.Delete";
+    [RoleName($"Delete {AreaNames.Workspace} Role")]
+    public const string Delete = $"{AreaNames.Workspace}.Delete";
 }

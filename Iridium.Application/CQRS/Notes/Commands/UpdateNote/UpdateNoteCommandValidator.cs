@@ -12,7 +12,7 @@ public class UpdateNoteCommandValidator : AbstractValidator<UpdateNoteCommand>
             .NotNull()
             .NotEqual(0);
 
-        RuleFor(v => v.CategoryId)
+        RuleFor(v => v.WorkspaceId)
             .NotNull()
             .NotEqual(0);
 

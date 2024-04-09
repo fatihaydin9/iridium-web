@@ -7,9 +7,9 @@ using Iridium.Infrastructure.Types;
 
 namespace Iridium.Application.CQRS.Categories.Queries;
 
-[EndpointSettings("Category/Template", "Category/PaginatedList", "Category/GetList", "Category/Get", "Category/Insert",
-    "Category/Update", "Category/Delete", "Category/Delete", "Category/GetDropdown")]
-public class CategoryBriefDto : BaseDto, IMapFrom<Category>
+[EndpointSettings("Workspace/Template", "Workspace/PaginatedList", "Workspace/GetList", "Workspace/Get", "Workspace/Insert",
+    "Workspace/Update", "Workspace/Delete", "Workspace/Delete", "Workspace/GetDropdown")]
+public class WorkspaceBriefDto : BaseDto, IMapFrom<Workspace>
 {
     [FormComponent("Name", true, FormInputType.InputText, true, true, true, 6, AttributeConfigurations.NoMask,
         AttributeConfigurations.NoCascade)]

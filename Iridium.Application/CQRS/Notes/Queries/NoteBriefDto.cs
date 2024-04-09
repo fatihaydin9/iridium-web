@@ -11,7 +11,7 @@ namespace Iridium.Application.CQRS.Notes.Queries;
     "Note/Update", "Note/Delete", "Note/Delete", "Note/GetDropdown")]
 public abstract class NoteBriefDto : BaseDto, IMapFrom<Note>
 {
-    public long CategoryId { get; set; }
+    public long WorkspaceId { get; set; }
 
     [FormComponent("Title", true, FormInputType.TextArea, true, true, true, 12, AttributeConfigurations.NoMask,
         AttributeConfigurations.NoCascade)]

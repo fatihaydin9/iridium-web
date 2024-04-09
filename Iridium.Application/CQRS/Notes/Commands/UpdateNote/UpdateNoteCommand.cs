@@ -10,17 +10,17 @@ public record UpdateNoteCommand : IRequest<ServiceResult<bool>>
 {
     public long Id { get; set; }
 
-    public long CategoryId { get; set; }
-
-    public string Title { get; set; }
-
-    public string Content { get; set; }
-
-    public string Summary { get; set; }
-
-    public bool IsPrivate { get; set; }      
+    public long WorkspaceId { get; set; }
     
-    public List<Tag> Tags { get; set; }
+    public string Title { get; set; }
+    
+    public string Description { get; set; }
+    
+    public string Content { get; set; }
+    
+    public string Summary { get; set; }
+    
+    public virtual ICollection<NoteKeyword> NoteKeywords { get; set; }
 }
 
 public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand, ServiceResult<bool>>
@@ -38,15 +38,17 @@ public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand, Servi
             .FindAsync(new object[] { request.Id }, cancellationToken);
 
         if (noteEntity == null)
-            throw new NotFoundException(nameof(Category), request.Id);
+            throw new NotFoundException(nameof(Workspace), request.Id);
 
         noteEntity = new Note()
         {
-            CategoryId = request.CategoryId,
+            Id = request.Id,
+            WorkspaceId = request.WorkspaceId,
             Title = request.Title,
+            Description = request.Description,
+            Content = request.Content,
             Summary = request.Summary,
-            IsPrivate = request.IsPrivate,
-            Tags = request.Tags
+            NoteKeywords = request.NoteKeywords,
         };
 
         await _context.SaveChangesAsync(cancellationToken);

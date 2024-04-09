@@ -4,16 +4,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Iridium.Application.CQRS.Categories.EventHandlers;
 
-public class CategoryDeletedEventHandler : INotificationHandler<CategoryDeletedEvent>
+public class WorkspaceDeletedEventHandler : INotificationHandler<WorkspaceDeletedEvent>
 {
-    private readonly ILogger<CategoryDeletedEventHandler> _logger;
+    private readonly ILogger<WorkspaceDeletedEventHandler> _logger;
 
-    public CategoryDeletedEventHandler(ILogger<CategoryDeletedEventHandler> logger)
+    public WorkspaceDeletedEventHandler(ILogger<WorkspaceDeletedEventHandler> logger)
     {
         _logger = logger;
     }
 
-    public Task Handle(CategoryDeletedEvent notification, CancellationToken cancellationToken)
+    public Task Handle(WorkspaceDeletedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Iridium Domain Event: {DomainEvent}", notification.GetType().Name);
 

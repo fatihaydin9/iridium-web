@@ -5,25 +5,27 @@ namespace Iridium.Domain.Entities;
 
 public class Note : BaseDomainEntity
 {
+    // Constructor
     public Note()
     {
-        Tags = new HashSet<Tag>();
+        NoteKeywords = new HashSet<NoteKeyword>();
     }
     
-    public long CategoryId { get; set; }
-
+    // Properties
+    public long Id { get; set; }
+    
+    public long WorkspaceId { get; set; }
+    
     public string Title { get; set; }
-
+    
+    public string Description { get; set; }
+    
     public string Content { get; set; }
-
+    
     public string Summary { get; set; }
-
-    public bool IsPrivate { get; set; } = true;
     
-    // Navigation Properties
-    public virtual ICollection<Tag> Tags { get; set; }
-    
-    [ForeignKey("CategoryId")]
-    public virtual Category Category { get; set; }
-
+    // Relationships
+    [ForeignKey("WorkspaceId")]
+    public virtual Workspace Workspace { get; set; }
+    public virtual ICollection<NoteKeyword> NoteKeywords { get; set; }
 }

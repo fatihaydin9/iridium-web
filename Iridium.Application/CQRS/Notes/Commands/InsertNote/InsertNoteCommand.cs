@@ -8,17 +8,17 @@ namespace Iridium.Application.CQRS.Notes.Commands.InsertNote;
 
 public class InsertNoteCommand : IRequest<ServiceResult<bool>>
 {
-    public long CategoryId { get; init; }
-
-    public string Title { get; init; }
-
-    public string Content { get; init; }
-
-    public string Summary { get; init; }
-
-    public bool IsPrivate { get; set; }
+    public long WorkspaceId { get; set; }
     
-    public List<Tag> Tags { get; init; }
+    public string Title { get; set; }
+    
+    public string Description { get; set; }
+    
+    public string Content { get; set; }
+    
+    public string Summary { get; set; }
+    
+    public virtual ICollection<NoteKeyword> NoteKeywords { get; set; }
 }
 
 public class InsertNoteCommandHandler : IRequestHandler<InsertNoteCommand, ServiceResult<bool>>
@@ -34,12 +34,12 @@ public class InsertNoteCommandHandler : IRequestHandler<InsertNoteCommand, Servi
     {
         var noteEntity = new Note
         {
-            CategoryId = request.CategoryId,
+            WorkspaceId = request.WorkspaceId,
             Title = request.Title,
+            Description = request.Description,
             Content = request.Content,
             Summary = request.Summary,
-            IsPrivate = request.IsPrivate,
-            Tags = request.Tags
+            NoteKeywords = request.NoteKeywords,
         };
 
         noteEntity.AddDomainEvent(new NoteInsertedEvent(noteEntity));
