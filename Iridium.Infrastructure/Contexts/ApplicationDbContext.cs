@@ -24,7 +24,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<Role> Role { get; set; }
     public DbSet<UserRole> UserRole { get; set; }
     public DbSet<Workspace> Workspace { get; set; }
-    public DbSet<Note> Note { get; set; }
+    public DbSet<Article> Article { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -7,7 +7,7 @@ public class Workspace : BaseDomainEntity
     // Constructor
     public Workspace()
     {
-        Notes = new HashSet<Note>();
+        Articles = new HashSet<Article>();
         Pomodoros = new HashSet<Pomodoro>();
         MindMaps = new HashSet<MindMap>();
     }
@@ -18,7 +18,7 @@ public class Workspace : BaseDomainEntity
     public bool IsPublic { get; set; }
 
     // Relationships
-    public virtual ICollection<Note> Notes { get; set; }
+    public virtual ICollection<Article> Articles { get; set; }
     public virtual ICollection<Pomodoro> Pomodoros { get; set; }
     public virtual ICollection<MindMap> MindMaps { get; set; }
     

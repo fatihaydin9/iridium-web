@@ -21,6 +21,7 @@
     <Compile Update="CQRS\Notes\Queries\GetNotesWithPaginationQuery.cs">
       <DependentUpon>NoteBriefDto.cs</DependentUpon>
     </Compile>
+    <Compile Update="CQRS\Article\Queries\GetArticlesWithPaginationQuery.cs" />
   </ItemGroup>
 
 </Project>

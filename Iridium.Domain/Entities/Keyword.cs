@@ -7,7 +7,7 @@ public class Keyword : BaseDomainEntity
     // Constructor
     public Keyword()
     {
-        NoteKeywords = new HashSet<NoteKeyword>();
+        ArticleKeywords = new HashSet<ArticleKeyword>();
     }
     
     // Properties
@@ -15,5 +15,5 @@ public class Keyword : BaseDomainEntity
     public string Name { get; set; }
 
     // Relationships
-    public virtual ICollection<NoteKeyword> NoteKeywords { get; set; }
+    public virtual ICollection<ArticleKeyword> ArticleKeywords { get; set; }
 }

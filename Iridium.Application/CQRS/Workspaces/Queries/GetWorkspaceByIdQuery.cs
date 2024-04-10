@@ -1,18 +1,19 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Iridium.Application.CQRS.Notes.Queries;
+using Iridium.Application.CQRS.Workspaces.Briefs;
+using Iridium.Domain.Common;
 using Iridium.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Iridium.Application.CQRS.Categories.Queries;
+namespace Iridium.Application.CQRS.Workspaces.Queries;
 
-public record GetWorkspaceByIdQuery : IRequest<WorkspaceBriefDto>
+public record GetWorkspaceByIdQuery : IRequest<ServiceResult<WorkspaceBriefDto>>
 {
     public long Id { get; init; }
 }
 
-public class GetWorkspaceByIdQueryHandler : IRequestHandler<GetWorkspaceByIdQuery, WorkspaceBriefDto>
+public class GetWorkspaceByIdQueryHandler : IRequestHandler<GetWorkspaceByIdQuery, ServiceResult<WorkspaceBriefDto>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -23,10 +24,12 @@ public class GetWorkspaceByIdQueryHandler : IRequestHandler<GetWorkspaceByIdQuer
         _mapper = mapper;
     }
 
-    public async Task<WorkspaceBriefDto> Handle(GetWorkspaceByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<WorkspaceBriefDto>> Handle(GetWorkspaceByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Note.Where(x => x.Id == request.Id)
+        var result = await _context.Article.Where(x => x.Id == request.Id)
             .ProjectTo<WorkspaceBriefDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken: cancellationToken) ?? new WorkspaceBriefDto();
+
+        return new ServiceResult<WorkspaceBriefDto>(result);
     }
 }

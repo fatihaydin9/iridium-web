@@ -97,7 +97,7 @@ public class AuthService
         // for adding standard user roles
         var roleIds = await _dbContext.Role.Where(w =>
                 w.Deleted != true &&
-                (w.Area == AreaNames.Workspace || w.Area == AreaNames.Note))
+                (w.Area == AreaNames.Workspace || w.Area == AreaNames.Article))
             .Select(s => s.Id)
             .ToListAsync();
 

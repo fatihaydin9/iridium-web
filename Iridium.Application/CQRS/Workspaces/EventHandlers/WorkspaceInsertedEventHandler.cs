@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Iridium.Application.CQRS.Categories.EventHandlers;
+namespace Iridium.Application.CQRS.Workspaces.EventHandlers;
 
 public class WorkspaceInsertedEventHandler : INotificationHandler<WorkspaceInsertedEvent>
 {
