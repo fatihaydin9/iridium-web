@@ -28,7 +28,11 @@ public class GetArticleByIdQueryHandler : IRequestHandler<GetArticleByIdQuery, S
     public async Task<ServiceResult<ArticleBriefDto>> Handle(GetArticleByIdQuery request,
         CancellationToken cancellationToken)
     {
-        var dbResult = await _context.Article.Where(x => x.Id == request.Id)
+        var dbResult = await _context.Article
+            .Include(i => i.Concepts)
+            .Include(i => i.ArticleKeywords)
+            .ThenInclude(t => t.Article)    
+            .Where(x => x.Id == request.Id)
             .ProjectTo<ArticleBriefDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 

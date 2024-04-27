@@ -1,7 +1,6 @@
-﻿namespace Iridium.Infrastructure.Services
+﻿namespace Iridium.Infrastructure.Services;
+
+public interface IAuthenticatedUserService
 {
-    public interface IAuthenticatedUserService
-    {
-        long UserId { get; }
-    }
+    long UserId { get; }
 }

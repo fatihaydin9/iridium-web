@@ -9,6 +9,9 @@ using Iridium.Infrastructure.Models;
 using Iridium.Domain.Entities;
 using LogLevel = Iridium.Domain.Enums.LogLevel;
 using Iridium.Infrastructure.Contexts;
+using Iridium.Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Iridium.Infrastructure.Utilities;
 
@@ -32,7 +35,10 @@ public class EntityFrameworkTarget : TargetWithLayout
 
     protected override void Write(LogEventInfo logEvent)
     {
-        using (var context = new ApplicationDbContext(ConnString.ToString()))
+        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+        optionsBuilder.UseSqlServer(ConnString.ToString());
+        
+        using (var context = new ApplicationDbContext(optionsBuilder.Options, new MockAuthenticatedUserService()))
         {
             try
             {

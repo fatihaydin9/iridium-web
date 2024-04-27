@@ -27,5 +27,7 @@ public class Article : BaseDomainEntity
     // Relationships
     [ForeignKey("WorkspaceId")]
     public virtual Workspace Workspace { get; set; }
+    public virtual ICollection<Concept> Concepts { get; set; }
     public virtual ICollection<ArticleKeyword> ArticleKeywords { get; set; }
+    
 }

@@ -17,6 +17,10 @@ public static class ConfigureServices
         services.AddSwaggerGen();
         services.AddHttpClient();
         services.AddMemoryCache();
+        
+        // Add Auth Services
+        services.AddHttpContextAccessor();
+        services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
 
         // Add AutoMapper with automatic binding structure
         services.AddAutoMapper(Assembly.GetExecutingAssembly());

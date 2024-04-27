@@ -9,7 +9,6 @@ public class Workspace : BaseDomainEntity
     {
         Articles = new HashSet<Article>();
         Pomodoros = new HashSet<Pomodoro>();
-        MindMaps = new HashSet<MindMap>();
     }
     
     // Properties
@@ -20,6 +19,5 @@ public class Workspace : BaseDomainEntity
     // Relationships
     public virtual ICollection<Article> Articles { get; set; }
     public virtual ICollection<Pomodoro> Pomodoros { get; set; }
-    public virtual ICollection<MindMap> MindMaps { get; set; }
     
 }
