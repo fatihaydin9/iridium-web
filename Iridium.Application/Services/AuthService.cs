@@ -95,11 +95,14 @@ public class AuthService
         await _dbContext.SaveChangesAsync();
 
         // for adding standard user roles
-        var roleIds = await _dbContext.Role.Where(w =>
-                w.Deleted != true &&
-                (w.Area == AreaNames.Workspace || w.Area == AreaNames.Article))
-            .Select(s => s.Id)
-            .ToListAsync();
+        // var roleIds = await _dbContext.Role.Where(w =>
+        //         w.Deleted != true &&
+        //         (w.Area == AreaNames.Workspace || w.Area == AreaNames.Article))
+        //     .Select(s => s.Id)
+        //     .ToListAsync();
+
+        // TODO: Warning! It will be refactor
+        var roleIds = new List<long>();
 
         var userId = user.Id;
         var userRoles = new List<UserRole>();

@@ -3,9 +3,11 @@
 public class RoleNameAttribute : Attribute
 {
     public string Name;
-
-    public RoleNameAttribute(string Name)
+    public string ParamCode;
+    
+    public RoleNameAttribute(string name, string paramCode)
     {
-        this.Name = Name;
+        Name = name;
+        ParamCode = paramCode;
     }
 }

@@ -1,21 +1,24 @@
 ﻿using Iridium.Application.Areas;
 using Iridium.Domain.Common;
 using Iridium.Infrastructure.Attributes;
+using Iridium.Infrastructure.Constants;
 
 namespace Iridium.Application.Roles;
 
-[RoleArea("Articles")]
-public class ArticleRole : IRole
+[RoleArea("Article Area", AreaParamCode.Article)]
+public class ArticleRole
 {
-    [RoleName($"Read {AreaNames.Article} Role")]
-    public const string Read = $"{AreaNames.Article}.Read";
+    
+    [RoleName($"Read Area Role", RoleParamCode.ArticleRead)]
+    public static readonly long ReadRoleId;
 
-    [RoleName($"Insert {AreaNames.Article} Role")]
-    public const string Insert = $"{AreaNames.Article}.Insert";
+    [RoleName($"Insert Article Role", RoleParamCode.ArticleInsert)]
+    public static readonly long InsertRoleId;
 
-    [RoleName($"Update {AreaNames.Article} Role")]
-    public const string Update = $"{AreaNames.Article}.Update";
+    [RoleName($"Update Article Role", RoleParamCode.ArticleUpdate)]
+    public static readonly long UpdateRoleId;
 
-    [RoleName($"Delete {AreaNames.Article} Role")]
-    public const string Delete = $"{AreaNames.Article}.Delete";
+    [RoleName($"Delete Article Role", RoleParamCode.ArticleDelete)]
+    public static readonly long DeleteRoleId;
+    
 }

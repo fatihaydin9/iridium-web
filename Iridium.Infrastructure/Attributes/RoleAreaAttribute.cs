@@ -2,10 +2,12 @@
 
 public class RoleAreaAttribute : Attribute
 {
-    public string Area;
+    public string Name;
+    public string ParamCode;
 
-    public RoleAreaAttribute(string Area)
+    public RoleAreaAttribute(string name, string paramCode)
     {
-        this.Area = Area;
+        Name = name;
+        ParamCode = paramCode;
     }
 }

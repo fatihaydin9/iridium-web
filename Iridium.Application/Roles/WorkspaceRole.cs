@@ -1,21 +1,24 @@
 ﻿using Iridium.Application.Areas;
 using Iridium.Domain.Common;
 using Iridium.Infrastructure.Attributes;
+using Iridium.Infrastructure.Constants;
 
 namespace Iridium.Application.Roles;
 
-[RoleArea($"{AreaNames.Workspace}")]
+[RoleArea("Workspace Area", AreaParamCode.Workspace)]
 public class WorkspaceRole : IRole
 {
-    [RoleName($"Read {AreaNames.Workspace} Role")]
-    public const string Read = $"{AreaNames.Workspace}.Read";
+    
+    [RoleName("Read Workspace Role", RoleParamCode.WorkspaceRead)]
+    public static readonly long ReadRoleId;
 
-    [RoleName($"Add {AreaNames.Workspace} Role")]
-    public const string Insert = $"{AreaNames.Workspace}.Insert";
+    [RoleName("Insert Workspace Role", RoleParamCode.WorkspaceInsert)]
+    public static readonly long InsertRoleId;
 
-    [RoleName($"Update {AreaNames.Workspace} Role")]
-    public const string Update = $"{AreaNames.Workspace}.Update";
+    [RoleName("Update Workspace Role", RoleParamCode.WorkspaceUpdate)]
+    public static readonly long UpdateRoleId;
+    
+    [RoleName("Delete Workspace Role", RoleParamCode.WorkspaceDelete)]
+    public static readonly long DeleteRoleId;
 
-    [RoleName($"Delete {AreaNames.Workspace} Role")]
-    public const string Delete = $"{AreaNames.Workspace}.Delete";
 }
