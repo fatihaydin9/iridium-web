@@ -4,8 +4,8 @@ namespace Iridium.Infrastructure.Models
 {
     public class LogModel
     {
-        public string InComing { get; set; }
-        public string OutGoing { get; set; }
+        public string? InComing { get; set; }
+        public string? OutGoing { get; set; }
         public string IpAddress { get; set; }
         public LogType LogType { get; set; }
         public string KeyName { get; set; }

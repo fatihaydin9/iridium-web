@@ -8,12 +8,12 @@ namespace Iridium.Application.CQRS.Workspaces.Commands;
 
 public record UpdateWorkspaceCommand : IRequest<ServiceResult<bool>>
 {
-    public long Id { get; }
+    public long Id { get; set; }
 
-    public string Name { get; }
+    public string Name { get; set; }
 
-    public string? Note { get; }
-    public bool IsPublic { get; }
+    public string? Note { get; set; }
+    public bool IsPublic { get; set; }
 }
 
 public class UpdateWorkspaceCommandHandler : IRequestHandler<UpdateWorkspaceCommand, ServiceResult<bool>>
@@ -27,7 +27,7 @@ public class UpdateWorkspaceCommandHandler : IRequestHandler<UpdateWorkspaceComm
 
     public async Task<ServiceResult<bool>> Handle(UpdateWorkspaceCommand request, CancellationToken cancellationToken)
     {
-        var entity = await _context.Workspace.FindAsync(new object[] { request.Id }, cancellationToken);
+        var entity = await _context.Workspace.FindAsync(request.Id, cancellationToken);
 
         if (entity == null)
             throw new NotFoundException(nameof(Workspace), request.Id);

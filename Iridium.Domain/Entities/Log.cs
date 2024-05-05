@@ -30,6 +30,7 @@ public class Log : BaseEntity
     public string? ServerName { get; set; }
 
     public DateTime? ResponseStart { get; set; }
+    
     public DateTime? ResponseEnd { get; set; }
 
     public byte? DeviceType { get; set; }

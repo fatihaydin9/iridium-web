@@ -75,17 +75,20 @@ public class EntityFrameworkTarget : TargetWithLayout
 
                     while (true)
                     {
-                        lst.Add(new LogExceptionModel
+                        if (curExc != null)
                         {
-                            Tag = $"[{idx++} Index Exception]",
-                            Message = curExc.Message,
-                            StackTrace = curExc.StackTrace
-                        });
+                            lst.Add(new LogExceptionModel
+                            {
+                                Tag = $"[{idx++} Index Exception]",
+                                Message = curExc.Message,
+                                StackTrace = curExc.StackTrace
+                            });
 
-                        if (curExc.InnerException == null)
-                            break;
+                            if (curExc.InnerException == null)
+                                break;
 
-                        curExc = curExc.InnerException;
+                            curExc = curExc.InnerException;
+                        }
                     }
 
                     var exceptionString = JsonConvert.SerializeObject(lst, Formatting.None);

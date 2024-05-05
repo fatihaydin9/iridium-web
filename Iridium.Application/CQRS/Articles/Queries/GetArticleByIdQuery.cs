@@ -11,7 +11,7 @@ namespace Iridium.Application.CQRS.Articles.Queries;
 
 public record GetArticleByIdQuery : IRequest<ServiceResult<ArticleBriefDto>>
 {
-    public long Id { get; init; }
+    public long Id { get; set; }
 }
 
 public class GetArticleByIdQueryHandler : IRequestHandler<GetArticleByIdQuery, ServiceResult<ArticleBriefDto>>

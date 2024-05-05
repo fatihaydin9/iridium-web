@@ -8,17 +8,17 @@ namespace Iridium.Application.CQRS.Articles.Commands;
 
 public record UpdateArticleCommand : IRequest<ServiceResult<bool>>
 {
-    public long Id { get; set; }
+    public long Id { get; }
 
-    public long WorkspaceId { get; set; }
+    public long WorkspaceId { get; }
     
-    public string Title { get; set; }
+    public string Title { get; }
     
-    public string Description { get; set; }
+    public string Description { get; }
     
-    public string Content { get; set; }
+    public string Content { get; }
     
-    public string Summary { get; set; }
+    public string Summary { get; }
     
     public virtual ICollection<ArticleKeyword> ArticleKeywords { get; set; }
 }

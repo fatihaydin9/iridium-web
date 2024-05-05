@@ -5,13 +5,16 @@ namespace Iridium.Domain.Entities;
 
 public class Concept : BaseDomainEntity
 {
-    // Properties
-    public long Id { get; set; }
-    public long ArticleId { get; set; }
-    public string Name { get; set; }
-    
 
-    // Relationships
+    public long ArticleId { get; set; }
+
+    public string Name { get; set; }
+
+    #region Navigation Properties
+
     [ForeignKey("ArticleId")]
     public virtual Article Article { get; set; }
+
+    #endregion
+    
 }

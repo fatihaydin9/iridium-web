@@ -11,7 +11,9 @@ public static class NLogUtils
         logger.Info(message);
     }
 
-    public static void Bilgi(this ILogger logger, string inComing, string outGoing, string ipAddress, LogType logType, string keyName = null, string? key = null, DateTime? responseStart = null, DateTime? responseEnd = null, byte? deviceType = (byte)DeviceType.Unknown)
+    public static void Bilgi(this ILogger logger, string inComing, string outGoing, string ipAddress, LogType logType,
+        string keyName = null, string? key = null, DateTime? responseStart = null, DateTime? responseEnd = null,
+        byte? deviceType = (byte)DeviceType.Unknown)
     {
         logger.Info(string.Empty, new LogModel
         {
@@ -27,7 +29,9 @@ public static class NLogUtils
         });
     }
 
-    public static void Hata(this ILogger logger, string inComing, string outGoing, string ipAddress, LogType logType, string keyName = null, string? key = null, DateTime? responseStart = null, DateTime? responseEnd = null, byte? deviceType = (byte)DeviceType.Unknown)
+    public static void Hata(this ILogger logger, string inComing, string outGoing, string ipAddress, LogType logType,
+        string keyName = null, string? key = null, DateTime? responseStart = null, DateTime? responseEnd = null,
+        byte? deviceType = (byte)DeviceType.Unknown)
     {
         logger.Error(string.Empty, new LogModel
         {

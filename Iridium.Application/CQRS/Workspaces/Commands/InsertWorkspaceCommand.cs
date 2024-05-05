@@ -8,19 +8,11 @@ namespace Iridium.Application.CQRS.Workspaces.Commands;
 
 public class InsertWorkspaceCommand : IRequest<ServiceResult<bool>>
 {
-    public InsertWorkspaceCommand(string? note, string name, bool isPublic)
-    {
-        Note = note;
-        Name = name;
-        IsPublic = isPublic;
-    }
+    public string Name { get; set; }
 
-    public string Name { get; }
-
-    public string? Note { get; }
+    public string? Note { get; set; }
     
     public bool IsPublic { get; set; }
-
 }
 
 public class InsertWorkspaceCommandHandler : IRequestHandler<InsertWorkspaceCommand, ServiceResult<bool>>

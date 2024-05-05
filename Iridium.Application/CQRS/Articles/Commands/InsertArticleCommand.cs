@@ -9,13 +9,13 @@ namespace Iridium.Application.CQRS.Articles.Commands;
 public class InsertArticleCommand : IRequest<ServiceResult<bool>>
 {
     public long WorkspaceId { get; set; }
-    
+
     public string Title { get; set; }
-    
+
     public string Description { get; set; }
-    
+
     public string Content { get; set; }
-    
+
     public string Summary { get; set; }
     
     public virtual ICollection<ArticleKeyword> ArticleKeywords { get; set; }

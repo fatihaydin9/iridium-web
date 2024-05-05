@@ -113,7 +113,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             if (entityId < 0)
                 entityId = 0;
             
-            var auditLog = new AuditLog
+            var auditLog = new AuditLog()
             {
                 EntityId = entityId.ToString(),
                 EntityName = entityName,
