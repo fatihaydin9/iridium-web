@@ -22,6 +22,45 @@ namespace Iridium.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Iridium.Domain.Entities.Area", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParamCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Area");
+                });
+
             modelBuilder.Entity("Iridium.Domain.Entities.Article", b =>
                 {
                     b.Property<long>("Id")
@@ -132,11 +171,9 @@ namespace Iridium.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NewValue")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OldValue")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Timestamp")
@@ -309,8 +346,26 @@ namespace Iridium.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<short>("Nap")
                         .HasColumnType("smallint");
@@ -336,9 +391,8 @@ namespace Iridium.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Area")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("AreaId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
@@ -370,6 +424,8 @@ namespace Iridium.Infrastructure.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
 
                     b.ToTable("Role");
                 });
@@ -565,6 +621,13 @@ namespace Iridium.Infrastructure.Migrations
                     b.Navigation("Workspace");
                 });
 
+            modelBuilder.Entity("Iridium.Domain.Entities.Role", b =>
+                {
+                    b.HasOne("Iridium.Domain.Entities.Area", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("AreaId");
+                });
+
             modelBuilder.Entity("Iridium.Domain.Entities.UserRole", b =>
                 {
                     b.HasOne("Iridium.Domain.Entities.Role", "Role")
@@ -582,6 +645,11 @@ namespace Iridium.Infrastructure.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Iridium.Domain.Entities.Area", b =>
+                {
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("Iridium.Domain.Entities.Article", b =>

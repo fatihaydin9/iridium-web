@@ -5,20 +5,20 @@ using Iridium.Infrastructure.Constants;
 
 namespace Iridium.Application.Roles;
 
-[RoleArea("Workspace Area", AreaParamCode.Workspace)]
 public class WorkspaceRole : IRole
 {
+    [RoleName("Workspace Full Role", RoleParamCode.WorkspaceFull)]
+    public static readonly long FullRoleId;
     
-    [RoleName("Read Workspace Role", RoleParamCode.WorkspaceRead)]
+    [RoleName("Workspace List Role", RoleParamCode.WorkspaceList)]
     public static readonly long ReadRoleId;
 
-    [RoleName("Insert Workspace Role", RoleParamCode.WorkspaceInsert)]
+    [RoleName("Workspace Add Role", RoleParamCode.WorkspaceAdd)]
     public static readonly long InsertRoleId;
 
-    [RoleName("Update Workspace Role", RoleParamCode.WorkspaceUpdate)]
+    [RoleName("Workspace Update Role", RoleParamCode.WorkspaceUpdate)]
     public static readonly long UpdateRoleId;
     
-    [RoleName("Delete Workspace Role", RoleParamCode.WorkspaceDelete)]
+    [RoleName("Workspace Delete Role", RoleParamCode.WorkspaceDelete)]
     public static readonly long DeleteRoleId;
-
 }

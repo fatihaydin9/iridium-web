@@ -15,6 +15,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Iridium.Application.Areas;
+using Iridium.Application.Roles;
 
 namespace Iridium.Application.Services;
 
@@ -85,7 +86,7 @@ public class AuthService
             PhoneNumber = registerRequest.PhoneNumber,
             ValidationKey = validationKey,
             ValidationExpire = DateTime.UtcNow,
-            UserState = (short)UserState.Registered,
+            UserState = (short)UserState.Completed,
             IsPremium = false,
             CreatedBy = 1,
             CreatedDate = DateTime.UtcNow
@@ -95,14 +96,7 @@ public class AuthService
         await _dbContext.SaveChangesAsync();
 
         // for adding standard user roles
-        // var roleIds = await _dbContext.Role.Where(w =>
-        //         w.Deleted != true &&
-        //         (w.Area == AreaNames.Workspace || w.Area == AreaNames.Article))
-        //     .Select(s => s.Id)
-        //     .ToListAsync();
-
-        // TODO: Warning! It will be refactor
-        var roleIds = new List<long>();
+        var roleIds = new List<long>() { ArticleRole.FullRoleId, WorkspaceRole.FullRoleId };
 
         var userId = user.Id;
         var userRoles = new List<UserRole>();
@@ -148,10 +142,7 @@ public class AuthService
             return LoginUserAndGenerateJwtToken(user);
 
         if (user.ValidationExpire < DateTime.UtcNow)
-        {
-            return new ServiceResult<UserLoginResponse>(
-                "To continue, verify your e-mail address by clicking on the link sent to your e-mail.");
-        }
+            return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the link sent to your e-mail.");
 
         user.ValidationKey = Guid.NewGuid().ToString();
         user.ValidationExpire = DateTime.UtcNow;
@@ -162,8 +153,7 @@ public class AuthService
 
         SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
 
-        return new ServiceResult<UserLoginResponse>(
-            "To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
+        return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
     }
 
     public async Task<ServiceResult<bool>> ValidateKey(string key, string guidId)
@@ -192,8 +182,7 @@ public class AuthService
 
         SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
 
-        return new ServiceResult<bool>(
-            "To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
+        return new ServiceResult<bool>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
     }
 
     #region Private Methods

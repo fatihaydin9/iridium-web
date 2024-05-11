@@ -26,6 +26,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public DbSet<Log> Log { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<Area> Area { get; set; }
     public DbSet<Role> Role { get; set; }
     public DbSet<UserRole> UserRole { get; set; }
     public DbSet<Workspace> Workspace { get; set; }

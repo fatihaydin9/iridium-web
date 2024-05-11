@@ -7,20 +7,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="968f93ca-aafa-4014-8799-4fae343ddafb" name="Changes" comment="Refactor v1">
-      <change afterPath="$PROJECT_DIR$/Iridium.Domain/Entities/Area.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/AreaParamCode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/RoleParamCode.cs" afterDir="false" />
+    <list default="true" id="968f93ca-aafa-4014-8799-4fae343ddafb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Iridium.Domain/Models/RoleDefinition.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Application/Roles/ArticleRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Roles/ArticleRole.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Application/Roles/WorkspaceRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Roles/WorkspaceRole.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Application/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/AuthService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Domain/Entities/Role.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Domain/Entities/Role.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleAreaAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleAreaAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleNameAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleNameAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleAreaAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/RoleParamCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/RoleParamCode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240427204846_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240427204846_Initial.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/ArticleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/ArticleController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/WorkspaceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/WorkspaceController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,9 +68,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/45/933dd909/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/a0/a4889d63/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/bd/4495b5b3/AsyncTaskMethodBuilder`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/ea/420e7aae/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/49264b5544a741a383f855e1014786b61e7000/ee/675b48b8/HttpMethod.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/78030f782ad3426dae7798a9802af89923f400/5f/addb93cd/HttpProtocol.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c11a2aa831d04e8eba36f4248c870ea110e00/dd/f19c780a/ISender.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c85c395aa02e4ef9b4e2b329455c71fdb090/40/45a7b058/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e7f7c1ea225540199a61ef355d08e51ce5400/23/b81a0cac/LogEventInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f5eb1c74cb2646e6848fa49f31510084b5e00/9b/e7904d1f/AuthenticationException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fa0d074cf0ed4fa4a0a176c8826210f71fc7c0/35/6607388b/DbSet`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -61,48 +83,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/97c0b978dfca783148e92f9960c32fbd7e131be0fa4a266eb783a9e121b454/LogEventInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b468413b8e2f77bc619b764ac811e856f9d35c9ffe07e5f375a4eabf2209b9/ILogger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e9f282c41b7333cb73ec63bb84279c59f46e14b3414e466cf262ea3a8f64e11/System.Diagnostics.EventLog.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Articles/Briefs/ArticleBriefDto.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Articles/Commands/InsertArticleCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Articles/Commands/UpdateArticleCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Articles/Queries/GetArticleByIdQuery.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Workspaces/Commands/InsertWorkspaceCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Application/CQRS/Workspaces/Commands/UpdateWorkspaceCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Common/LookupDto.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Common/ServiceResult.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Article.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/ArticleKeyword.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/AuditLog.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Concept.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Keyword.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Keyword.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Log.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Pomodoro.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Role.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Role.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Tag.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/User.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/UserRole.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Entities/Workspace.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Models/RequestModels/UserLoginRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Models/RequestModels/UserRegisterRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Extensions/EnumExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Models/LogExceptionModel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Models/LogModel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/EntityFrameworkTarget.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/NLogUtils.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/NLogUtils.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Initializers/RoleInitializer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Web/obj/Debug/net6.0/Iridium.Web.MvcApplicationPartsAssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Web/obj/Debug/net6.0/Iridium.Web.MvcApplicationPartsAssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.MvcApplicationPartsAssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -190,6 +173,7 @@
       <workItem from="1713053003454" duration="5000" />
       <workItem from="1713053996912" duration="1000" />
       <workItem from="1714225544831" duration="21107000" />
+      <workItem from="1715431652657" duration="5577000" />
     </task>
     <task id="LOCAL-00001" summary="code review 1">
       <option name="closed" value="true" />
@@ -263,13 +247,32 @@
       <option name="project" value="LOCAL" />
       <updated>1714938580068</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactor new role system">
+      <option name="closed" value="true" />
+      <created>1714941565005</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714941565005</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="code review 1" />
@@ -281,7 +284,8 @@
     <MESSAGE value="Clear Namespaces" />
     <MESSAGE value="Add AuditLog" />
     <MESSAGE value="Refactor v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor v1" />
+    <MESSAGE value="Refactor new role system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor new role system" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
