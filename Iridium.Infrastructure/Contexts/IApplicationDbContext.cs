@@ -5,9 +5,7 @@ namespace Iridium.Infrastructure.Contexts;
 
 public interface IApplicationDbContext
 {
-    DbSet<Workspace> Workspace { get; }
-
-    DbSet<Article> Article { get; }
+    DbSet<Todo> Todo { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

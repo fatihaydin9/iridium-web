@@ -27,5 +27,7 @@ public class ServiceResult<T>
     
     public T Data { get; set; }
     
+    
+    
 }
 

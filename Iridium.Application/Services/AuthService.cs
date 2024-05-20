@@ -16,10 +16,12 @@ using System.Security.Claims;
 using System.Text;
 using Iridium.Application.Areas;
 using Iridium.Application.Roles;
+using Iridium.Infrastructure.Constants.Validations;
+using Iridium.Infrastructure.Initializers;
 
 namespace Iridium.Application.Services;
 
-public class AuthService
+public class AuthService : BaseService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly AppSettings _appSettings;
@@ -37,46 +39,39 @@ public class AuthService
         //    return new ServiceResult<bool>("The phone number is invalid.");
         // TODO: Mail Client and Commercial Mail System
 
-        var isUserExists = await _dbContext.User.AnyAsync(
-            w => w.Deleted != true && w.MailAddress == registerRequest.MailAddress);
+        var password = registerRequest.Password;
+        var confirmPassword = registerRequest.PasswordConfirm;
+        var mailAddress = registerRequest.MailAddress;
 
-        if (isUserExists)
-            return new ServiceResult<bool>("User already exists.");
+        if (!mailAddress.IsValidMailAddress())
+            return GetFailedResult(ValidationConstants.MailAddressIsInvalid);
 
-        if (!registerRequest.MailAddress.IsValidMailAddress())
-            return new ServiceResult<bool>("The email address is invalid.");
+        if (!await ValidateUserExists(mailAddress))
+            return GetFailedResult(ValidationConstants.UserAlreadyExits);
 
-        if (registerRequest.Password.Length < 8)
-            return new ServiceResult<bool>("Password should be at least 8 characters long.");
+        if (!ValidateIsPasswordMin8CharactersLong(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldBeAtLeast8CharactersLong);
 
-        if (registerRequest.Password != registerRequest.PasswordConfirm)
-            return new ServiceResult<bool>("Password and confirmation password do not match.");
+        if (!ValidateIsPasswordMax16CharactersLong(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldBeMax16CharactersLong);
 
-        if (!registerRequest.Password.Any(char.IsUpper))
-            return new ServiceResult<bool>("Password should contain at least one uppercase letter.");
+        if (!ValidatePasswordAndConfirmPasswordMatch(password, confirmPassword))
+            return GetFailedResult(ValidationConstants.PasswordAndConfirmPasswordDoNotMatch);
 
-        if (!registerRequest.Password.Any(char.IsLower))
-            return new ServiceResult<bool>("Password should contain at least one lowercase letter.");
+        if (!ValidateIsPasswordContainsAtLeastOneUpperCaseLetter(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldContainAtLeastOneUpperCaseLetter);
 
-        if (!registerRequest.Password.Any(char.IsDigit))
-            return new ServiceResult<bool>("Password should contain at least one digit.");
+        if (!ValidateIsPasswordContainsAtLeastOneLowerCaseLetter(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldContainAtLeastOneLowerCaseLetter);
 
-        if (registerRequest.Password.All(char.IsLetterOrDigit))
-            return new ServiceResult<bool>("Password should contain at least one special character.");
+        if (!ValidateIsPasswordContainsAtLeastOneDigit(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldContainAtLeastOneDigit);
 
-        var hashedPassword = registerRequest.Password.ToSHA256Hash();
+        if (!ValidateIsPasswordContainsAtLeastOneSpecialCharacter(password))
+            return GetFailedResult(ValidationConstants.PasswordShouldContainAtLeastOneSpecialCharacter);
+
+        var hashedPassword = password.ToSHA256Hash();
         var validationKey = Guid.NewGuid().ToString(); // for mail validation
-
-        var registeredUser = await _dbContext.User
-            .Where(w => w.Deleted != true && w.MailAddress == registerRequest.MailAddress)
-            .FirstOrDefaultAsync();
-
-        if (registeredUser != null)
-        {
-            return registeredUser.UserState == (short)UserState.Registered
-                ? new ServiceResult<bool>("User already registered : waiting for e-mail validation.")
-                : new ServiceResult<bool>("User already exists.");
-        }
 
         // for adding user
         var user = new User
@@ -86,7 +81,7 @@ public class AuthService
             PhoneNumber = registerRequest.PhoneNumber,
             ValidationKey = validationKey,
             ValidationExpire = DateTime.UtcNow,
-            UserState = (short)UserState.Completed,
+            UserState = (short)UserState.Completed, // Mail Link Registering -to do
             IsPremium = false,
             CreatedBy = 1,
             CreatedDate = DateTime.UtcNow
@@ -95,8 +90,11 @@ public class AuthService
         await _dbContext.User.AddAsync(user);
         await _dbContext.SaveChangesAsync();
 
-        // for adding standard user roles
-        var roleIds = new List<long>() { ArticleRole.FullRoleId, WorkspaceRole.FullRoleId };
+        var todoFullRoleId = RoleInitializer.RoleCache.ContainsKey(RoleParamCode.TodoFull)
+            ? RoleInitializer.RoleCache[RoleParamCode.TodoFull]
+            : 0;
+        
+        var roleIds = new List<long>() { todoFullRoleId };
 
         var userId = user.Id;
         var userRoles = new List<UserRole>();
@@ -111,7 +109,7 @@ public class AuthService
         await _dbContext.UserRole.AddRangeAsync(userRoles);
         await _dbContext.SaveChangesAsync();
 
-        return new ServiceResult<bool>(true);
+        return GetSucceededResult();
     }
 
     public async Task<ServiceResult<User>> GetAuthenticatedUser(UserLoginRequest loginRequest)
@@ -123,7 +121,7 @@ public class AuthService
             .FirstOrDefaultAsync();
 
         return user == null
-            ? new ServiceResult<User>("The mail address or password is wrong.")
+            ? new ServiceResult<User>(ValidationConstants.MailAddressOrPasswordIsWrong)
             : new ServiceResult<User>(user);
     }
 
@@ -136,53 +134,24 @@ public class AuthService
             .FirstOrDefaultAsync();
 
         if (user == null)
-            return new ServiceResult<UserLoginResponse>("The mail address or password is wrong.");
+            return new ServiceResult<UserLoginResponse>(ValidationConstants.MailAddressOrPasswordIsWrong);
 
-        if (user.UserState != (short)UserState.Registered)
-            return LoginUserAndGenerateJwtToken(user);
+        return LoginUserAndGenerateJwtToken(user);
 
-        if (user.ValidationExpire < DateTime.UtcNow)
-            return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the link sent to your e-mail.");
+        #region Mail Link
 
-        user.ValidationKey = Guid.NewGuid().ToString();
-        user.ValidationExpire = DateTime.UtcNow;
+        // TODO : Mail Link For Validation
 
-        _dbContext.User.Update(user);
+        //user.ValidationKey = Guid.NewGuid().ToString();
+        //user.ValidationExpire = DateTime.UtcNow;
 
-        await _dbContext.SaveChangesAsync();
+        //_dbContext.User.Update(user);
 
-        SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
+        //await _dbContext.SaveChangesAsync();
 
-        return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
-    }
+        //return new ServiceResult<UserLoginResponse>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
 
-    public async Task<ServiceResult<bool>> ValidateKey(string key, string guidId)
-    {
-        var user = await _dbContext.User.Where(w => w.Deleted != true &&
-                                                    w.UserState == (short)UserState.Completed &&
-                                                    w.ValidationKey == key &&
-                                                    w.GuidId.ToString() == guidId)
-            .FirstOrDefaultAsync();
-
-        if (user == null)
-            return new ServiceResult<bool>("Validation link expired or not found.");
-
-        if (user.ValidationExpire < DateTime.UtcNow)
-        {
-            user.UserState = (short)UserState.Completed;
-            _dbContext.User.Update(user);
-            await _dbContext.SaveChangesAsync();
-
-            return new ServiceResult<bool>(true);
-        }
-
-        user.ValidationKey = Guid.NewGuid().ToString();
-        _dbContext.User.Update(user);
-        await _dbContext.SaveChangesAsync();
-
-        SendValidationMailToUser(user.GuidId.ToString(), user.ValidationKey, user.MailAddress);
-
-        return new ServiceResult<bool>("To continue, verify your e-mail address by clicking on the new link sent to your e-mail.");
+        #endregion
     }
 
     #region Private Methods
@@ -259,6 +228,34 @@ public class AuthService
 
         mailClient.SendEmail(mailAddress, subject, message);
     }
+
+    #endregion
+
+    #region Validation Methods
+
+    private async Task<bool> ValidateUserExists(string mailAddress)
+        => !await _dbContext.User.AnyAsync(w => w.Deleted != true && w.MailAddress == mailAddress);
+
+    private bool ValidateIsPasswordMin8CharactersLong(string password)
+        => password.Length >= 8;
+
+    private bool ValidateIsPasswordMax16CharactersLong(string password)
+        => password.Length <= 16;
+
+    private bool ValidatePasswordAndConfirmPasswordMatch(string password, string confirmPassword)
+        => password == confirmPassword;
+
+    private bool ValidateIsPasswordContainsAtLeastOneUpperCaseLetter(string password)
+        => password.Any(char.IsUpper);
+
+    private bool ValidateIsPasswordContainsAtLeastOneLowerCaseLetter(string password)
+        => password.Any(char.IsLower);
+
+    private bool ValidateIsPasswordContainsAtLeastOneDigit(string password)
+        => password.Any(char.IsDigit);
+
+    private bool ValidateIsPasswordContainsAtLeastOneSpecialCharacter(string password)
+        => password.All(char.IsLetterOrDigit);
 
     #endregion
 }
