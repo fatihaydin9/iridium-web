@@ -5,8 +5,10 @@ namespace Iridium.Infrastructure.Services;
 
 public class UserService : IUserService
 {
+    private readonly IHttpContextAccessor _httpContextAccessor;
     public UserService(IHttpContextAccessor httpContextAccessor)
     {
+        _httpContextAccessor = httpContextAccessor;
         UserId = long.TryParse(httpContextAccessor.HttpContext?.User?.FindFirst("UserId")?.Value, out var parseValue) ? parseValue : 0;
     }
     public long UserId { get; }

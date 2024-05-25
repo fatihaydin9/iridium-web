@@ -164,6 +164,7 @@ public class AuthService : BaseService, IAuthService
         var claims = new List<Claim>
         {
             new(ClaimTypes.Email, user.MailAddress),
+            new("UserId", user.Id.ToString())
         };
 
         var userRolesWithChild = await GetRoleHierarchyAsync(userRoleParamCodes);

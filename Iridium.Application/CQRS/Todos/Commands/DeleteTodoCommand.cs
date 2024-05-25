@@ -12,9 +12,9 @@ public record DeleteTodoCommand(long Id) : IRequest<ServiceResult<bool>>;
 
 public class DeleteTodoCommandHandler : IRequestHandler<DeleteTodoCommand, ServiceResult<bool>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
 
-    public DeleteTodoCommandHandler(IApplicationDbContext context)
+    public DeleteTodoCommandHandler(ApplicationDbContext context)
     {
         _context = context;
     }

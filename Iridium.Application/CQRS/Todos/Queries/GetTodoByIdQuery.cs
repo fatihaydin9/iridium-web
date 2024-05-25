@@ -15,10 +15,10 @@ public record GetTodoByIdQuery : IRequest<ServiceResult<TodoBriefDto>>
 
 public class GetTodoByIdQueryQueryHandler : IRequestHandler<GetTodoByIdQuery, ServiceResult<TodoBriefDto>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetTodoByIdQueryQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetTodoByIdQueryQueryHandler(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

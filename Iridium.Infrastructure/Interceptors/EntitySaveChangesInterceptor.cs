@@ -1,8 +1,11 @@
-﻿using Iridium.Domain.Common;
+﻿using IdentityModel;
+using Iridium.Domain.Common;
+using Iridium.Domain.Entities;
 using Iridium.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Iridium.Infrastructure.Interceptors;
 
@@ -18,34 +21,68 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
         UpdateEntities(eventData.Context);
-
         return base.SavingChanges(eventData, result);
     }
 
-    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
+    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
+        InterceptionResult<int> result, CancellationToken cancellationToken = default)
     {
         UpdateEntities(eventData.Context);
-
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public void UpdateEntities(DbContext? context)
+    private void UpdateEntities(DbContext context)
     {
         if (context == null) return;
 
-        foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
-        {
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.CreatedBy = _userService.UserId;
-                entry.Entity.CreatedDate = DateTime.Now;
-            }
+        var timestamp = DateTime.UtcNow;
+        var auditEntries = new List<AuditLog>();
 
-            if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
+        foreach (var entry in context.ChangeTracker.Entries())
+        {
+            if (entry.Entity is AuditLog)
+                continue;
+
+            if (entry.State == EntityState.Added || entry.State == EntityState.Modified ||
+                entry.HasChangedOwnedEntities())
             {
-                entry.Entity.ModifiedBy = _userService.UserId;
-                entry.Entity.ModifiedDate = DateTime.Now;
+                // Set created and modified timestamps
+                if (entry.State == EntityState.Added)
+                {
+                    entry.CurrentValues["CreatedBy"] = _userService.UserId;
+                    entry.CurrentValues["CreatedDate"] = timestamp;
+                }
+
+                var entityId = "0";
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.CurrentValues["ModifiedBy"] = _userService.UserId;
+                    entry.CurrentValues["ModifiedDate"] = timestamp;
+                    entityId = entry.Properties.FirstOrDefault(p => p.Metadata.IsPrimaryKey())?.CurrentValue.ToString();
+                }
+
+                // Prepare audit log entry
+                var auditLog = new AuditLog()
+                {
+                    EntityId = entityId,
+                    EntityName = entry.Entity.GetType().Name,
+                    OldValue = entry.State == EntityState.Added
+                        ? null
+                        : JsonConvert.SerializeObject(entry.OriginalValues.ToObject()),
+                    NewValue = entry.State == EntityState.Deleted
+                        ? null
+                        : JsonConvert.SerializeObject(entry.CurrentValues.ToObject()),
+                    Type = (short)entry.State,
+                    Timestamp = timestamp,
+                    UserId = _userService.UserId
+                };
+                auditEntries.Add(auditLog);
             }
+        }
+
+        foreach (var audit in auditEntries)
+        {
+            context.Add(audit);
         }
     }
 }

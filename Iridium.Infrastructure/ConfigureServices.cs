@@ -4,6 +4,7 @@ using Iridium.Infrastructure.Initializers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Iridium.Application.Services;
+using Iridium.Infrastructure.Interceptors;
 using Iridium.Infrastructure.Services;
 using Microsoft.OpenApi.Models;
 
@@ -53,21 +54,18 @@ public static class ConfigureServices
         // Add Fundamental Services
         services.AddHttpClient();
         services.AddMemoryCache();
-        services.AddHttpContextAccessor();
         
         // Add Services
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<EntitySaveChangesInterceptor>();
 
         // Initializers
         services.InitializeMediatR();
         services.InitializeAutoMapper();
         services.InitializeFluentValidators();
         
-        // Add context with provider
-        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
-
         // Initialize role structure : add or delete domain roles
         services.AddTransient<RoleInitializer>();
             

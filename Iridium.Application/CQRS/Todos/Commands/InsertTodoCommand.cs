@@ -13,9 +13,9 @@ public class InsertTodoCommand : IRequest<ServiceResult<bool>>
 
 public class InsertTodoCommandHandler : IRequestHandler<InsertTodoCommand, ServiceResult<bool>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
 
-    public InsertTodoCommandHandler(IApplicationDbContext context)
+    public InsertTodoCommandHandler(ApplicationDbContext context)
     {
         _context = context;
     }

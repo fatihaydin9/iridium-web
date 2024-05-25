@@ -17,10 +17,10 @@ public record GetTodosWithPaginationQuery : IRequest<ServiceResult<PaginatedList
 public class GetArticlesWithPaginationQueryHandler : IRequestHandler<GetTodosWithPaginationQuery,
     ServiceResult<PaginatedList<TodoBriefDto>>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetArticlesWithPaginationQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetArticlesWithPaginationQueryHandler(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
