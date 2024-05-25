@@ -83,7 +83,7 @@ namespace Iridium.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Todos",
+                name: "Todo",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -181,7 +181,7 @@ namespace Iridium.Infrastructure.Migrations
                 name: "Log");
 
             migrationBuilder.DropTable(
-                name: "Todos");
+                name: "Todo");
 
             migrationBuilder.DropTable(
                 name: "UserRole");

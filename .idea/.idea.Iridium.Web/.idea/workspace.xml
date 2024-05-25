@@ -7,26 +7,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="968f93ca-aafa-4014-8799-4fae343ddafb" name="Changes" comment="Advanced Role System(Parent-Child), Validation System, Initializers, Advanced Log System, Mediatr Implementations, Mappings">
+    <list default="true" id="968f93ca-aafa-4014-8799-4fae343ddafb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/Docker/docker-compose.generated.override.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/DeleteTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/DeleteTodoCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/InsertTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/InsertTodoCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/UpdateTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/UpdateTodoCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodoByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodoByIdQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosWithPaginationQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosWithPaginationQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Interceptors/EntitySaveChangesInterceptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Interceptors/EntitySaveChangesInterceptor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Auth/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Auth/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/User/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Services/User/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Iridium.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Iridium.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240520034758_Initial.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240520034758_Initial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Iridium.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Iridium.Web.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" afterDir="false" />
@@ -34,6 +37,8 @@
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +93,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b468413b8e2f77bc619b764ac811e856f9d35c9ffe07e5f375a4eabf2209b9/ILogger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e9f282c41b7333cb73ec63bb84279c59f46e14b3414e466cf262ea3a8f64e11/System.Diagnostics.EventLog.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
@@ -111,32 +117,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Iridium.Web.executor": "Debug",
-    "Notification.DisplayName-DoNotAsk-KeymapMissing": "Keymap missing",
-    "Notification.DoNotAsk-KeymapMissing": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "XThreadsFramesViewSplitterKey": "0.6432866",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Iridium.Web.executor&quot;: &quot;Debug&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Debug&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-KeymapMissing&quot;: &quot;Keymap missing&quot;,
+    &quot;Notification.DoNotAsk-KeymapMissing&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6432866&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/fatihaydin/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/fatihaydin/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/fatihaydin/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/fatihaydin/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/fatihaydin/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/fatihaydin/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="Iridium.Web" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Iridium.Web/Iridium.Web.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -152,6 +160,50 @@
       <method v="2">
         <option name="Build" />
       </method>
+    </configuration>
+    <configuration name="Iridium.Web/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="iridium.web" />
+          <option name="containerName" value="iridium.web" />
+          <option name="contextFolderPath" value="$PROJECT_DIR$" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostIp" value="127.0.0.1" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Iridium.Web/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -198,7 +250,8 @@
       <workItem from="1716629719781" duration="42000" />
       <workItem from="1716629768993" duration="81000" />
       <workItem from="1716629861917" duration="105000" />
-      <workItem from="1716629978511" duration="28204000" />
+      <workItem from="1716629978511" duration="30830000" />
+      <workItem from="1716664798810" duration="5652000" />
     </task>
     <task id="LOCAL-00001" summary="code review 1">
       <option name="closed" value="true" />
@@ -304,7 +357,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716654972682</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Entity Change Tracker, UpdatedBy, CreatedBy, AuditLog Fixes">
+      <option name="closed" value="true" />
+      <created>1716658552569</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716658552569</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,6 +395,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="code review 1" />
     <MESSAGE value="Iridium Connect" />
@@ -348,7 +410,8 @@
     <MESSAGE value="Add Role Initializer Service" />
     <MESSAGE value="Convert To TODO APP" />
     <MESSAGE value="Advanced Role System(Parent-Child), Validation System, Initializers, Advanced Log System, Mediatr Implementations, Mappings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Advanced Role System(Parent-Child), Validation System, Initializers, Advanced Log System, Mediatr Implementations, Mappings" />
+    <MESSAGE value="Entity Change Tracker, UpdatedBy, CreatedBy, AuditLog Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entity Change Tracker, UpdatedBy, CreatedBy, AuditLog Fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -356,40 +419,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs</url>
           <line>21</line>
-          <properties documentPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todo/Queries/GetArticlesQuery.cs" initialLine="21" containingFunctionPresentation="Constructor 'GetTodosQueryHandler'">
-            <startOffsets>
-              <option value="675" />
-            </startOffsets>
-            <endOffsets>
-              <option value="676" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todo/Queries/GetArticlesQuery.cs" initialLine="21" containingFunctionPresentation="Constructor 'GetTodosQueryHandler'" />
           <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodoByIdQuery.cs</url>
-          <line>29</line>
-          <properties documentPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todo/Queries/GetTodoByIdQuery.cs" initialLine="29" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="868" />
-            </startOffsets>
-            <endOffsets>
-              <option value="869" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs</url>
           <line>34</line>
-          <properties documentPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todo/Queries/GetTodosQueryHandler.cs" initialLine="34" containingFunctionPresentation="Method 'Handle'">
-            <startOffsets>
-              <option value="1111" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1164" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todo/Queries/GetTodosQueryHandler.cs" initialLine="34" containingFunctionPresentation="Method 'Handle'" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
@@ -404,6 +440,21 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs</url>
+          <line>57</line>
+          <properties documentPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" initialLine="57" containingFunctionPresentation="Method 'EnsureRole'">
+            <startOffsets>
+              <option value="1841" />
+              <option value="1899" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1938" />
+              <option value="1936" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

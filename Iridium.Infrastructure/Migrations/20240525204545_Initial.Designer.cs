@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Iridium.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520034758_Initial")]
+    [Migration("20240525204545_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

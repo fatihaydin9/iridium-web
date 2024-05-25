@@ -49,7 +49,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Applicatio
             .Build();
 
         var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        var connectionString = configuration.GetConnectionString("ApplicationDbContext");
+        var connectionString = configuration.GetConnectionString("LocalDbContext");
 
         builder.UseSqlServer(connectionString, b => b.MigrationsAssembly("Iridium.Infrastructure"));
 

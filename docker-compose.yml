@@ -1,0 +1,22 @@
+﻿version: '3.8'
+services:
+  
+  iridium.web:
+    container_name: iridiumweb
+    image: ${DOCKER_REGISTRY-}iridiumweb
+    build:
+      context: .
+      dockerfile: Iridium.Web/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - sqlserver
+
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "reallyStrongPwd123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
