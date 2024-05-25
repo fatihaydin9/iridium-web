@@ -49,5 +49,4 @@ With these steps, your Iridium application setup is complete!
 
 I hope you like it! <br>
 All the best, <br>
-
 Fatih
