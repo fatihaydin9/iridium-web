@@ -47,6 +47,7 @@ Now, restart the application to ensure that all roles are properly imported and 
 
 With these steps, your Iridium application setup is complete!
 
-I hope you like it!
-All the best,
+I hope you like it! <br>
+All the best, <br>
+
 Fatih
