@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Iridium.Application.CQRS.Articles.Commands;
+using Iridium.Application.CQRS.Todos.Commands;
 using Iridium.Infrastructure.Constants;
 
-namespace Iridium.Application.CQRS.Articles.Validators;
+namespace Iridium.Application.CQRS.Todos.Validators;
 
 public class InsertTodoCommandValidator : AbstractValidator<InsertTodoCommand>
 {

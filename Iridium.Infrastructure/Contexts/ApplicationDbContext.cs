@@ -12,10 +12,10 @@ namespace Iridium.Infrastructure.Contexts;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    private readonly IAuthenticatedUserService _authenticatedUserService;
+    private readonly IUserService _authenticatedUserService;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IAuthenticatedUserService authenticatedUserService)
+        IUserService authenticatedUserService)
         : base(options)
     {
         _authenticatedUserService = authenticatedUserService;
@@ -159,7 +159,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Applicatio
 
         builder.UseSqlServer(connectionString, b => b.MigrationsAssembly("Iridium.Infrastructure"));
 
-        var userService = new MockAuthenticatedUserService();
+        var userService = new MockUserService();
         return new ApplicationDbContext(builder.Options, userService);
     }
 }

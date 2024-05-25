@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Iridium.Application.CQRS.Articles.Briefs;
-using Iridium.Application.CQRS.Articles.Queries;
+using Iridium.Application.CQRS.Todos.Briefs;
 using Iridium.Domain.Common;
 using Iridium.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Iridium.Application.CQRS.Articles.Queries;
+namespace Iridium.Application.CQRS.Todos.Queries;
 
 public record GetTodoByIdQuery : IRequest<ServiceResult<TodoBriefDto>>
 {

@@ -38,7 +38,7 @@ public class EntityFrameworkTarget : TargetWithLayout
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseSqlServer(ConnString.ToString());
         
-        using (var context = new ApplicationDbContext(optionsBuilder.Options, new MockAuthenticatedUserService()))
+        using (var context = new ApplicationDbContext(optionsBuilder.Options, new MockUserService()))
         {
             try
             {

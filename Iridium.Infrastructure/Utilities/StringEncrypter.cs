@@ -6,15 +6,20 @@ namespace Iridium.Infrastructure.Utilities;
 
 public class StringEncrypter
 {
-    private const string EntropyString = SymmetricKey.Value;
-    private static readonly byte[] Entropy = Encoding.UTF8.GetBytes(EntropyString);
+    private readonly string _entropyString;
+    private readonly byte[] _entropy;
+    public StringEncrypter(string symmetricKey)
+    {
+        _entropyString = symmetricKey;
+        _entropy = Encoding.UTF8.GetBytes(_entropyString);
+    }
 
     public string Encrypt(string value)
     {
-        if (!string.IsNullOrEmpty(value))
+        if (!string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(_entropyString) && _entropy.Any())
         {
             var bytes = Encoding.UTF8.GetBytes(value);
-            var encryptedBytes = ProtectedData.Protect(bytes, Entropy, DataProtectionScope.LocalMachine);
+            var encryptedBytes = ProtectedData.Protect(bytes, _entropy, DataProtectionScope.LocalMachine);
             return Convert.ToBase64String(encryptedBytes);
         }
 
@@ -26,7 +31,7 @@ public class StringEncrypter
         if (!string.IsNullOrEmpty(value))
         {
             var bytes = Convert.FromBase64String(value);
-            byte[] buf = ProtectedData.Unprotect(bytes, Entropy, DataProtectionScope.LocalMachine);
+            byte[] buf = ProtectedData.Unprotect(bytes, _entropy, DataProtectionScope.LocalMachine);
             return Encoding.UTF8.GetString(buf);
         }
 

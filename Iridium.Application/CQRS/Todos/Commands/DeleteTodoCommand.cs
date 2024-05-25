@@ -6,7 +6,7 @@ using Iridium.Infrastructure.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Iridium.Application.CQRS.Articles.Commands;
+namespace Iridium.Application.CQRS.Todos.Commands;
 
 public record DeleteTodoCommand(long Id) : IRequest<ServiceResult<bool>>;
 

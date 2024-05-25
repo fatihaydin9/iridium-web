@@ -5,7 +5,12 @@ namespace Iridium.Infrastructure.Contexts;
 
 public interface IApplicationDbContext
 {
-    DbSet<Todo> Todo { get; }
+    public DbSet<Log> Log { get; }
+    public DbSet<User> User { get; }
+    public DbSet<Role> Role { get; }
+    public DbSet<UserRole> UserRole { get;}
+    public DbSet<AuditLog> AuditLog { get; }
+    public DbSet<Todo> Todo { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

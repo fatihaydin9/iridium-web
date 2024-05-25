@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Iridium.Application.CQRS.Articles.EventHandlers;
+namespace Iridium.Application.CQRS.Todos.EventHandlers;
 
 public class TodoUpdatedEventHandler : INotificationHandler<TodoUpdatedEvent>
 {

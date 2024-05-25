@@ -14,22 +14,16 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Iridium.Application.Areas;
-using Iridium.Application.Roles;
 using Iridium.Infrastructure.Constants.Validations;
 using Iridium.Infrastructure.Initializers;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Iridium.Application.Services;
 
-public class AuthService : BaseService
+public class AuthService : BaseService, IAuthService
 {
-    private readonly ApplicationDbContext _dbContext;
-    private readonly AppSettings _appSettings;
-
-    public AuthService(ApplicationDbContext dbContext, IOptions<AppSettings> appSettings)
+    public AuthService(IMemoryCache memoryCache, ApplicationDbContext dbContext, IOptions<AppSettings> appSettings) : base(memoryCache, dbContext, appSettings)
     {
-        _dbContext = dbContext;
-        _appSettings = appSettings.Value;
     }
 
     public async Task<ServiceResult<bool>> RegisterUser(UserRegisterRequest registerRequest)
@@ -87,8 +81,8 @@ public class AuthService : BaseService
             CreatedDate = DateTime.UtcNow
         };
 
-        await _dbContext.User.AddAsync(user);
-        await _dbContext.SaveChangesAsync();
+        await DbContext.User.AddAsync(user);
+        await DbContext.SaveChangesAsync();
 
         var todoFullRoleId = RoleInitializer.RoleCache.ContainsKey(RoleParamCode.TodoFull)
             ? RoleInitializer.RoleCache[RoleParamCode.TodoFull]
@@ -106,8 +100,8 @@ public class AuthService : BaseService
                 RoleId = roleId
             });
 
-        await _dbContext.UserRole.AddRangeAsync(userRoles);
-        await _dbContext.SaveChangesAsync();
+        await DbContext.UserRole.AddRangeAsync(userRoles);
+        await DbContext.SaveChangesAsync();
 
         return GetSucceededResult();
     }
@@ -116,7 +110,7 @@ public class AuthService : BaseService
     {
         var hashedPassword = loginRequest.Password.ToSHA256Hash();
 
-        var user = await _dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
+        var user = await DbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
             .Where(w => w.Password == hashedPassword)
             .FirstOrDefaultAsync();
 
@@ -129,14 +123,14 @@ public class AuthService : BaseService
     {
         var hashedPassword = loginRequest.Password.ToSHA256Hash();
 
-        var user = await _dbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
+        var user = await DbContext.User.Where(w => w.MailAddress == loginRequest.MailAddress)
             .Where(w => w.Password == hashedPassword)
             .FirstOrDefaultAsync();
 
         if (user == null)
             return new ServiceResult<UserLoginResponse>(ValidationConstants.MailAddressOrPasswordIsWrong);
 
-        return LoginUserAndGenerateJwtToken(user);
+        return await LoginUserAndGenerateJwtToken(user);
 
         #region Mail Link
 
@@ -154,25 +148,29 @@ public class AuthService : BaseService
         #endregion
     }
 
-    #region Private Methods
+    #region Private Helper Methods
 
-    private ServiceResult<UserLoginResponse> LoginUserAndGenerateJwtToken(User user)
+    private async Task<ServiceResult<UserLoginResponse>> LoginUserAndGenerateJwtToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(SymmetricKey.Value);
+        var symmetricKey = AppSettings.JwtConfig.SecretKey;
+        var key = Encoding.ASCII.GetBytes(symmetricKey);
 
-        var userRoles = _dbContext.UserRole.Include(ur => ur.Role)
+        var userRoleParamCodes = DbContext.UserRole.Include(ur => ur.Role)
             .Where(ur => ur.UserId == user.Id)
             .Select(ur => ur.Role.ParamCode)
             .ToList();
 
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, user.MailAddress),
+            new(ClaimTypes.Email, user.MailAddress),
         };
 
-        foreach (var role in userRoles)
-            claims.Add(new Claim(ClaimTypes.Role, role));
+        var userRolesWithChild = await GetRoleHierarchyAsync(userRoleParamCodes);
+        var allUserRoleParamCodesWithChild = userRolesWithChild.Select(s => s.ParamCode).ToList();
+        
+        foreach (var userRoleParamCode in allUserRoleParamCodesWithChild)
+            claims.Add(new Claim(ClaimTypes.Role, userRoleParamCode));
 
         var tokenExpireDate = DateTime.UtcNow.AddDays(ConfigurationConstants.TokenExpireAsDay);
 
@@ -199,7 +197,8 @@ public class AuthService : BaseService
     private bool ValidateJwtToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(SymmetricKey.Value);
+        var symmetricKey = AppSettings.JwtConfig.SecretKey;
+        var key = Encoding.ASCII.GetBytes(symmetricKey);
 
         tokenHandler.ValidateToken(token, new TokenValidationParameters
         {
@@ -215,8 +214,8 @@ public class AuthService : BaseService
 
     private void SendValidationMailToUser(string userGuidId, string validationKey, string mailAddress)
     {
-        var baseUrl = _appSettings.Base.Url;
-        var mailClientSettings = _appSettings.MailClientSettings;
+        var baseUrl = AppSettings.Base.Url;
+        var mailClientSettings = AppSettings.MailClientSettings;
 
         var subject = MailConfigurations.RegistrationMailSubject;
 
@@ -231,10 +230,10 @@ public class AuthService : BaseService
 
     #endregion
 
-    #region Validation Methods
+    #region Private Validation Methods
 
     private async Task<bool> ValidateUserExists(string mailAddress)
-        => !await _dbContext.User.AnyAsync(w => w.Deleted != true && w.MailAddress == mailAddress);
+        => !await DbContext.User.AnyAsync(w => w.Deleted != true && w.MailAddress == mailAddress);
 
     private bool ValidateIsPasswordMin8CharactersLong(string password)
         => password.Length >= 8;

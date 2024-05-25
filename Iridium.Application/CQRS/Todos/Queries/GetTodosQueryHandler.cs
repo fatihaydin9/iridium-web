@@ -1,24 +1,24 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Iridium.Application.CQRS.Articles.Briefs;
-using Iridium.Application.CQRS.Articles.Queries;
+using Iridium.Application.CQRS.Todos.Briefs;
+using Iridium.Application.CQRS.Todos.Queries;
 using Iridium.Domain.Common;
 using Iridium.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Iridium.Application.CQRS.Articles.Queries;
+namespace Iridium.Application.CQRS.Todos.Queries;
 
 public record GetTodosQuery : IRequest<ServiceResult<List<TodoBriefDto>>>
 {
 }
 
-public class GetArticlesQueryHandler : IRequestHandler<GetTodosQuery, ServiceResult<List<TodoBriefDto>>>
+public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, ServiceResult<List<TodoBriefDto>>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetArticlesQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetTodosQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

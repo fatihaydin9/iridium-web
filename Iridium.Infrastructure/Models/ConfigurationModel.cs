@@ -18,12 +18,18 @@
         public string Password { get; set; }
         public string Mail { get; set; }
     }
+    
+    public class JwtConfig
+    {
+        public string SecretKey { get; set; }
+    }
 
     public class AppSettings
     {
         public BaseSettings Base { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
         public MailClientSettings MailClientSettings { get; set; }
+        public JwtConfig JwtConfig { get; set; }
     }
 
 }

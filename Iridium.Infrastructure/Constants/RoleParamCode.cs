@@ -3,7 +3,7 @@ namespace Iridium.Infrastructure.Constants;
 public static class RoleParamCode
 {
     
-    #region Todo
+    #region Todos
 
         public const string TodoFull = "ParamCode.Role.Todo.Full";
         public const string TodoList = "ParamCode.Role.Todo.List";

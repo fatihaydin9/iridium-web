@@ -8,9 +8,9 @@ namespace Iridium.Infrastructure.Interceptors;
 
 public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 {
-    private readonly IAuthenticatedUserService _userService;
+    private readonly IUserService _userService;
 
-    public EntitySaveChangesInterceptor(IAuthenticatedUserService userService)
+    public EntitySaveChangesInterceptor(IUserService userService)
     {
         _userService = userService;
     }

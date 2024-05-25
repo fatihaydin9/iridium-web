@@ -6,25 +6,23 @@ namespace Iridium.Infrastructure.Utilities;
 
 public class AESEncrypter
 {
-    public static string EncryptString(string plainText)
+    public static string EncryptString(string plainText, string key)
     {
-        string key = SymmetricKey.Value.ToString();
-
-        byte[] iv = new byte[16];
+        var iv = new byte[16];
         byte[] array;
 
-        using (Aes aes = Aes.Create())
+        using (var aes = Aes.Create())
         {
             aes.Key = Encoding.UTF8.GetBytes(key);
             aes.IV = iv;
 
-            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+            var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-            using (MemoryStream memoryStream = new MemoryStream())
+            using (var memoryStream = new MemoryStream())
             {
-                using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
+                using (var cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
                 {
-                    using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))
+                    using (var streamWriter = new StreamWriter((Stream)cryptoStream))
                     {
                         streamWriter.Write(plainText);
                     }
@@ -37,24 +35,22 @@ public class AESEncrypter
         return Convert.ToBase64String(array);
     }
 
-    public static string DecryptString(string cipherText)
+    public static string DecryptString(string cipherText, string key)
     {
-        string key = SymmetricKey.Value.ToString();
+        var iv = new byte[16];
+        var buffer = Convert.FromBase64String(cipherText);
 
-        byte[] iv = new byte[16];
-        byte[] buffer = Convert.FromBase64String(cipherText);
-
-        using (Aes aes = Aes.Create())
+        using (var aes = Aes.Create())
         {
             aes.Key = Encoding.UTF8.GetBytes(key);
             aes.IV = iv;
-            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+            var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
 
-            using (MemoryStream memoryStream = new MemoryStream(buffer))
+            using (var memoryStream = new MemoryStream(buffer))
             {
-                using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, decryptor, CryptoStreamMode.Read))
+                using (var cryptoStream = new CryptoStream((Stream)memoryStream, decryptor, CryptoStreamMode.Read))
                 {
-                    using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))
+                    using (var streamReader = new StreamReader((Stream)cryptoStream))
                     {
                         return streamReader.ReadToEnd();
                     }

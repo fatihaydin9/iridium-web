@@ -4,7 +4,7 @@ using Iridium.Domain.Events;
 using Iridium.Infrastructure.Contexts;
 using MediatR;
 
-namespace Iridium.Application.CQRS.Articles.Commands;
+namespace Iridium.Application.CQRS.Todos.Commands;
 
 public class InsertTodoCommand : IRequest<ServiceResult<bool>>
 {

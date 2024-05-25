@@ -1,4 +1,6 @@
-﻿namespace Iridium.Domain.Common;
+﻿using FluentValidation.Results;
+
+namespace Iridium.Domain.Common;
 
 public class ServiceResult<T>
 {
@@ -23,7 +25,7 @@ public class ServiceResult<T>
     
     public string? Message { get; set; } 
     
-    public List<string>? Errors { get; set; } 
+    public List<ValidationFailure>? ValidationErrors { get; set; } 
     
     public T Data { get; set; }
     
