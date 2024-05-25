@@ -8,7 +8,7 @@ I implemented Domain Driven Design in Iridium Web to make sure the development p
 In Iridium Web I've integrated the CQRS pattern, which becomes more and more crucial as the complexity of the application increases. This pattern divides data operations into distinct commands (writes) and queries (reads) boosting performance and scalability. It also enhances security by isolating sensitive operations and allows me to customize technologies and database schemas that are best suited for each side's needs.
 
 ### 1.3. MediatR and the Mediator Pattern
-I chose MediatRi a well-known .NET library that implements the mediator pattern, to reduce the direct dependencies among components and simplifying their communication. By decoupling the application’s components, MediatR lets them operate more independently interacting through a central mediator. This reduces dependency and improves both maintainability and scalability. It also supports the Single Responsibility Principle by managing separate logic through discrete handlers, each responsible for a specific command or query.
+I chose MediatR is a well-known .NET library that implements the mediator pattern, to reduce the direct dependencies among components and simplifying their communication. By decoupling the application’s components, MediatR lets them operate more independently interacting through a central mediator. This reduces dependency and improves both maintainability and scalability. It also supports the Single Responsibility Principle by managing separate logic through discrete handlers, each responsible for a specific command or query.
 
 ## 2. Features Overview
 
