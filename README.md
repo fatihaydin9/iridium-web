@@ -12,7 +12,7 @@ I chose MediatR is a well-known .NET library that implements the mediator patter
 
 ## 2. Features Overview
 
-#### 2.1. Entity Change Tracker & Standard Fields
+#### 2.1. AuditLog & Standard Fields
 In Iridium Web, I integrated an Entity Change Tracker that meticulously records every change, capturing detailed snapshots of entities before and after any modifications. This feature is crucial for ensuring compliance and aiding debugging. The system also automatically manages standard fields such as `CreatedBy`, `CreatedDate`, `ModifiedBy`, and `ModifiedDate`, essential for maintaining data accountability and integrity.
 
 #### 2.2. Role System
