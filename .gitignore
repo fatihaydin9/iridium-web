@@ -1,0 +1,16 @@
+# Derleme sonuçları
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+
+# Log dosyaları
+*.log
+
+# Sistem dosyaları
+.DS_Store
+
+# IDE ayarları
+.idea/
+*.swp
+*~
