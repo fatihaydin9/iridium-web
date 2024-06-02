@@ -1,4 +1,4 @@
-﻿using Iridium.Domain.Events;
+﻿using Iridium.Domain.Events.TodoEvent;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

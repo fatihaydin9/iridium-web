@@ -83,7 +83,7 @@ namespace Iridium.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Todo",
+                name: "TodoEvent",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -181,7 +181,7 @@ namespace Iridium.Persistence.Migrations
                 name: "Log");
 
             migrationBuilder.DropTable(
-                name: "Todo");
+                name: "TodoEvent");
 
             migrationBuilder.DropTable(
                 name: "UserRole");

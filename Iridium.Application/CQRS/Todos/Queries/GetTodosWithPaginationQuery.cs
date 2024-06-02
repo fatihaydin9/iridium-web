@@ -14,13 +14,13 @@ public record GetTodosWithPaginationQuery : IRequest<ServiceResult<PaginatedList
     public int PageSize { get; init; } = 10;
 }
 
-public class GetArticlesWithPaginationQueryHandler : IRequestHandler<GetTodosWithPaginationQuery,
+public class GetTodosWithPaginationQueryHandler : IRequestHandler<GetTodosWithPaginationQuery,
     ServiceResult<PaginatedList<TodoBriefDto>>>
 {
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetArticlesWithPaginationQueryHandler(ApplicationDbContext context, IMapper mapper)
+    public GetTodosWithPaginationQueryHandler(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

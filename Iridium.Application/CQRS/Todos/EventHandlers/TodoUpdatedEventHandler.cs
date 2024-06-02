@@ -1,6 +1,6 @@
-﻿using Iridium.Domain.Events;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Iridium.Domain.Events.TodoEvent;
 
 namespace Iridium.Application.CQRS.Todos.EventHandlers;
 

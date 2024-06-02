@@ -1,7 +1,7 @@
 ﻿using Iridium.Core.Exceptions;
 using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
-using Iridium.Domain.Events;
+using Iridium.Domain.Events.TodoEvent;
 using Iridium.Persistence.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

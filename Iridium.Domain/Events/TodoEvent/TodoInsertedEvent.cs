@@ -1,11 +1,11 @@
 ﻿using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
 
-namespace Iridium.Domain.Events;
+namespace Iridium.Domain.Events.TodoEvent;
 
-public class TodoUpdatedEvent : BaseEvent
+public class TodoInsertedEvent : BaseEvent
 {
-    public TodoUpdatedEvent(Todo todo)
+    public TodoInsertedEvent(Todo todo)
     {
         Todo = todo;
     }
