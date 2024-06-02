@@ -8116,11 +8116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/Iridium.Core.csproj",
+      "projectUniqueName": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/Iridium.Core.csproj",
       "projectName": "Iridium.Core",
-      "projectPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/Iridium.Core.csproj",
+      "projectPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/Iridium.Core.csproj",
       "packagesPath": "/Users/fatihaydin/.nuget/packages/",
-      "outputPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/obj/",
+      "outputPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/fatihaydin/.nuget/NuGet/NuGet.Config"

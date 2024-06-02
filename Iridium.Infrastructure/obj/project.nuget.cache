@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GnyaQOPcOZSA00RboCgrSgwTlerC3gjD1RgHeS6mgtM+RXBfs+dOP7Bp4o0YRqBMyFkUBkiaMCDEYSRcZTwm+w==",
+  "dgSpecHash": "JL0kzJgN/jo4iyamxK982OByNBim6w0yEk4C0fFsy/fxn3biA5PY6BuV85BQRCMYDhqh+sJtxx7FleYLtoocdg==",
   "success": true,
-  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
+  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/fatihaydin/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/fatihaydin/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

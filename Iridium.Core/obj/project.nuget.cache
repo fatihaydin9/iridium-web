@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2hDbQ3694RGFPd1eS0tGTdF8uXrZEP646ViT4NxpE+GXV8d3n3mBvtkJ+8FLCD4tNVCZfh5V1mQLus+wUx20Yg==",
+  "dgSpecHash": "U6jJ6Y8nzlGUEZBHOoConii8CFL2yK/jY/8r9krlwMo+25VQfKP0pLrq4d45MtFFArEjhoCv1xX4uKiJuZrP+w==",
   "success": true,
-  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/Iridium.Core.csproj",
+  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/Iridium.Core.csproj",
   "expectedPackageFiles": [
     "/Users/fatihaydin/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
     "/Users/fatihaydin/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.9.0/fluentvalidation.dependencyinjectionextensions.11.9.0.nupkg.sha512",

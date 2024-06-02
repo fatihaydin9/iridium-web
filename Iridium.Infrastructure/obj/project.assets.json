@@ -10764,11 +10764,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
+      "projectUniqueName": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
       "projectName": "Iridium.Infrastructure",
-      "projectPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
+      "projectPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Iridium.Infrastructure.csproj",
       "packagesPath": "/Users/fatihaydin/.nuget/packages/",
-      "outputPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Infrastructure/obj/",
+      "outputPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/fatihaydin/.nuget/NuGet/NuGet.Config"
@@ -10783,14 +10783,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/Iridium.Core.csproj": {
-              "projectPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Core/Iridium.Core.csproj"
+            "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/Iridium.Core.csproj": {
+              "projectPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Core/Iridium.Core.csproj"
             },
-            "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Domain/Iridium.Domain.csproj": {
-              "projectPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Domain/Iridium.Domain.csproj"
+            "/Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Iridium.Domain.csproj": {
+              "projectPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Domain/Iridium.Domain.csproj"
             },
-            "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Persistence/Iridium.Persistence.csproj": {
-              "projectPath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Persistence/Iridium.Persistence.csproj"
+            "/Users/fatihaydin/RiderProjects/iridium/Iridium.Persistence/Iridium.Persistence.csproj": {
+              "projectPath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Persistence/Iridium.Persistence.csproj"
             }
           }
         }

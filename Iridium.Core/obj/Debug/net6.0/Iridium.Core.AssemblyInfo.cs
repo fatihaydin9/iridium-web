@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Iridium.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+410b3b8be5f7287766a181611f35e2a3ddff82b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e68ad0669af9ce6b5ab531c27ed8d7d1f6ce5c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Iridium.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Iridium.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

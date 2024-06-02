@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wqPVGJ9tFekWORKjyD6H4skJEPOr4C7bKUiWX7fd0gY0hMxsvj3AO8TPB4QdaZKY5A8J6zk+3NTHa1v2M/wOEA==",
+  "dgSpecHash": "eEzJ3lbWfqE1xwjx9lwGyFvFwQg2fSYfNagAamK+Z+GZfpuLqbba6bRoX+1oS1qAchbh4ueDw8ZKFOD2wYNk1A==",
   "success": true,
-  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Application/Iridium.Application.csproj",
+  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Application/Iridium.Application.csproj",
   "expectedPackageFiles": [
     "/Users/fatihaydin/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/fatihaydin/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
