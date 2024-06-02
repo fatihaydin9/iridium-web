@@ -23,13 +23,13 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
     image: "iridiumweb:dev"
     ports:
-    - "127.0.0.1:57026:57100"
-    - "127.0.0.1:57226:57300"
+    - "127.0.0.1:57002:57100"
+    - "127.0.0.1:57202:57300"
     volumes:
     - "/Users/fatihaydin/.nuget/packages:/root/.nuget/packages"
     - "/Users/fatihaydin/RiderProjects/iridium/Iridium.Web:/app:rw"
     - "/Users/fatihaydin/RiderProjects/iridium:/src:rw"
     - "/Users/fatihaydin/.local/share/JetBrains/RiderRemoteDebugger/2023.3.5/LinuxArm64:/opt/rider-debugger"
     - "/Applications/Rider.app/Contents/bin:/etc/opt/rider-debugger/backend-log.xml"
-    - "/Users/fatihaydin/Library/Logs/JetBrains/Rider2023.3/DebuggerWorker/JetBrains.Debugger.Worker.2024_5_25_23_49_43:/var/opt/rider-debugger:rw"
+    - "/Users/fatihaydin/Library/Logs/JetBrains/Rider2023.3/DebuggerWorker/JetBrains.Debugger.Worker.2024_6_02_17_12_41:/var/opt/rider-debugger:rw"
     working_dir: "/app"

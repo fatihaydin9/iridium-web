@@ -1,6 +1,7 @@
+using FluentValidation;
+
 namespace Iridium.Infrastructure.Initializers;
 
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;

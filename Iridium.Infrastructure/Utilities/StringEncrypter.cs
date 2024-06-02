@@ -1,4 +1,4 @@
-﻿using Iridium.Infrastructure.Constants;
+﻿using Iridium.Core.Constants;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -31,7 +31,7 @@ public class StringEncrypter
         if (!string.IsNullOrEmpty(value))
         {
             var bytes = Convert.FromBase64String(value);
-            byte[] buf = ProtectedData.Unprotect(bytes, _entropy, DataProtectionScope.LocalMachine);
+            var buf = ProtectedData.Unprotect(bytes, _entropy, DataProtectionScope.LocalMachine);
             return Encoding.UTF8.GetString(buf);
         }
 

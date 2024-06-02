@@ -1,15 +1,15 @@
-﻿using Iridium.Domain.Enums;
+﻿using Iridium.Core.Enums;
 using Newtonsoft.Json;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
 using NLog;
 using System.Diagnostics;
-using Iridium.Infrastructure.Models;
+using Iridium.Core.Auth;
+using Iridium.Core.Models;
 using Iridium.Domain.Entities;
-using LogLevel = Iridium.Domain.Enums.LogLevel;
-using Iridium.Infrastructure.Contexts;
-using Iridium.Infrastructure.Services;
+using LogLevel = Iridium.Core.Enums.LogLevel;
+using Iridium.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

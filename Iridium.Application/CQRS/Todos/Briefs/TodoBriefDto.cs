@@ -1,7 +1,7 @@
-﻿using Iridium.Domain.Common;
-using Iridium.Infrastructure.Attributes.Base;
-using Iridium.Infrastructure.Constants;
-using Iridium.Infrastructure.Types;
+﻿using Iridium.Core.Attributes.Base;
+using Iridium.Core.Constants;
+using Iridium.Core.Types;
+using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
 
 namespace Iridium.Application.CQRS.Todos.Briefs;

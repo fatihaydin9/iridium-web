@@ -1,6 +1,7 @@
-﻿using Iridium.Infrastructure.Attributes.Base;
-using Iridium.Infrastructure.Models;
-using System.Reflection;
+﻿using System.Reflection;
+using Iridium.Core.Attributes.Base;
+using Iridium.Core.Models;
+using Iridium.Core.Models;
 
 namespace Iridium.Infrastructure.Utilities;
 
@@ -8,16 +9,16 @@ public static class AttributeHelper
 {
     public static List<FormComponentModel> GetDtoFormComponents<T>()
     {
-        List<KeyValuePair<string, FormComponentModel>> result = new List<KeyValuePair<string, FormComponentModel>>();
+        var result = new List<KeyValuePair<string, FormComponentModel>>();
         var dtoType = typeof(T);
-        PropertyInfo[] props = dtoType.GetProperties();
+        var props = dtoType.GetProperties();
 
-        foreach (PropertyInfo prop in props)
+        foreach (var prop in props)
         {
-            List<object> attrsList = prop.GetCustomAttributes(true).ToList();
-            foreach (object attr in attrsList)
+            var attrsList = prop.GetCustomAttributes(true).ToList();
+            foreach (var attr in attrsList)
             {
-                FormComponentAttribute formComponentAttribute = attr as FormComponentAttribute;
+                var formComponentAttribute = attr as FormComponentAttribute;
 
                 if (formComponentAttribute != null)
                 {

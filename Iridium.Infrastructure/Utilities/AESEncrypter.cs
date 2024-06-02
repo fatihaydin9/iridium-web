@@ -1,4 +1,4 @@
-﻿using Iridium.Infrastructure.Constants;
+﻿using Iridium.Core.Constants;
 using System.Security.Cryptography;
 using System.Text;
 

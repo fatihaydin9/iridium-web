@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Iridium.Domain\Iridium.Domain.csproj" />
-    <ProjectReference Include="..\Iridium.Infrastructure\Iridium.Infrastructure.csproj" />
+    <ProjectReference Include="..\Iridium.Persistence\Iridium.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Iridium.Application.CQRS.Todos.Briefs;
+using Iridium.Application.Mappings;
 using Iridium.Domain.Common;
-using Iridium.Infrastructure.Contexts;
-using Iridium.Infrastructure.Extensions;
+using Iridium.Persistence.Contexts;
 using MediatR;
 
 namespace Iridium.Application.CQRS.Todos.Queries;

@@ -1,7 +1,7 @@
 ﻿using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
 using Iridium.Domain.Events;
-using Iridium.Infrastructure.Contexts;
+using Iridium.Persistence.Contexts;
 using MediatR;
 
 namespace Iridium.Application.CQRS.Todos.Commands;

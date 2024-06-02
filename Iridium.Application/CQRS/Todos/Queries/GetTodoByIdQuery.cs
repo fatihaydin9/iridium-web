@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Iridium.Application.CQRS.Todos.Briefs;
 using Iridium.Domain.Common;
-using Iridium.Infrastructure.Contexts;
+using Iridium.Persistence.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

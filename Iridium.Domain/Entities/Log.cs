@@ -1,6 +1,6 @@
 ﻿using Iridium.Domain.Common;
-using Iridium.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+using Iridium.Core.Enums;
 
 namespace Iridium.Domain.Entities;
 

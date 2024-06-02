@@ -16,4 +16,8 @@
     <Compile Remove="Entities\CreativeConcept.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Iridium.Core\Iridium.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,9 +1,9 @@
-﻿using Iridium.Domain.Common;
+﻿using MediatR;
+using Iridium.Core.Exceptions;
 using Iridium.Domain.Entities;
 using Iridium.Domain.Events;
-using Iridium.Infrastructure.Contexts;
-using Iridium.Infrastructure.Exceptions;
-using MediatR;
+using Iridium.Domain.Common;
+using Iridium.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Iridium.Application.CQRS.Todos.Commands;

@@ -1,5 +1,5 @@
-﻿using Iridium.Domain.Enums;
-using Iridium.Infrastructure.Models;
+﻿using Iridium.Core.Enums;
+using Iridium.Core.Models;
 using ILogger = NLog.ILogger;
 
 namespace Iridium.Infrastructure.Utilities;

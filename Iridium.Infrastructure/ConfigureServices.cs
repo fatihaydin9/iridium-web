@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using Iridium.Infrastructure.Contexts;
+using Iridium.Persistence.Contexts;
 using Iridium.Infrastructure.Initializers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Iridium.Application.Services;
-using Iridium.Infrastructure.Interceptors;
-using Iridium.Infrastructure.Services;
+using Iridium.Core.Auth;
+using Iridium.Persistence.Interceptors;
 using Microsoft.OpenApi.Models;
 
 namespace Iridium.Infrastructure;
@@ -56,10 +55,10 @@ public static class ConfigureServices
         services.AddMemoryCache();
         
         // Add Services
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<EntitySaveChangesInterceptor>();
+        
+        // User Auth
+        services.AddScoped<IAuthenticatedUser, AuthenticatedUser>();
 
         // Initializers
         services.InitializeMediatR();

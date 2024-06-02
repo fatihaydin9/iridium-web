@@ -1,6 +1,6 @@
 ﻿using Iridium.Domain.Common;
-using Iridium.Infrastructure.Attributes;
-using Iridium.Infrastructure.Constants;
+using Iridium.Core.Attributes;
+using Iridium.Core.Constants;
 
 namespace Iridium.Application.Roles;
 

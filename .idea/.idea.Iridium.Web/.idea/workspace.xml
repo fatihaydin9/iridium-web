@@ -8,35 +8,132 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="968f93ca-aafa-4014-8799-4fae343ddafb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/Docker/docker-compose.generated.override.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Iridium.Web/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Application/Mappings/MappingHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Core/Auth/IAuthenticatedUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Core/Cache/RoleCache.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Core/Enums/LogType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Core/Enums/ServiceType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Core/Iridium.Core.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Persistence/Iridium.Persistence.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Service/Iridium.Service.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/Filters/IridiumRoleAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Core.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Core.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Persistence.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Persistence.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.AspNetCore.Razor.Language.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.CodeAnalysis.CSharp.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.CodeAnalysis.Razor.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.CodeAnalysis.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.DotNet.PlatformAbstractions.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/Docker/docker-compose.generated.override.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Iridium.Web/Docker/docker-compose.generated.override.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Briefs/TodoBriefDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Briefs/TodoBriefDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/DeleteTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/DeleteTodoCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/InsertTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/InsertTodoCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/UpdateTodoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Commands/UpdateTodoCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodoByIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodoByIdQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosWithPaginationQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Queries/GetTodosWithPaginationQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Validators/InsertTodoCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Validators/InsertTodoCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Validators/UpdateArticleCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/CQRS/Todos/Validators/UpdateArticleCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/Iridium.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Iridium.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Application/Roles/TodoRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Roles/TodoRole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/DomainObjects/Color.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Domain/ValueObjects/Color.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Entities/Log.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Domain/Entities/Log.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/DeviceType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Enums/DeviceType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/LogLevel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Enums/LogLevel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/LogType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/PriorityLevel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Enums/PriorityLevel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/ServiceType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Enums/UserState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Enums/UserState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Domain/Iridium.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Domain/Iridium.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/Base/EndpointSettingsAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Attributes/Base/EndpointSettingsAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/Base/FormComponentAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Attributes/Base/FormComponentAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/IridiumRoleAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Attributes/RoleNameAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Attributes/RoleNameAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Configurations/TodoConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Configurations/TodoConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/ConfigureServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/AttributeConfigurations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/AttributeConfigurations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/CacheKeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/CacheKeys.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/ConfigurationConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/ConfigurationConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/MailConfigurations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/MailConfigurations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/RoleParamCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/RoleParamCode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Constants/Validations/ValidationConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Constants/Validations/ValidationConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Contexts/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Contexts/IApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Contexts/IApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Exceptions/NotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Exceptions/NotFoundException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Extensions/EnumExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Extensions/EnumExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Extensions/HashExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Extensions/HashExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Extensions/MappingExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Extensions/MediatorExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Extensions/ValidationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Extensions/ValidationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/FluentValidationInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/FluentValidationInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/LogInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/LogInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Interceptors/EntitySaveChangesInterceptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Interceptors/EntitySaveChangesInterceptor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Iridium.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Iridium.Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240520034758_Initial.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240520034758_Initial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Migrations/20240602140835_InitialCreate.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/20240525204545_Initial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Migrations/20240602140835_InitialCreate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/ConfigurationModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/ConfigurationModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/EndpointSettingsModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/EndpointSettingsModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/FormComponentModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/FormComponentModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/LogExceptionModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/LogExceptionModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/LogModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/LogModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Models/TemplateModels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Models/TemplateModels.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Auth/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/AuthSrv/AuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Auth/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/AuthSrv/IAuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Base/BaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/BaseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Role/IRoleService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/RoleSrv/IRoleService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/Role/RoleService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Application/Services/RoleSrv/RoleService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/User/IUserService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Services/User/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Auth/AuthenticatedUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Types/FormInputType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Core/Enums/FormInputType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/AESEncrypter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/AESEncrypter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/AttributeHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/AttributeHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/ConfigurationManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/DeviceDetectionUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/DeviceDetectionUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/EntityFrameworkTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/EntityFrameworkTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/NLogUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/NLogUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/StringEncrypter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Infrastructure/Utilities/StringEncrypter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/Base/ActionFilterAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/Base/ActionFilterAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/Base/ApiBaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/Base/ApiBaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Controllers/TodoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Controllers/TodoController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/Iridium.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Iridium.Web.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Web/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Middlewares/ErrorHandlerMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Middlewares/ErrorHandlerMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/bin/Debug/net6.0/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/Iridium.Web.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/ref/Iridium.Web.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/refint/Iridium.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Iridium.Web.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Iridium.Web.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/Iridium.Web.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/Iridium.Web.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Iridium.Web/obj/rider.project.restore.info" afterDir="false" />
     </list>
@@ -63,6 +160,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/45/3fd4e754/Encoding.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/45/933dd909/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/a0/a4889d63/DateTime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d4aee560b07444ab5575af3d11895a9b58200/bd/4495b5b3/AsyncTaskMethodBuilder`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -73,6 +171,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/620bc7f42ca5470aa37fc87957c5d0db209800/42/3d946322/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/620bc7f42ca5470aa37fc87957c5d0db209800/83/df89bc92/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/620bc7f42ca5470aa37fc87957c5d0db209800/b8/159fa015/FromQueryAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6ff9df1d43c54f4a83630f45d75dcb1d7c88/5e/06fb7755/IMemoryCache.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/78030f782ad3426dae7798a9802af89923f400/5f/addb93cd/HttpProtocol.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/975bf429da2a47c2b8081c008d18db0b40600/7a/497d38e1/Profile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/be1d2687a1814a8b8a835ecd6f98f6e515600/39/b6444c56/AuthorizeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
@@ -93,13 +192,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b468413b8e2f77bc619b764ac811e856f9d35c9ffe07e5f375a4eabf2209b9/ILogger.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c854e9701da0dbfde76caa7f37743082eb91e1bc26523d7ff25ff4cce123f/ConfigurationManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e9f282c41b7333cb73ec63bb84279c59f46e14b3414e466cf262ea3a8f64e11/System.Diagnostics.EventLog.notsupported.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Contexts/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/AESEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Infrastructure/Utilities/StringEncrypter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/fatihaydin/RiderProjects/iridium/Iridium.Web/Controllers/Base/ApiBaseController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Iridium.Web/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -133,7 +225,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -252,6 +344,10 @@
       <workItem from="1716629861917" duration="105000" />
       <workItem from="1716629978511" duration="30830000" />
       <workItem from="1716664798810" duration="5652000" />
+      <workItem from="1717327320241" duration="307000" />
+      <workItem from="1717327692252" duration="1885000" />
+      <workItem from="1717329593073" duration="4757000" />
+      <workItem from="1717334368043" duration="3169000" />
     </task>
     <task id="LOCAL-00001" summary="code review 1">
       <option name="closed" value="true" />
@@ -433,28 +529,13 @@
           <line>57</line>
           <properties documentPath="$PROJECT_DIR$/Iridium.Web/Middlewares/ErrorHandlerMiddleware.cs" initialLine="57" containingFunctionPresentation="Method 'Invoke'">
             <startOffsets>
-              <option value="2045" />
+              <option value="2043" />
             </startOffsets>
             <endOffsets>
-              <option value="2046" />
+              <option value="2044" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs</url>
-          <line>57</line>
-          <properties documentPath="$PROJECT_DIR$/Iridium.Infrastructure/Initializers/RoleInitializer.cs" initialLine="57" containingFunctionPresentation="Method 'EnsureRole'">
-            <startOffsets>
-              <option value="1841" />
-              <option value="1899" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1938" />
-              <option value="1936" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

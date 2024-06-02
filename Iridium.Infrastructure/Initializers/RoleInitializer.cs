@@ -1,9 +1,10 @@
 ﻿using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
-using Iridium.Infrastructure.Attributes;
-using Iridium.Infrastructure.Contexts;
+using Iridium.Core.Attributes;
+using Iridium.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Iridium.Core.Cache;
 using Iridium.Domain.Models;
 
 namespace Iridium.Infrastructure.Initializers;
@@ -11,7 +12,6 @@ namespace Iridium.Infrastructure.Initializers;
 public class RoleInitializer
 {
     private readonly ApplicationDbContext _dbContext;
-    public static Dictionary<string, long> RoleCache = new Dictionary<string, long>();
 
     public RoleInitializer(ApplicationDbContext dbContext)
     {
@@ -77,7 +77,9 @@ public class RoleInitializer
             _dbContext.Role.Update(role);
         }
 
-        RoleCache[roleNameAttr.ParamCode] = role.Id;
+        if (!string.IsNullOrEmpty(role.ParamCode) && role.Id != 0)
+            RoleCache.AddOrUpdate(role.ParamCode, role.Id);
+        
         return role.Id;
     }
 }
