@@ -42,7 +42,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Applicatio
 {
     public ApplicationDbContext CreateDbContext(string[] args)
     {
-        var projectPath = Path.Combine(Directory.GetCurrentDirectory(), "../Iridium.Web");
+        var projectPath = Path.Combine(Directory.GetCurrentDirectory(), "../Iridium.WebAPI");
         var configuration = new ConfigurationBuilder()
             .SetBasePath(projectPath)
             .AddJsonFile("appsettings.json")
