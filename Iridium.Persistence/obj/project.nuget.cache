@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zL2rQtPL+8FwJ12UxbBVB5mXkvLXN3AFK7nGD206ZA9K9zrz6smqj7qaQwGGwrdbB5a7NVH96EfB1xaCAFeF1w==",
+  "dgSpecHash": "yfUkhqnjmVr6oLrPTZYU4RRztejwiHKO/C5KSaCOsryA2G3B2YwnhPef0BsZKBQtr//qIZLQHGsAFD1dQXIeCA==",
   "success": true,
-  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium/Iridium.Persistence/Iridium.Persistence.csproj",
+  "projectFilePath": "/Users/fatihaydin/RiderProjects/iridium-web/Iridium.Persistence/Iridium.Persistence.csproj",
   "expectedPackageFiles": [
     "/Users/fatihaydin/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/fatihaydin/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
