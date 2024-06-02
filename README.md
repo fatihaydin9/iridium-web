@@ -32,7 +32,7 @@ After launching the application using Docker Compose, follow these steps to crea
 Change to the directory where the `Iridium.Infrastructure` project is located. Use the following command:
 
 ```bash
-cd ../{IridiumPath}/Iridium.Infrastructure
+cd ../{IridiumPath}/Iridium.Persistence
 ```
 Now, create a new database migration named InitialCreate. This migration will include all the necessary database schema changes based on your model. Run the following command:
 ```bash
