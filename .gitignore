@@ -1,6 +1,8 @@
 # Derleme sonuçları
 [Bb]in/
 [Oo]bj/
+bin/
+obj/
 *.exe
 *.dll
 
