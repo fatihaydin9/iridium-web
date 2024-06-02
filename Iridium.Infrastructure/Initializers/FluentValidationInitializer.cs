@@ -1,11 +1,7 @@
 using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Iridium.Infrastructure.Initializers;
-
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using System.Reflection;
 
 public static class FluentValidationInitializer
 {
@@ -25,12 +21,9 @@ public static class FluentValidationInitializer
             foreach (var type in validatorTypes)
             {
                 var validatorInterface = type.GetInterfaces()
-                    .FirstOrDefault(i => i.IsGenericType && 
+                    .FirstOrDefault(i => i.IsGenericType &&
                                          i.GetGenericTypeDefinition() == typeof(IValidator<>));
-                if (validatorInterface != null)
-                {
-                    services.AddTransient(validatorInterface, type);
-                }
+                if (validatorInterface != null) services.AddTransient(validatorInterface, type);
             }
         }
 

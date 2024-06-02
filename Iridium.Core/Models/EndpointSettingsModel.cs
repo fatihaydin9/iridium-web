@@ -2,7 +2,6 @@
 
 public class EndpointSettingsModel
 {
-
     public string TemplateEndPoint { get; set; }
 
     public string GetListEndPoint { get; set; }
@@ -18,5 +17,4 @@ public class EndpointSettingsModel
     public string DeleteEndPoint { get; set; }
 
     public string DropdownEndPoint { get; set; }
-
 }

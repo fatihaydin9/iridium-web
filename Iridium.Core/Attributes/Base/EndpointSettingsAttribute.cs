@@ -2,19 +2,22 @@
 
 public class EndpointSettingsAttribute : Attribute
 {
-    public string templateEndpoint;
-    public string paginatedListEndPoint;
-    public string getListEndPoint;
-    public string getEndPoint;
-    public string insertEndPoint;
-    public string updateEndPoint;
     public string deleteEndPoint;
     public string dropdownEndPoint;
-    public EndpointSettingsAttribute(string templateEndpoint, string paginatedListEndpoint, string getListEndPoint, string getEndPoint,
-        string insertEndPoint, string updateEndPoint, string deleteEndPoint, string dropdownEndPoint, string paginatedListEndPoint)
+    public string getEndPoint;
+    public string getListEndPoint;
+    public string insertEndPoint;
+    public string paginatedListEndPoint;
+    public string templateEndpoint;
+    public string updateEndPoint;
+
+    public EndpointSettingsAttribute(string templateEndpoint, string paginatedListEndpoint, string getListEndPoint,
+        string getEndPoint,
+        string insertEndPoint, string updateEndPoint, string deleteEndPoint, string dropdownEndPoint,
+        string paginatedListEndPoint)
     {
         this.templateEndpoint = templateEndpoint;
-        this.paginatedListEndPoint= paginatedListEndPoint;
+        this.paginatedListEndPoint = paginatedListEndPoint;
         this.getListEndPoint = getListEndPoint;
         this.getEndPoint = getEndPoint;
         this.insertEndPoint = insertEndPoint;

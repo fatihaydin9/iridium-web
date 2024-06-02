@@ -30,7 +30,7 @@ public class GetTodoByIdQueryQueryHandler : IRequestHandler<GetTodoByIdQuery, Se
         var dbResult = await _context.Todo
             .Where(w => w.Id == request.Id && w.Deleted != true)
             .ProjectTo<TodoBriefDto>(_mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            .FirstOrDefaultAsync(cancellationToken);
 
         return new ServiceResult<TodoBriefDto>(dbResult);
     }

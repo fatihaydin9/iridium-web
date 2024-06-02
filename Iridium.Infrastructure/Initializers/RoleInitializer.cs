@@ -1,11 +1,10 @@
-﻿using Iridium.Domain.Common;
-using Iridium.Domain.Entities;
+﻿using System.Reflection;
 using Iridium.Core.Attributes;
+using Iridium.Core.Cache;
+using Iridium.Domain.Common;
+using Iridium.Domain.Entities;
 using Iridium.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using Iridium.Core.Cache;
-using Iridium.Domain.Models;
 
 namespace Iridium.Infrastructure.Initializers;
 
@@ -25,10 +24,7 @@ public class RoleInitializer
             .Where(t => typeof(IRole).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
             .ToList();
 
-        foreach (var type in roleTypes)
-        {
-            await EnsureRoles(type);
-        }
+        foreach (var type in roleTypes) await EnsureRoles(type);
 
         await _dbContext.SaveChangesAsync();
     }
@@ -36,14 +32,12 @@ public class RoleInitializer
     private async Task EnsureRoles(Type roleType)
     {
         var fields = roleType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-        var fullRoleField = fields.FirstOrDefault(f => f.GetCustomAttribute<RoleNameAttribute>()?.Name.Contains("Full") ?? false);
+        var fullRoleField =
+            fields.FirstOrDefault(f => f.GetCustomAttribute<RoleNameAttribute>()?.Name.Contains("Full") ?? false);
         var nonFullRoles = fields.Where(f => f != fullRoleField).ToList();
 
         long? fullRoleId = null;
-        if (fullRoleField != null)
-        {
-            fullRoleId = await EnsureRole(fullRoleField);
-        }
+        if (fullRoleField != null) fullRoleId = await EnsureRole(fullRoleField);
 
         foreach (var field in nonFullRoles)
             await EnsureRole(field, fullRoleId);
@@ -79,9 +73,7 @@ public class RoleInitializer
 
         if (!string.IsNullOrEmpty(role.ParamCode) && role.Id != 0)
             RoleCache.AddOrUpdate(role.ParamCode, role.Id);
-        
+
         return role.Id;
     }
 }
-
-

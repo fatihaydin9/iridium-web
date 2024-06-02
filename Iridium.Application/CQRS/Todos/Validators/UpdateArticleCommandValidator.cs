@@ -10,7 +10,6 @@ public class UpdateTodoCommandValidator : AbstractValidator<UpdateTodoCommand>
     {
         RuleFor(v => v.Id)
             .NotNull()
-            
             .NotEqual(0);
         RuleFor(v => v.Content)
             .MinimumLength(ConfigurationConstants.MinTodoContentLength)

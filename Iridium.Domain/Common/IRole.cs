@@ -1,4 +1,6 @@
 ﻿namespace Iridium.Domain.Common;
 
-public interface IRole { }
+public interface IRole
+{
+}
 // Base Role for implementing by other role classes

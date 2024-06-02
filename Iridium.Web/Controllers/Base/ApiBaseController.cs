@@ -1,11 +1,7 @@
-﻿using AutoMapper;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Iridium.Domain.Common;
-using Iridium.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Iridium.Web.Controllers.Base;
 
@@ -14,13 +10,6 @@ namespace Iridium.Web.Controllers.Base;
 [Route("[controller]")]
 public abstract class ApiBaseController : ControllerBase
 {
-    #region Mediator
-
-    private ISender? _mediator;
-    protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
-
-    #endregion
-    
     [NonAction]
     public ServiceResult<bool> GetSucceededResult()
     {
@@ -42,5 +31,10 @@ public abstract class ApiBaseController : ControllerBase
         return serviceResult;
     }
 
-    
+    #region Mediator
+
+    private ISender? _mediator;
+    protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
+
+    #endregion
 }

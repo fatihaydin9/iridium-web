@@ -26,5 +26,4 @@ public class User : BaseEntity
     public DateTime? LastPaymentDate { get; set; }
 
     public virtual ICollection<UserRole> UserRoles { get; set; }
-
 }

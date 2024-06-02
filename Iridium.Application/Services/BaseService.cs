@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
-namespace Iridium.Infrastructure.Services;
+namespace Iridium.Application.Services;
 
 public class BaseService
 {
     protected readonly AppSettings AppSettings;
-    protected readonly IMemoryCache MemoryCache;
     protected readonly ApplicationDbContext DbContext;
+    protected readonly IMemoryCache MemoryCache;
 
     protected BaseService(IMemoryCache memoryCache, ApplicationDbContext dbContext, IOptions<AppSettings> appSettings)
     {
@@ -63,16 +63,6 @@ public class BaseService
         return new ServiceResult<List<Role>>(cachedData);
     }
 
-    #region Private Methods
-
-    private async Task<List<Role>> FetchRolesFromDbAsync() =>
-        await DbContext.Role.Where(w => w.Deleted != true).ToListAsync();
-
-    private async Task<List<string>> FetchRoleParamCodesFromDbAsync() =>
-        await DbContext.Role.Where(w => w.Deleted != true).Select(s => s.ParamCode).ToListAsync();
-
-    #endregion
-    
     public async Task<List<Role>> GetRoleHierarchyAsync(List<string> paramCodes)
     {
         var result = new List<Role>();
@@ -89,11 +79,25 @@ public class BaseService
             var currentRole = roleQueue.Dequeue();
             result.Add(currentRole);
             var childRoles = roles.Where(r => r.ParentRoleId == currentRole.Id);
-            
+
             foreach (var child in childRoles)
                 roleQueue.Enqueue(child);
         }
 
         return result;
     }
+
+    #region Private Methods
+
+    private async Task<List<Role>> FetchRolesFromDbAsync()
+    {
+        return await DbContext.Role.Where(w => w.Deleted != true).ToListAsync();
+    }
+
+    private async Task<List<string>> FetchRoleParamCodesFromDbAsync()
+    {
+        return await DbContext.Role.Where(w => w.Deleted != true).Select(s => s.ParamCode).ToListAsync();
+    }
+
+    #endregion
 }

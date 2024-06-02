@@ -1,6 +1,6 @@
-﻿using Iridium.Domain.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Iridium.Core.Enums;
+using Iridium.Domain.Common;
 
 namespace Iridium.Domain.Entities;
 
@@ -16,21 +16,18 @@ public class Log : BaseEntity
 
     public string? Key { get; set; }
 
-    [StringLength(30)]
-    public string? KeyName { get; set; }
+    [StringLength(30)] public string? KeyName { get; set; }
 
     public string? InComing { get; set; }
 
     public string? OutGoing { get; set; }
 
-    [StringLength(20)]
-    public string? UserIp { get; set; }
+    [StringLength(20)] public string? UserIp { get; set; }
 
-    [StringLength(50)]
-    public string? ServerName { get; set; }
+    [StringLength(50)] public string? ServerName { get; set; }
 
     public DateTime? ResponseStart { get; set; }
-    
+
     public DateTime? ResponseEnd { get; set; }
 
     public byte? DeviceType { get; set; }

@@ -4,20 +4,13 @@ namespace Iridium.Domain.ValueObjects;
 
 public class Color : ValueObject
 {
-    static Color() { }
-
-    private Color() { }
+    private Color()
+    {
+    }
 
     private Color(string code)
     {
         Code = code;
-    }
-
-    public static Color From(string code)
-    {
-        var colour = new Color { Code = code };
-
-        return colour;
     }
 
     public static Color White => new("#FFFFFF");
@@ -38,21 +31,6 @@ public class Color : ValueObject
 
     public string Code { get; private set; } = "#000000";
 
-    public static implicit operator string(Color colour)
-    {
-        return colour.ToString();
-    }
-
-    public static explicit operator Color(string code)
-    {
-        return From(code);
-    }
-
-    public override string ToString()
-    {
-        return Code;
-    }
-
     protected static IEnumerable<Color> SupportedColours
     {
         get
@@ -66,6 +44,28 @@ public class Color : ValueObject
             yield return Purple;
             yield return Grey;
         }
+    }
+
+    public static Color From(string code)
+    {
+        var colour = new Color { Code = code };
+
+        return colour;
+    }
+
+    public static implicit operator string(Color colour)
+    {
+        return colour.ToString();
+    }
+
+    public static explicit operator Color(string code)
+    {
+        return From(code);
+    }
+
+    public override string ToString()
+    {
+        return Code;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

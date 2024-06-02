@@ -1,10 +1,3 @@
-using Iridium.Domain.Common;
-using Iridium.Domain.Entities;
-using Iridium.Domain.Models.RequestModels;
-using Iridium.Domain.Models.ResponseModels;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,15 +6,23 @@ using Iridium.Core.Constants;
 using Iridium.Core.Constants.Validations;
 using Iridium.Core.Enums;
 using Iridium.Core.Models;
+using Iridium.Domain.Common;
+using Iridium.Domain.Entities;
+using Iridium.Domain.Models.RequestModels;
+using Iridium.Domain.Models.ResponseModels;
 using Iridium.Infrastructure.Extensions;
 using Iridium.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Iridium.Infrastructure.Services.AuthSrv;
+namespace Iridium.Application.Services.AuthSrv;
 
 public class AuthService : BaseService, IAuthService
 {
-    public AuthService(IMemoryCache memoryCache, ApplicationDbContext dbContext, IOptions<AppSettings> appSettings) : base(memoryCache, dbContext, appSettings)
+    public AuthService(IMemoryCache memoryCache, ApplicationDbContext dbContext, IOptions<AppSettings> appSettings) :
+        base(memoryCache, dbContext, appSettings)
     {
     }
 
@@ -85,14 +86,14 @@ public class AuthService : BaseService, IAuthService
 
         long todoFullRoleId = 0;
         RoleCache.TryGetValue(RoleParamCode.TodoFull, out todoFullRoleId);
-        
-        var roleIds = new List<long>() { todoFullRoleId };
+
+        var roleIds = new List<long> { todoFullRoleId };
 
         var userId = user.Id;
         var userRoles = new List<UserRole>();
 
         foreach (var roleId in roleIds)
-            userRoles.Add(new UserRole()
+            userRoles.Add(new UserRole
             {
                 UserId = userId,
                 RoleId = roleId
@@ -167,7 +168,7 @@ public class AuthService : BaseService, IAuthService
 
         var userRolesWithChild = await GetRoleHierarchyAsync(userRoleParamCodes);
         var allUserRoleParamCodesWithChild = userRolesWithChild.Select(s => s.ParamCode).ToList();
-        
+
         foreach (var userRoleParamCode in allUserRoleParamCodesWithChild)
             claims.Add(new Claim(ClaimTypes.Role, userRoleParamCode));
 
@@ -184,7 +185,7 @@ public class AuthService : BaseService, IAuthService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         var accessToken = tokenHandler.WriteToken(token);
 
-        var loginResponse = new UserLoginResponse()
+        var loginResponse = new UserLoginResponse
         {
             AccessToken = accessToken,
             ExpiresIn = tokenExpireDate
@@ -216,28 +217,44 @@ public class AuthService : BaseService, IAuthService
     #region Private Validation Methods
 
     private async Task<bool> ValidateUserExists(string mailAddress)
-        => !await DbContext.User.AnyAsync(w => w.Deleted != true && w.MailAddress == mailAddress);
+    {
+        return !await DbContext.User.AnyAsync(w => w.Deleted != true && w.MailAddress == mailAddress);
+    }
 
     private bool ValidateIsPasswordMin8CharactersLong(string password)
-        => password.Length >= 8;
+    {
+        return password.Length >= 8;
+    }
 
     private bool ValidateIsPasswordMax16CharactersLong(string password)
-        => password.Length <= 16;
+    {
+        return password.Length <= 16;
+    }
 
     private bool ValidatePasswordAndConfirmPasswordMatch(string password, string confirmPassword)
-        => password == confirmPassword;
+    {
+        return password == confirmPassword;
+    }
 
     private bool ValidateIsPasswordContainsAtLeastOneUpperCaseLetter(string password)
-        => password.Any(char.IsUpper);
+    {
+        return password.Any(char.IsUpper);
+    }
 
     private bool ValidateIsPasswordContainsAtLeastOneLowerCaseLetter(string password)
-        => password.Any(char.IsLower);
+    {
+        return password.Any(char.IsLower);
+    }
 
     private bool ValidateIsPasswordContainsAtLeastOneDigit(string password)
-        => password.Any(char.IsDigit);
+    {
+        return password.Any(char.IsDigit);
+    }
 
     private bool ValidateIsPasswordContainsAtLeastOneSpecialCharacter(string password)
-        => !password.All(char.IsLetterOrDigit);
+    {
+        return !password.All(char.IsLetterOrDigit);
+    }
 
     #endregion
 }

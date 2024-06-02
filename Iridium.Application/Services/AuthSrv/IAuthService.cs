@@ -3,7 +3,7 @@ using Iridium.Domain.Entities;
 using Iridium.Domain.Models.RequestModels;
 using Iridium.Domain.Models.ResponseModels;
 
-namespace Iridium.Infrastructure.Services;
+namespace Iridium.Application.Services.AuthSrv;
 
 public interface IAuthService
 {

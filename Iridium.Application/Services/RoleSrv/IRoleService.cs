@@ -1,6 +1,6 @@
 using Iridium.Domain.Entities;
 
-namespace Iridium.Infrastructure.Services.RoleSrv;
+namespace Iridium.Application.Services.RoleSrv;
 
 public interface IRoleService
 {

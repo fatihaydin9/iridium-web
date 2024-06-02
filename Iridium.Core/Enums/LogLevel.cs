@@ -1,11 +1,10 @@
-﻿namespace Iridium.Core.Enums
+﻿namespace Iridium.Core.Enums;
+
+public enum LogLevel : short
 {
-    public enum LogLevel : short
-    {
-        Debug = 0,
-        Info = 1,
-        Warning = 2,
-        Error = 3,
-        Critical = 4,
-    }
+    Debug = 0,
+    Info = 1,
+    Warning = 2,
+    Error = 3,
+    Critical = 4
 }

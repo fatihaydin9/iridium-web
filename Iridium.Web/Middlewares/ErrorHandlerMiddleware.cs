@@ -1,24 +1,22 @@
-﻿using Iridium.Domain.Common;
-using Iridium.Infrastructure.Utilities;
-using Newtonsoft.Json;
-using NLog;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Net;
+using System.Text.Json;
 using IdentityServer4.Extensions;
 using Iridium.Core.Enums;
-using Iridium.Infrastructure.Services;
+using Iridium.Infrastructure.Utilities;
+using NLog;
 
 namespace Iridium.Web.Middlewares;
 
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
-    private Logger Logger => LogManager.GetCurrentClassLogger();
 
     public ErrorHandlerMiddleware(RequestDelegate next)
     {
         _next = next;
     }
+
+    private Logger Logger => LogManager.GetCurrentClassLogger();
 
     public async Task Invoke(HttpContext context)
     {
@@ -40,16 +38,16 @@ public class ErrorHandlerMiddleware
 
                 var responseBodyContent = await ReadResponseBodyAsync(memoryStream);
                 var requestEnd = DateTime.UtcNow;
-                
+
                 // TODO: UserId will be add
                 if (!responseBodyContent.IsNullOrEmpty() && !requestBodyContent.IsNullOrEmpty())
-                {
-                    if (context.Response.ContentType != null && context.Response.ContentType.Contains("application/json"))
+                    if (context.Response.ContentType.Contains("application/json"))
                     {
+                        var device = DeviceDetectionUtility.GetDeviceTypeFromContext(context);
+
                         Logger.Bilgi(requestBodyContent, responseBodyContent, remoteIpAddress,
-                            LogType.ErrorHandlerMiddleware, "Standard", null, requestStart, requestEnd);
+                            LogType.ErrorHandlerMiddleware, "Standard", null, requestStart, requestEnd, (byte)device);
                     }
-                }
 
                 await memoryStream.CopyToAsync(originalResponseBodyStream);
             }
@@ -57,7 +55,8 @@ public class ErrorHandlerMiddleware
         catch (Exception exception)
         {
             context.Response.Body = originalResponseBodyStream;
-            await HandleExceptionAsync(context, exception, requestBodyContent, queryString, requestStart, remoteIpAddress);
+            await HandleExceptionAsync(context, exception, requestBodyContent, queryString, requestStart,
+                remoteIpAddress);
         }
     }
 
@@ -66,7 +65,7 @@ public class ErrorHandlerMiddleware
         context.Request.EnableBuffering();
         var reader = new StreamReader(context.Request.Body);
         var body = await reader.ReadToEndAsync();
-        context.Request.Body.Position = 0; 
+        context.Request.Body.Position = 0;
         return body;
     }
 
@@ -75,11 +74,12 @@ public class ErrorHandlerMiddleware
         memoryStream.Position = 0;
         var reader = new StreamReader(memoryStream);
         var body = await reader.ReadToEndAsync();
-        memoryStream.Position = 0; 
+        memoryStream.Position = 0;
         return body;
     }
 
-    private async Task HandleExceptionAsync(HttpContext context, Exception exception, string requestBody, string queryString, DateTime start, string remoteIpAddress)
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception, string requestBody,
+        string queryString, DateTime start, string remoteIpAddress)
     {
         var responseEnd = DateTime.UtcNow;
 
@@ -89,38 +89,36 @@ public class ErrorHandlerMiddleware
 
         var innerExceptionMessage = string.Empty;
         var exceptionMessage = string.Empty;
-        
+
         if (exception.InnerException != null)
             innerExceptionMessage = exception.InnerException.Message;
 
         if (!exception.Message.IsNullOrEmpty())
             exceptionMessage = exception.Message;
-        
+
         var outgoingModel = new
         {
             Succeeded = false,
             Message = $"An unexpected error occurred. (Code: {errorCode})"
         };
 
-        var outgoing = System.Text.Json.JsonSerializer.Serialize(outgoingModel);
-        
+        var outgoing = JsonSerializer.Serialize(outgoingModel);
+
         var incoming = !string.IsNullOrEmpty(requestBody) ? requestBody : queryString;
-        
+
         var exceptionLogModel = new
         {
             Succeeded = false,
             Message = $"An unexpected error occurred. (Code: {errorCode})",
-            Exception = $"Exception : {exceptionMessage} ({innerExceptionMessage})",
+            Exception = $"Exception : {exceptionMessage} ({innerExceptionMessage})"
         };
-        var exceptionLog = System.Text.Json.JsonSerializer.Serialize(exceptionLogModel);
-        
+        var exceptionLog = JsonSerializer.Serialize(exceptionLogModel);
+
         if (context.Response.ContentType.Contains("application/json"))
-        {
             Logger.Hata(incoming, exceptionLog, remoteIpAddress, LogType.ErrorHandlerMiddleware, "Error", errorCode,
                 start, responseEnd);
-        }
 
-        await context.Response.WriteAsync(outgoing); 
+        await context.Response.WriteAsync(outgoing);
     }
 
     private HttpStatusCode DetermineStatusCode(Exception exception)
@@ -132,4 +130,3 @@ public class ErrorHandlerMiddleware
         };
     }
 }
-

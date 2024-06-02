@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Iridium.Core.Exceptions;
 using Iridium.Domain.Common;
 using Iridium.Domain.Entities;
-using Iridium.Core.Exceptions;
 using Iridium.Persistence.Contexts;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Iridium.Application.CQRS.Todos.Commands;
@@ -33,7 +33,7 @@ public class UpdateTodoCommandHandler : IRequestHandler<UpdateTodoCommand, Servi
 
         entity.IsCompleted = request.IsCompleted;
         entity.Content = request.Content;
-       
+
         _context.Todo.Update(entity);
 
         await _context.SaveChangesAsync(cancellationToken);

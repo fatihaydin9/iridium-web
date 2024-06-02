@@ -19,5 +19,4 @@ public class FormComponentModel
     public string MaskRegex { get; set; }
 
     public string CascadeField { get; set; }
-
 }

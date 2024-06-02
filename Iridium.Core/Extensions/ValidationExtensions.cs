@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace Iridium.Infrastructure.Extensions;
 
@@ -8,8 +9,8 @@ public static class ValidationHelper
     {
         try
         {
-            string pattern = @"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
-            Match match = Regex.Match(phone, pattern, RegexOptions.IgnoreCase);
+            var pattern = @"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
+            var match = Regex.Match(phone, pattern, RegexOptions.IgnoreCase);
             return match.Success;
         }
         catch
@@ -22,7 +23,7 @@ public static class ValidationHelper
     {
         try
         {
-            var mail = new System.Net.Mail.MailAddress(email);
+            var mail = new MailAddress(email);
             return string.IsNullOrWhiteSpace(mail.Address) == false;
         }
         catch

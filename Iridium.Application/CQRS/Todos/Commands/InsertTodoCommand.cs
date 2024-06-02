@@ -22,10 +22,10 @@ public class InsertTodoCommandHandler : IRequestHandler<InsertTodoCommand, Servi
 
     public async Task<ServiceResult<bool>> Handle(InsertTodoCommand request, CancellationToken cancellationToken)
     {
-        var noteEntity = new Todo()
+        var noteEntity = new Todo
         {
             Content = request.Content,
-            IsCompleted = false,
+            IsCompleted = false
         };
 
         noteEntity.AddDomainEvent(new TodoInsertedEvent(noteEntity));

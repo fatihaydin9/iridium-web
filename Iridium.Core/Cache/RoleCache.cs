@@ -1,5 +1,6 @@
 namespace Iridium.Core.Cache;
 
+// Static Role Cache
 public static class RoleCache
 {
     private static readonly Dictionary<string, long> _roleCache = new();
@@ -29,4 +30,3 @@ public static class RoleCache
         }
     }
 }
-

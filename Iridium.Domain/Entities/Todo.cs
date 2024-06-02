@@ -1,5 +1,4 @@
 ﻿using Iridium.Domain.Common;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Iridium.Domain.Entities;
 

@@ -1,22 +1,20 @@
-﻿using Iridium.Infrastructure.Services.RoleSrv;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Iridium.Iridium.Infrastructure.Attributes;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Iridium.Application.Services.RoleSrv;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Security.Claims;
+
+namespace Iridium.Web.Filters;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class IridiumRoleAttribute : Attribute, IAuthorizationFilter
 {
     private readonly IRoleService _roleService;
-    public string RoleParamCode { get; }
 
     public IridiumRoleAttribute(string roleParamCode)
     {
         RoleParamCode = roleParamCode;
     }
+
+    public string RoleParamCode { get; }
 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
@@ -33,6 +31,5 @@ public class IridiumRoleAttribute : Attribute, IAuthorizationFilter
 
         if (!userRoleParamCodes.Contains(RoleParamCode))
             throw new UnauthorizedAccessException();
-        
     }
 }

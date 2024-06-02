@@ -1,27 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.1"/>
+        <PackageReference Include="MediatR" Version="12.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Iridium.Domain\Iridium.Domain.csproj" />
-    <ProjectReference Include="..\Iridium.Persistence\Iridium.Persistence.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Iridium.Domain\Iridium.Domain.csproj"/>
+        <ProjectReference Include="..\Iridium.Persistence\Iridium.Persistence.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="CQRS\Notes\Queries\GetNotesWithPaginationQuery.cs">
-      <DependentUpon>NoteBriefDto.cs</DependentUpon>
-    </Compile>
-    <Compile Update="CQRS\Article\Queries\GetArticlesWithPaginationQuery.cs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="CQRS\Notes\Queries\GetNotesWithPaginationQuery.cs">
+            <DependentUpon>NoteBriefDto.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CQRS\Article\Queries\GetArticlesWithPaginationQuery.cs"/>
+    </ItemGroup>
 
 </Project>

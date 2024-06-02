@@ -1,6 +1,5 @@
-﻿namespace Iridium.Infrastructure.Roles
+﻿namespace Iridium.Infrastructure.Roles;
+
+internal class RoleAreaAttribute : Attribute
 {
-    internal class RoleAreaAttribute : Attribute
-    {
-    }
 }

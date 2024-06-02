@@ -1,13 +1,13 @@
-﻿using Iridium.Core.Constants;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace Iridium.Infrastructure.Utilities;
 
 public class StringEncrypter
 {
-    private readonly string _entropyString;
     private readonly byte[] _entropy;
+    private readonly string _entropyString;
+
     public StringEncrypter(string symmetricKey)
     {
         _entropyString = symmetricKey;

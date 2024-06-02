@@ -1,6 +1,6 @@
 ﻿using Iridium.Core.Exceptions;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Iridium.Web.Controllers.Base;
 
@@ -12,12 +12,12 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
         // Register known exception types and handlers.
         _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
-            {
-                //{ typeof(ValidationException), HandleValidationException },
-                { typeof(NotFoundException), HandleNotFoundException },
-                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
-                //{ typeof(ForbiddenAccessException), HandleForbiddenAccessException },
-            };
+        {
+            //{ typeof(ValidationException), HandleValidationException },
+            { typeof(NotFoundException), HandleNotFoundException },
+            { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException }
+            //{ typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+        };
     }
 
     public override void OnException(ExceptionContext context)
@@ -29,18 +29,14 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 
     private void HandleException(ExceptionContext context)
     {
-        Type type = context.Exception.GetType();
+        var type = context.Exception.GetType();
         if (_exceptionHandlers.ContainsKey(type))
         {
             _exceptionHandlers[type].Invoke(context);
             return;
         }
 
-        if (!context.ModelState.IsValid)
-        {
-            HandleInvalidModelStateException(context);
-            return;
-        }
+        if (!context.ModelState.IsValid) HandleInvalidModelStateException(context);
     }
 
     //private void HandleValidationException(ExceptionContext context)
@@ -73,7 +69,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
         var exception = (NotFoundException)context.Exception;
 
-        var details = new ProblemDetails()
+        var details = new ProblemDetails
         {
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
             Title = "The specified resource was not found.",

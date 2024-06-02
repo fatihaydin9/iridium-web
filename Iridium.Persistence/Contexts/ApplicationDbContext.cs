@@ -1,13 +1,9 @@
-﻿using Iridium.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Data.Common;
-using System.Reflection;
+﻿using System.Reflection;
 using Iridium.Core.Auth;
-using Iridium.Persistence.Interceptors;
+using Iridium.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace Iridium.Persistence.Contexts;
 
@@ -22,12 +18,12 @@ public class ApplicationDbContext : DbContext
         _authenticatedUser = authenticatedUser;
     }
 
-    public DbSet<Log> Log { get; set; }
-    public DbSet<User> User { get; set; }
-    public DbSet<Role> Role { get; set; }
-    public DbSet<UserRole> UserRole { get; set; }
-    public DbSet<AuditLog> AuditLog { get; set; }
-    public DbSet<Todo> Todo { get; set; }
+    public DbSet<Log> Log { get; init; }
+    public DbSet<User> User { get; init; }
+    public DbSet<Role> Role { get; init; }
+    public DbSet<UserRole> UserRole { get; init; }
+    public DbSet<AuditLog> AuditLog { get; init; }
+    public DbSet<Todo> Todo { get; init; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -35,7 +31,6 @@ public class ApplicationDbContext : DbContext
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(builder);
     }
-
 }
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

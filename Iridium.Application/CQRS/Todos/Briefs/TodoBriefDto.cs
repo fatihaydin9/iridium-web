@@ -2,7 +2,6 @@
 using Iridium.Core.Constants;
 using Iridium.Core.Types;
 using Iridium.Domain.Common;
-using Iridium.Domain.Entities;
 
 namespace Iridium.Application.CQRS.Todos.Briefs;
 

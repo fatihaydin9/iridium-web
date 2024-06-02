@@ -1,17 +1,15 @@
-﻿using Iridium.Core.Enums;
+﻿using Iridium.Core.Auth;
+using Iridium.Core.Enums;
+using Iridium.Core.Models;
+using Iridium.Domain.Entities;
+using Iridium.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using NLog;
-using System.Diagnostics;
-using Iridium.Core.Auth;
-using Iridium.Core.Models;
-using Iridium.Domain.Entities;
 using LogLevel = Iridium.Core.Enums.LogLevel;
-using Iridium.Persistence.Contexts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Iridium.Infrastructure.Utilities;
 
@@ -20,14 +18,11 @@ public class EntityFrameworkTarget : TargetWithLayout
 {
     #region Properties
 
-    [RequiredParameter]
-    public ServiceType ServiceType { get; set; }
+    [RequiredParameter] public ServiceType ServiceType { get; set; }
 
-    [RequiredParameter]
-    public Layout MachineName { get; set; }
+    [RequiredParameter] public Layout MachineName { get; set; }
 
-    [RequiredParameter]
-    public Layout ConnString { get; set; }
+    [RequiredParameter] public Layout ConnString { get; set; }
 
     #endregion
 
@@ -37,95 +32,87 @@ public class EntityFrameworkTarget : TargetWithLayout
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseSqlServer(ConnString.ToString());
-        
+
         using (var context = new ApplicationDbContext(optionsBuilder.Options, new MockUserService()))
         {
-            try
+            var param = logEvent.Parameters?.FirstOrDefault(p => p.GetType() == typeof(LogModel));
+            if (param != null)
             {
-                var param = logEvent.Parameters?.FirstOrDefault(p => p.GetType() == typeof(LogModel));
-                if (param != null)
+                var logParam = (LogModel)param;
+                var log = new Log
                 {
-                    var logParam = (LogModel)param;
-                    var log = new Log
-                    {
-                        LogDate = DateTime.Now,
-                        ServiceType = ServiceType,
-                        LogType = logParam.LogType,
-                        Key = logParam.Key,
-                        KeyName = logParam.KeyName,
-                        LogLevel = GetLogLevel(logEvent),
-                        InComing = logParam.InComing,
-                        OutGoing = logParam.OutGoing,
-                        ServerName = MachineName.Render(logEvent),
-                        UserIp = logParam.IpAddress,
-                        ResponseStart = logParam.ResponseStart,
-                        ResponseEnd = logParam.ResponseEnd,
-                        DeviceType = logParam.DeviceType,
-                        CreatedDate = DateTime.Now,
-                        CreatedBy = 1
-                    };
-                    context.Log.Add(log);
-                }
-                else if (logEvent.Level == NLog.LogLevel.Error && logEvent.Exception != null)
-                {
-                    var idx = 0;
-                    var lst = new List<LogExceptionModel>();
-                    var ipAddress = "";
-                    var curExc = logEvent.Exception;
+                    LogDate = DateTime.Now,
+                    ServiceType = ServiceType,
+                    LogType = logParam.LogType,
+                    Key = logParam.Key,
+                    KeyName = logParam.KeyName,
+                    LogLevel = GetLogLevel(logEvent),
+                    InComing = logParam.InComing,
+                    OutGoing = logParam.OutGoing,
+                    ServerName = MachineName.Render(logEvent),
+                    UserIp = logParam.IpAddress,
+                    ResponseStart = logParam.ResponseStart,
+                    ResponseEnd = logParam.ResponseEnd,
+                    DeviceType = logParam.DeviceType,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = 1
+                };
+                context.Log.Add(log);
+            }
+            else if (logEvent.Level == NLog.LogLevel.Error && logEvent.Exception != null)
+            {
+                var idx = 0;
+                var lst = new List<LogExceptionModel>();
+                var ipAddress = "";
+                var curExc = logEvent.Exception;
 
-                    while (true)
+                while (true)
+                    if (curExc != null)
                     {
-                        if (curExc != null)
+                        lst.Add(new LogExceptionModel
                         {
-                            lst.Add(new LogExceptionModel
-                            {
-                                Tag = $"[{idx++} Index Exception]",
-                                Message = curExc.Message,
-                                StackTrace = curExc.StackTrace
-                            });
+                            Tag = $"[{idx++} Index Exception]",
+                            Message = curExc.Message,
+                            StackTrace = curExc.StackTrace
+                        });
 
-                            if (curExc.InnerException == null)
-                                break;
+                        if (curExc.InnerException == null)
+                            break;
 
-                            curExc = curExc.InnerException;
-                        }
+                        curExc = curExc.InnerException;
                     }
 
-                    var exceptionString = JsonConvert.SerializeObject(lst, Formatting.None);
+                var exceptionString = JsonConvert.SerializeObject(lst, Formatting.None);
 
-                    var log = new Log()
-                    {
-                        LogDate = DateTime.Now,
-                        LogLevel = GetLogLevel(logEvent),
-                        LogType = LogType.Common,
-                        ServiceType = ServiceType,
-                        InComing = logEvent.Message,
-                        OutGoing = exceptionString,
-                        ServerName = MachineName.Render(logEvent),
-                        UserIp = ipAddress,
-                        CreatedDate = DateTime.Now,
-                        CreatedBy = 1
-                    };
-                    context.Log.Add(log);
-                }
-                
-                context.SaveChanges();
+                var log = new Log
+                {
+                    LogDate = DateTime.Now,
+                    LogLevel = GetLogLevel(logEvent),
+                    LogType = LogType.Common,
+                    ServiceType = ServiceType,
+                    InComing = logEvent.Message,
+                    OutGoing = exceptionString,
+                    ServerName = MachineName.Render(logEvent),
+                    UserIp = ipAddress,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = 1
+                };
+                context.Log.Add(log);
             }
-            catch (Exception exception)
-            {
-#if WINDOWS
-              EventLog.WriteEntry("Iridium[NLog]:", "İzleme kaydı yazılırken bir hata oluştu.\n" + exc, EventLogEntryType.Error, 50001);
-#endif
-                throw;
-            }
+
+            context.SaveChanges();
         }
     }
 
-    public LogLevel GetLogLevel(LogEventInfo logEvent)
+    private LogLevel GetLogLevel(LogEventInfo logEvent)
     {
         return logEvent.Level == NLog.LogLevel.Debug
-            ? LogLevel.Debug : logEvent.Level == NLog.LogLevel.Error
-                ? LogLevel.Error : logEvent.Level == NLog.LogLevel.Warn ? LogLevel.Warning : LogLevel.Info;
+            ? LogLevel.Debug
+            : logEvent.Level == NLog.LogLevel.Error
+                ? LogLevel.Error
+                : logEvent.Level == NLog.LogLevel.Warn
+                    ? LogLevel.Warning
+                    : LogLevel.Info;
     }
 }
 

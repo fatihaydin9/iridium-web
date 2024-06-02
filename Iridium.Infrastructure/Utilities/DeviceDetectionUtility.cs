@@ -12,16 +12,15 @@ public static class DeviceDetectionUtility
         if (userAgent.Contains("iphone") || userAgent.Contains("ipad"))
             return DeviceType.AppleDevice;
 
-        else if (userAgent.Contains("android") || userAgent.Contains("okhttp"))
+        if (userAgent.Contains("android") || userAgent.Contains("okhttp"))
             return DeviceType.AndroidDevice;
 
-        else if (userAgent.Contains("mozilla") || userAgent.Contains("chrome") || userAgent.Contains("safari"))
+        if (userAgent.Contains("mozilla") || userAgent.Contains("chrome") || userAgent.Contains("safari"))
             return DeviceType.WebDevice;
 
-        else if (userAgent.Contains("postman"))
+        if (userAgent.Contains("postman"))
             return DeviceType.PostmanClient;
 
-        else
-            return DeviceType.Unknown;
+        return DeviceType.Unknown;
     }
 }

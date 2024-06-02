@@ -1,10 +1,7 @@
-﻿using FluentValidation;
-using Iridium.Persistence.Contexts;
+﻿using Iridium.Core.Auth;
 using Iridium.Infrastructure.Initializers;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using Iridium.Core.Auth;
 using Iridium.Persistence.Interceptors;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace Iridium.Infrastructure;
@@ -16,7 +13,7 @@ public static class ConfigureServices
         // Add fundamentals
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        
+
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Iridium Web", Version = "v1" });
@@ -42,8 +39,7 @@ public static class ConfigureServices
                         },
                         Scheme = "bearer",
                         Name = "Bearer",
-                        In = ParameterLocation.Header,
-
+                        In = ParameterLocation.Header
                     },
                     new List<string>()
                 }
@@ -53,10 +49,10 @@ public static class ConfigureServices
         // Add Fundamental Services
         services.AddHttpClient();
         services.AddMemoryCache();
-        
+
         // Add Services
         services.AddScoped<EntitySaveChangesInterceptor>();
-        
+
         // User Auth
         services.AddScoped<IAuthenticatedUser, AuthenticatedUser>();
 
@@ -64,10 +60,10 @@ public static class ConfigureServices
         services.InitializeMediatR();
         services.InitializeAutoMapper();
         services.InitializeFluentValidators();
-        
+
         // Initialize role structure : add or delete domain roles
         services.AddTransient<RoleInitializer>();
-            
+
         return services;
     }
 }

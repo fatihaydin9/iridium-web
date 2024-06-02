@@ -1,5 +1,5 @@
-﻿using Iridium.Domain.Common;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Iridium.Domain.Common;
 
 namespace Iridium.Domain.Entities;
 
@@ -10,12 +10,9 @@ public class UserRole : BaseEntity
 
     #region Navigation Properties
 
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
+    [ForeignKey("UserId")] public virtual User User { get; set; }
 
-    [ForeignKey("RoleId")]
-    public virtual Role Role { get; set; }
+    [ForeignKey("RoleId")] public virtual Role Role { get; set; }
 
     #endregion
-    
 }
