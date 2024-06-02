@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridium.Core", "Iridium.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridium.Infrastructure", "Iridium.Infrastructure\Iridium.Infrastructure.csproj", "{44218EB7-2FA1-4C77-A63F-45BCF54916A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridium.WebAPI", "Iridium.WebAPI\Iridium.WebAPI.csproj", "{F7D2133D-2D0C-469F-AAA4-35E081D8D4B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridium.Web", "Iridium.Web\Iridium.Web.csproj", "{F7D2133D-2D0C-469F-AAA4-35E081D8D4B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
