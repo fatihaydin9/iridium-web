@@ -9,9 +9,9 @@ namespace Iridium.Application.CQRS.Todos.Commands;
 
 public record UpdateTodoCommand : IRequest<ServiceResult<bool>>
 {
-    public long Id { get; }
-    public string Content { get; }
-    public bool IsCompleted { get; }
+    public long Id { get; set; }
+    public string Content { get; set; }
+    public bool IsCompleted { get; set; }
 }
 
 public class UpdateTodoCommandHandler : IRequestHandler<UpdateTodoCommand, ServiceResult<bool>>
@@ -25,16 +25,16 @@ public class UpdateTodoCommandHandler : IRequestHandler<UpdateTodoCommand, Servi
 
     public async Task<ServiceResult<bool>> Handle(UpdateTodoCommand request, CancellationToken cancellationToken)
     {
-        var todo =
+        var entity =
             await _context.Todo.FirstOrDefaultAsync(w => w.Id == request.Id && w.Deleted != true, cancellationToken);
 
-        if (todo == null)
+        if (entity == null)
             throw new NotFoundException(nameof(Todo), request.Id);
 
-        todo.UpdateContent(request.Content);
-        todo.UpdateIsCompleted(request.IsCompleted);
+        entity.IsCompleted = request.IsCompleted;
+        entity.Content = request.Content;
        
-        _context.Todo.Update(todo);
+        _context.Todo.Update(entity);
 
         await _context.SaveChangesAsync(cancellationToken);
 
