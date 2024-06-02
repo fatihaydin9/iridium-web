@@ -8,7 +8,7 @@ namespace Iridium.Application.CQRS.Todos.Commands;
 
 public class InsertTodoCommand : IRequest<ServiceResult<bool>>
 {
-    public string Content { get; set; }
+    public string Content { get; }
 }
 
 public class InsertTodoCommandHandler : IRequestHandler<InsertTodoCommand, ServiceResult<bool>>
@@ -22,11 +22,7 @@ public class InsertTodoCommandHandler : IRequestHandler<InsertTodoCommand, Servi
 
     public async Task<ServiceResult<bool>> Handle(InsertTodoCommand request, CancellationToken cancellationToken)
     {
-        var noteEntity = new Todo()
-        {
-            Content = request.Content,
-            IsCompleted = false,
-        };
+        var noteEntity = new Todo(request.Content, false);
 
         noteEntity.AddDomainEvent(new TodoInsertedEvent(noteEntity));
 
