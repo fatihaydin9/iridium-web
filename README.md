@@ -1,52 +1,57 @@
+# Iridium Web
+
 ## 1. What Is Iridium Web?
-Iridium Web is a monolithic software infrastructure that I've developed using cutting-edge approaches like Domain Driven Design, Clean Architecture, CQRS, and Docker. I designed it to include a wide range of sophisticated functionalities such as detailed logging, an advanced role management system, effective caching solutions, authentication and authorization mechanisms.
+Iridium Web is a monolithic software infrastructure developed using advanced methodologies such as Domain Driven Design (DDD), Clean Architecture, Command Query Responsibility Segregation (CQRS), and Docker. It encompasses a wide range of sophisticated features including detailed logging, an advanced role management system, effective caching solutions, authentication, and authorization mechanisms.
 
-### 1.1. DDD (Domain Driven Design)
-I implemented Domain Driven Design in Iridium Web to make sure the development process closely matches the complex and changing needs of modern businesses. This approach helps create a common language between me, other developers and business stakeholders, greatly improving our communication and understanding. It simplifies maintenance by organizing the system into clear bounded contexts each designed to tackle specific business complexities. Plus, DDD ensures that the architecture can easily adapt to new business strategies.
+### 1.1. Domain Driven Design (DDD)
+Iridium Web leverages Domain Driven Design to ensure the development process aligns with the complex and evolving needs of modern businesses. This approach fosters a common language between developers and business stakeholders, enhancing communication and understanding. It simplifies maintenance by organizing the system into clear bounded contexts, each tailored to address specific business complexities. Additionally, DDD ensures that the architecture can easily adapt to new business strategies.
 
-### 1.2. CQRS (Command Query Responsibility Segregation) Pattern
-In Iridium Web I've integrated the CQRS pattern, which becomes more and more crucial as the complexity of the application increases. This pattern divides data operations into distinct commands (writes) and queries (reads) boosting performance and scalability. It also enhances security by isolating sensitive operations and allows me to customize technologies and database schemas that are best suited for each side's needs.
+### 1.2. Command Query Responsibility Segregation (CQRS)
+The CQRS pattern is integrated into Iridium Web to handle increasing application complexity. By separating data operations into commands (writes) and queries (reads), CQRS boosts performance and scalability. It also enhances security by isolating sensitive operations and allows for customization of technologies and database schemas best suited for each operation.
 
 ### 1.3. MediatR and the Mediator Pattern
-I chose MediatR is a well-known .NET library that implements the mediator pattern, to reduce the direct dependencies among components and simplifying their communication. By decoupling the application’s components, MediatR lets them operate more independently interacting through a central mediator. This reduces dependency and improves both maintainability and scalability. It also supports the Single Responsibility Principle by managing separate logic through discrete handlers, each responsible for a specific command or query.
+MediatR, a well-known .NET library implementing the mediator pattern, is used to reduce direct dependencies among components and simplify their communication. By decoupling the application's components, MediatR allows them to operate independently, interacting through a central mediator. This reduces dependency, improves maintainability, and enhances scalability. It also supports the Single Responsibility Principle by managing separate logic through discrete handlers, each responsible for a specific command or query.
 
 ## 2. Features Overview
 
-#### 2.1. AuditLog & Standard Fields
-In Iridium Web, I integrated an Entity Change Tracker that meticulously records every change, capturing detailed snapshots of entities before and after any modifications. This feature is crucial for ensuring compliance and aiding debugging. The system also automatically manages standard fields such as `CreatedBy`, `CreatedDate`, `ModifiedBy`, and `ModifiedDate`, essential for maintaining data accountability and integrity.
+### 2.1. AuditLog & Standard Fields
+Iridium Web integrates an Entity Change Tracker that meticulously records every change, capturing detailed snapshots of entities before and after modifications. This feature is crucial for ensuring compliance and aiding in debugging. The system also automatically manages standard fields such as `CreatedBy`, `CreatedDate`, `ModifiedBy`, and `ModifiedDate`, essential for maintaining data accountability and integrity.
 
-#### 2.2. Role System
-At startup, I make sure Iridium Web synchronizes predefined roles from the codebase to the database using a code-first migration strategy. This minimizes manual work and boosts security by regulating access based on well-defined parent-child roles.
+### 2.2. Role System
+At startup, Iridium Web synchronizes predefined roles from the codebase to the database using a code-first migration strategy. This minimizes manual work and enhances security by regulating access based on well-defined parent-child roles.
 
-#### 2.3. Authentication & Authorization
-I maintain security within Iridium Web using JWT Bearer Tokens, which are securely signed with symmetric keys. This strong authentication is supported by a dynamic role-based access control system, ensuring all actions within the application strictly adhere to established security policies.
+### 2.3. Authentication & Authorization
+Iridium Web maintains security using JWT Bearer Tokens, securely signed with symmetric keys. This robust authentication is supported by a dynamic role-based access control system, ensuring all actions within the application strictly adhere to established security policies.
 
-#### 2.4. Fluent Validation System
-To keep data integrity and simplify the validation process, I use the FluentValidation library in Iridium Web. This allows me to set up clear and comprehensive validation rules, making the code easier to read and maintain.
+### 2.4. Fluent Validation System
+To maintain data integrity and simplify the validation process, Iridium Web uses the FluentValidation library. This allows for clear and comprehensive validation rules, making the code easier to read and maintain.
 
-#### 2.5. AutoMapper Integration
-I've also integrated AutoMapper into Iridium Web to simplify the mapping of data between objects, greatly reducing the need for manual coding. This is especially helpful when dealing with complex data structures and Data Transfer Objects (DTOs), ensuring a clear separation between data layers and business logic.
+### 2.5. AutoMapper Integration
+AutoMapper is integrated into Iridium Web to simplify data mapping between objects, significantly reducing the need for manual coding. This is particularly helpful when dealing with complex data structures and Data Transfer Objects (DTOs), ensuring a clear separation between data layers and business logic.
 
 ## 3. Setup
 After launching the application using Docker Compose, follow these steps to create a new database called 'Iridium' and set up the necessary tables and roles:
-Change to the directory where the `Iridium.Infrastructure` project is located. Use the following command:
 
-```bash
-cd ../{IridiumPath}/Iridium.Persistence
-```
-Now, create a new database migration named InitialCreate. This migration will include all the necessary database schema changes based on your model. Run the following command:
-```bash
-dotnet ef migrations add InitialCreate
-```
-Apply changes using dotnet ef database update command:
-```bash
-dotnet ef database update
-```
+1. Navigate to the directory where the `Iridium.Infrastructure` project is located:
+    ```bash
+    cd ../{IridiumPath}/Iridium.Persistence
+    ```
 
-Now, restart the application to ensure that all roles are properly imported and the system is ready to be used.
+2. Create a new database migration named `InitialCreate`, which includes all necessary database schema changes based on your model:
+    ```bash
+    dotnet ef migrations add InitialCreate
+    ```
+
+3. Apply the changes using the `dotnet ef database update` command:
+    ```bash
+    dotnet ef database update
+    ```
+
+4. Restart the application to ensure all roles are properly imported and the system is ready for use.
 
 With these steps, your Iridium application setup is complete!
 
-I hope you like it! <br>
-All the best, <br>
+I hope you find this project useful!
+
+Best regards,  
 Fatih
